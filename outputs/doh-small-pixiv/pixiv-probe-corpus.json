@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "corpus_version": "pixiv-fixed-a-2026-08",
+  "generated_at": "2026-08-10T11:01:45Z",
+  "probes": [
+    {
+      "id": "positive-pixiv-a",
+      "kind": "positive_exact",
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "expected_mode": "exact_rrset",
+      "expected_answers": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "notes": "Fixed RRset supplied for the Pixiv pollution check."
+    }
+  ]
+}

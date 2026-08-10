@@ -1,0 +1,399 @@
+{
+  "dataset": "doh-small-pixiv",
+  "query": {
+    "qname": "pixiv.net.",
+    "qtype": "A",
+    "rounds": 3
+  },
+  "expected_a_rrset": [
+    "210.140.139.152",
+    "210.140.139.155",
+    "210.140.139.158",
+    "210.140.139.161"
+  ],
+  "result_counts": {
+    "endpoints": 15,
+    "accepted": 8,
+    "candidate": 3,
+    "rejected": 4,
+    "exact_probe_ok": 31,
+    "exact_probe_total": 45
+  },
+  "endpoints": [
+    {
+      "url": "https://ag.apollohct.com/dns-query",
+      "status": "candidate",
+      "score": 70,
+      "exact_probe": [
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "ok": false,
+          "error": "timeout:",
+          "expected": null,
+          "actual": null
+        }
+      ]
+    },
+    {
+      "url": "https://cm3if9n4aw.cloudflare-gateway.com/dns-query",
+      "status": "accepted",
+      "score": 84,
+      "exact_probe": [
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        }
+      ]
+    },
+    {
+      "url": "https://ctif.hagezi.org/dns-query",
+      "status": "accepted",
+      "score": 83,
+      "exact_probe": [
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        }
+      ]
+    },
+    {
+      "url": "https://dns.alidns.com/dns-query",
+      "status": "rejected",
+      "score": 36,
+      "exact_probe": [
+        {
+          "ok": false,
+          "error": "answer_mismatch",
+          "expected": "210.140.139.152,210.140.139.155,210.140.139.158,210.140.139.161",
+          "actual": "38.121.72.166"
+        },
+        {
+          "ok": false,
+          "error": "answer_mismatch",
+          "expected": "210.140.139.152,210.140.139.155,210.140.139.158,210.140.139.161",
+          "actual": "157.240.13.8"
+        },
+        {
+          "ok": false,
+          "error": "answer_mismatch",
+          "expected": "210.140.139.152,210.140.139.155,210.140.139.158,210.140.139.161",
+          "actual": "108.160.163.117"
+        }
+      ]
+    },
+    {
+      "url": "https://dns.pub/dns-query",
+      "status": "rejected",
+      "score": 36,
+      "exact_probe": [
+        {
+          "ok": false,
+          "error": "answer_mismatch",
+          "expected": "210.140.139.152,210.140.139.155,210.140.139.158,210.140.139.161",
+          "actual": "199.96.59.19"
+        },
+        {
+          "ok": false,
+          "error": "answer_mismatch",
+          "expected": "210.140.139.152,210.140.139.155,210.140.139.158,210.140.139.161",
+          "actual": "199.96.59.19"
+        },
+        {
+          "ok": false,
+          "error": "answer_mismatch",
+          "expected": "210.140.139.152,210.140.139.155,210.140.139.158,210.140.139.161",
+          "actual": "199.96.59.19"
+        }
+      ]
+    },
+    {
+      "url": "https://doh.090227.xyz/AdG-query",
+      "status": "candidate",
+      "score": 62,
+      "exact_probe": [
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "ok": false,
+          "error": "timeout:",
+          "expected": null,
+          "actual": null
+        },
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        }
+      ]
+    },
+    {
+      "url": "https://doh.090227.xyz/Ali-query",
+      "status": "rejected",
+      "score": 50,
+      "exact_probe": [
+        {
+          "ok": false,
+          "error": "timeout:",
+          "expected": null,
+          "actual": null
+        },
+        {
+          "ok": false,
+          "error": "timeout:",
+          "expected": null,
+          "actual": null
+        },
+        {
+          "ok": false,
+          "error": "timeout:",
+          "expected": null,
+          "actual": null
+        }
+      ]
+    },
+    {
+      "url": "https://doh.090227.xyz/V-query",
+      "status": "candidate",
+      "score": 77,
+      "exact_probe": [
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        }
+      ]
+    },
+    {
+      "url": "https://doh.18bit.cn/dns-query",
+      "status": "rejected",
+      "score": 28,
+      "exact_probe": [
+        {
+          "ok": false,
+          "error": "answer_mismatch",
+          "expected": "210.140.139.152,210.140.139.155,210.140.139.158,210.140.139.161",
+          "actual": "202.160.130.145"
+        },
+        {
+          "ok": false,
+          "error": "answer_mismatch",
+          "expected": "210.140.139.152,210.140.139.155,210.140.139.158,210.140.139.161",
+          "actual": "202.160.130.145"
+        },
+        {
+          "ok": false,
+          "error": "answer_mismatch",
+          "expected": "210.140.139.152,210.140.139.155,210.140.139.158,210.140.139.161",
+          "actual": "202.160.130.145"
+        }
+      ]
+    },
+    {
+      "url": "https://doh.360.cn/dns-query",
+      "status": "accepted",
+      "score": 82,
+      "exact_probe": [
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        }
+      ]
+    },
+    {
+      "url": "https://doh.cm.edu.kg/CMLiussss",
+      "status": "accepted",
+      "score": 86,
+      "exact_probe": [
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        }
+      ]
+    },
+    {
+      "url": "https://doh.tiarap.org/dns-query",
+      "status": "accepted",
+      "score": 82,
+      "exact_probe": [
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        }
+      ]
+    },
+    {
+      "url": "https://frd4wvnobp.cloudflare-gateway.com/dns-query",
+      "status": "accepted",
+      "score": 84,
+      "exact_probe": [
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        }
+      ]
+    },
+    {
+      "url": "https://kids.ns.nwps.fi/dns-query",
+      "status": "accepted",
+      "score": 81,
+      "exact_probe": [
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        }
+      ]
+    },
+    {
+      "url": "https://my123.cloudflare-gateway.com/dns-query",
+      "status": "accepted",
+      "score": 83,
+      "exact_probe": [
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        },
+        {
+          "ok": true,
+          "error": null,
+          "expected": null,
+          "actual": null
+        }
+      ]
+    }
+  ]
+}

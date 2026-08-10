@@ -1,0 +1,1500 @@
+{
+  "dataset": "doh-small",
+  "endpoint_summary": [
+    {
+      "endpoint_url": "https://dns.alidns.com/dns-query",
+      "errors": [],
+      "observed_a_sets": [
+        {
+          "observations": 1,
+          "values": [
+            "157.240.13.8"
+          ]
+        },
+        {
+          "observations": 2,
+          "values": [
+            "38.121.72.166"
+          ]
+        }
+      ],
+      "rounds_exact_match": 0,
+      "rounds_ok": 3
+    },
+    {
+      "endpoint_url": "https://dns.pub/dns-query",
+      "errors": [],
+      "observed_a_sets": [
+        {
+          "observations": 3,
+          "values": [
+            "199.96.59.19"
+          ]
+        }
+      ],
+      "rounds_exact_match": 0,
+      "rounds_ok": 3
+    },
+    {
+      "endpoint_url": "https://cm3if9n4aw.cloudflare-gateway.com/dns-query",
+      "errors": [],
+      "observed_a_sets": [
+        {
+          "observations": 3,
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "rounds_exact_match": 3,
+      "rounds_ok": 3
+    },
+    {
+      "endpoint_url": "https://doh.cm.edu.kg/CMLiussss",
+      "errors": [],
+      "observed_a_sets": [
+        {
+          "observations": 3,
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "rounds_exact_match": 3,
+      "rounds_ok": 3
+    },
+    {
+      "endpoint_url": "https://frd4wvnobp.cloudflare-gateway.com/dns-query",
+      "errors": [],
+      "observed_a_sets": [
+        {
+          "observations": 3,
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "rounds_exact_match": 3,
+      "rounds_ok": 3
+    },
+    {
+      "endpoint_url": "https://kids.ns.nwps.fi/dns-query",
+      "errors": [],
+      "observed_a_sets": [
+        {
+          "observations": 3,
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "rounds_exact_match": 3,
+      "rounds_ok": 3
+    },
+    {
+      "endpoint_url": "https://my123.cloudflare-gateway.com/dns-query",
+      "errors": [],
+      "observed_a_sets": [
+        {
+          "observations": 3,
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "rounds_exact_match": 3,
+      "rounds_ok": 3
+    },
+    {
+      "endpoint_url": "https://doh.360.cn/dns-query",
+      "errors": [],
+      "observed_a_sets": [
+        {
+          "observations": 3,
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "rounds_exact_match": 3,
+      "rounds_ok": 3
+    },
+    {
+      "endpoint_url": "https://doh.tiarap.org/dns-query",
+      "errors": [],
+      "observed_a_sets": [
+        {
+          "observations": 3,
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "rounds_exact_match": 3,
+      "rounds_ok": 3
+    },
+    {
+      "endpoint_url": "https://ctif.hagezi.org/dns-query",
+      "errors": [],
+      "observed_a_sets": [
+        {
+          "observations": 3,
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "rounds_exact_match": 3,
+      "rounds_ok": 3
+    },
+    {
+      "endpoint_url": "https://doh.090227.xyz/V-query",
+      "errors": [
+        "ConnectTimeout"
+      ],
+      "observed_a_sets": [
+        {
+          "observations": 2,
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "rounds_exact_match": 2,
+      "rounds_ok": 2
+    },
+    {
+      "endpoint_url": "https://ag.apollohct.com/dns-query",
+      "errors": [
+        "ConnectTimeout",
+        "ConnectTimeout"
+      ],
+      "observed_a_sets": [
+        {
+          "observations": 1,
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "rounds_exact_match": 1,
+      "rounds_ok": 1
+    },
+    {
+      "endpoint_url": "https://doh.090227.xyz/Ali-query",
+      "errors": [
+        "ConnectTimeout"
+      ],
+      "observed_a_sets": [
+        {
+          "observations": 2,
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "rounds_exact_match": 2,
+      "rounds_ok": 2
+    },
+    {
+      "endpoint_url": "https://doh.090227.xyz/AdG-query",
+      "errors": [],
+      "observed_a_sets": [
+        {
+          "observations": 3,
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "rounds_exact_match": 3,
+      "rounds_ok": 3
+    },
+    {
+      "endpoint_url": "https://doh.18bit.cn/dns-query",
+      "errors": [
+        "ReadTimeout",
+        "ReadTimeout",
+        "ReadTimeout"
+      ],
+      "observed_a_sets": [],
+      "rounds_exact_match": 0,
+      "rounds_ok": 0
+    }
+  ],
+  "expected_a_rrset": [
+    "210.140.139.152",
+    "210.140.139.155",
+    "210.140.139.158",
+    "210.140.139.161"
+  ],
+  "generated_at": "2026-08-10T11:00:59Z",
+  "query": {
+    "qname": "pixiv.net.",
+    "qtype": "A",
+    "rounds": 3
+  },
+  "result_counts": {
+    "endpoints": 15,
+    "exact_matches": 32,
+    "requests": 45,
+    "successful_requests": 38
+  },
+  "results": [
+    {
+      "a_values": [
+        "38.121.72.166"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 68,
+          "type": "A",
+          "values": [
+            "38.121.72.166"
+          ]
+        }
+      ],
+      "current_dataset_status": "accepted",
+      "endpoint_url": "https://dns.alidns.com/dns-query",
+      "http_status": 200,
+      "latency_ms": 64.213,
+      "matches_expected_a_rrset": false,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 1
+    },
+    {
+      "a_values": [
+        "199.96.59.19"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 248,
+          "type": "A",
+          "values": [
+            "199.96.59.19"
+          ]
+        }
+      ],
+      "current_dataset_status": "accepted",
+      "endpoint_url": "https://dns.pub/dns-query",
+      "http_status": 200,
+      "latency_ms": 158.935,
+      "matches_expected_a_rrset": false,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 1
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 300,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "unvalidated",
+      "endpoint_url": "https://cm3if9n4aw.cloudflare-gateway.com/dns-query",
+      "http_status": 200,
+      "latency_ms": 637.95,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 1
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 300,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "unvalidated",
+      "endpoint_url": "https://doh.cm.edu.kg/CMLiussss",
+      "http_status": 200,
+      "latency_ms": 1267.186,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 1
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 300,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "accepted",
+      "endpoint_url": "https://frd4wvnobp.cloudflare-gateway.com/dns-query",
+      "http_status": 200,
+      "latency_ms": 1473.793,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 1
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 300,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "accepted",
+      "endpoint_url": "https://kids.ns.nwps.fi/dns-query",
+      "http_status": 200,
+      "latency_ms": 688.009,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 1
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 120,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "unvalidated",
+      "endpoint_url": "https://my123.cloudflare-gateway.com/dns-query",
+      "http_status": 200,
+      "latency_ms": 847.254,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 1
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 600,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "accepted",
+      "endpoint_url": "https://doh.360.cn/dns-query",
+      "http_status": 200,
+      "latency_ms": 884.416,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 1
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 300,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "accepted",
+      "endpoint_url": "https://doh.tiarap.org/dns-query",
+      "http_status": 200,
+      "latency_ms": 835.001,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 1
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 300,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "unvalidated",
+      "endpoint_url": "https://ctif.hagezi.org/dns-query",
+      "http_status": 200,
+      "latency_ms": 1747.298,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 1
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 240,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "unvalidated",
+      "endpoint_url": "https://doh.090227.xyz/V-query",
+      "http_status": 200,
+      "latency_ms": 1484.071,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 1
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 300,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "accepted",
+      "endpoint_url": "https://ag.apollohct.com/dns-query",
+      "http_status": 200,
+      "latency_ms": 649.236,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 1
+    },
+    {
+      "current_dataset_status": "unvalidated",
+      "endpoint_url": "https://doh.090227.xyz/Ali-query",
+      "error": "",
+      "error_type": "ConnectTimeout",
+      "latency_ms": 8094.902,
+      "ok": false,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "round": 1
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 296,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "unvalidated",
+      "endpoint_url": "https://doh.090227.xyz/AdG-query",
+      "http_status": 200,
+      "latency_ms": 4178.15,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 1
+    },
+    {
+      "current_dataset_status": "candidate",
+      "endpoint_url": "https://doh.18bit.cn/dns-query",
+      "error": "",
+      "error_type": "ReadTimeout",
+      "latency_ms": 6243.618,
+      "ok": false,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "round": 1
+    },
+    {
+      "a_values": [
+        "38.121.72.166"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 68,
+          "type": "A",
+          "values": [
+            "38.121.72.166"
+          ]
+        }
+      ],
+      "current_dataset_status": "accepted",
+      "endpoint_url": "https://dns.alidns.com/dns-query",
+      "http_status": 200,
+      "latency_ms": 55.599,
+      "matches_expected_a_rrset": false,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 2
+    },
+    {
+      "a_values": [
+        "199.96.59.19"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 248,
+          "type": "A",
+          "values": [
+            "199.96.59.19"
+          ]
+        }
+      ],
+      "current_dataset_status": "accepted",
+      "endpoint_url": "https://dns.pub/dns-query",
+      "http_status": 200,
+      "latency_ms": 199.418,
+      "matches_expected_a_rrset": false,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 2
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 300,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "unvalidated",
+      "endpoint_url": "https://cm3if9n4aw.cloudflare-gateway.com/dns-query",
+      "http_status": 200,
+      "latency_ms": 625.023,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 2
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 201,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "unvalidated",
+      "endpoint_url": "https://doh.cm.edu.kg/CMLiussss",
+      "http_status": 200,
+      "latency_ms": 228.714,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 2
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 300,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "accepted",
+      "endpoint_url": "https://frd4wvnobp.cloudflare-gateway.com/dns-query",
+      "http_status": 200,
+      "latency_ms": 631.575,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 2
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 300,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "accepted",
+      "endpoint_url": "https://kids.ns.nwps.fi/dns-query",
+      "http_status": 200,
+      "latency_ms": 836.054,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 2
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 53,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "unvalidated",
+      "endpoint_url": "https://my123.cloudflare-gateway.com/dns-query",
+      "http_status": 200,
+      "latency_ms": 633.716,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 2
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 600,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "accepted",
+      "endpoint_url": "https://doh.360.cn/dns-query",
+      "http_status": 200,
+      "latency_ms": 862.338,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 2
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 300,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "accepted",
+      "endpoint_url": "https://doh.tiarap.org/dns-query",
+      "http_status": 200,
+      "latency_ms": 812.789,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 2
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 298,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "unvalidated",
+      "endpoint_url": "https://ctif.hagezi.org/dns-query",
+      "http_status": 200,
+      "latency_ms": 2626.521,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 2
+    },
+    {
+      "current_dataset_status": "unvalidated",
+      "endpoint_url": "https://doh.090227.xyz/V-query",
+      "error": "",
+      "error_type": "ConnectTimeout",
+      "latency_ms": 6608.603,
+      "ok": false,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "round": 2
+    },
+    {
+      "current_dataset_status": "accepted",
+      "endpoint_url": "https://ag.apollohct.com/dns-query",
+      "error": "",
+      "error_type": "ConnectTimeout",
+      "latency_ms": 6011.166,
+      "ok": false,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "round": 2
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 300,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "unvalidated",
+      "endpoint_url": "https://doh.090227.xyz/Ali-query",
+      "http_status": 200,
+      "latency_ms": 2129.504,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 2
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 300,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "unvalidated",
+      "endpoint_url": "https://doh.090227.xyz/AdG-query",
+      "http_status": 200,
+      "latency_ms": 262.902,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 2
+    },
+    {
+      "current_dataset_status": "candidate",
+      "endpoint_url": "https://doh.18bit.cn/dns-query",
+      "error": "",
+      "error_type": "ReadTimeout",
+      "latency_ms": 6923.509,
+      "ok": false,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "round": 2
+    },
+    {
+      "a_values": [
+        "157.240.13.8"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 194,
+          "type": "A",
+          "values": [
+            "157.240.13.8"
+          ]
+        }
+      ],
+      "current_dataset_status": "accepted",
+      "endpoint_url": "https://dns.alidns.com/dns-query",
+      "http_status": 200,
+      "latency_ms": 76.706,
+      "matches_expected_a_rrset": false,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 3
+    },
+    {
+      "a_values": [
+        "199.96.59.19"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 248,
+          "type": "A",
+          "values": [
+            "199.96.59.19"
+          ]
+        }
+      ],
+      "current_dataset_status": "accepted",
+      "endpoint_url": "https://dns.pub/dns-query",
+      "http_status": 200,
+      "latency_ms": 146.465,
+      "matches_expected_a_rrset": false,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 3
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 300,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "unvalidated",
+      "endpoint_url": "https://cm3if9n4aw.cloudflare-gateway.com/dns-query",
+      "http_status": 200,
+      "latency_ms": 1494.705,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 3
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 201,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "unvalidated",
+      "endpoint_url": "https://doh.cm.edu.kg/CMLiussss",
+      "http_status": 200,
+      "latency_ms": 575.929,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 3
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 300,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "accepted",
+      "endpoint_url": "https://frd4wvnobp.cloudflare-gateway.com/dns-query",
+      "http_status": 200,
+      "latency_ms": 618.873,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 3
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 299,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "accepted",
+      "endpoint_url": "https://kids.ns.nwps.fi/dns-query",
+      "http_status": 200,
+      "latency_ms": 1859.887,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 3
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 53,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "unvalidated",
+      "endpoint_url": "https://my123.cloudflare-gateway.com/dns-query",
+      "http_status": 200,
+      "latency_ms": 622.063,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 3
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 600,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "accepted",
+      "endpoint_url": "https://doh.360.cn/dns-query",
+      "http_status": 200,
+      "latency_ms": 870.04,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 3
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 299,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "accepted",
+      "endpoint_url": "https://doh.tiarap.org/dns-query",
+      "http_status": 200,
+      "latency_ms": 1973.742,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 3
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 300,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "unvalidated",
+      "endpoint_url": "https://ctif.hagezi.org/dns-query",
+      "http_status": 200,
+      "latency_ms": 751.492,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 3
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 133,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "unvalidated",
+      "endpoint_url": "https://doh.090227.xyz/V-query",
+      "http_status": 200,
+      "latency_ms": 862.684,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 3
+    },
+    {
+      "current_dataset_status": "accepted",
+      "endpoint_url": "https://ag.apollohct.com/dns-query",
+      "error": "",
+      "error_type": "ConnectTimeout",
+      "latency_ms": 6006.431,
+      "ok": false,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "round": 3
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 298,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "unvalidated",
+      "endpoint_url": "https://doh.090227.xyz/Ali-query",
+      "http_status": 200,
+      "latency_ms": 5503.048,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 3
+    },
+    {
+      "a_values": [
+        "210.140.139.152",
+        "210.140.139.155",
+        "210.140.139.158",
+        "210.140.139.161"
+      ],
+      "answer_rrsets": [
+        {
+          "name": "pixiv.net.",
+          "ttl": 299,
+          "type": "A",
+          "values": [
+            "210.140.139.152",
+            "210.140.139.155",
+            "210.140.139.158",
+            "210.140.139.161"
+          ]
+        }
+      ],
+      "current_dataset_status": "unvalidated",
+      "endpoint_url": "https://doh.090227.xyz/AdG-query",
+      "http_status": 200,
+      "latency_ms": 1476.781,
+      "matches_expected_a_rrset": true,
+      "ok": true,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "rcode": "NOERROR",
+      "round": 3
+    },
+    {
+      "current_dataset_status": "candidate",
+      "endpoint_url": "https://doh.18bit.cn/dns-query",
+      "error": "",
+      "error_type": "ReadTimeout",
+      "latency_ms": 7119.495,
+      "ok": false,
+      "qname": "pixiv.net.",
+      "qtype": "A",
+      "round": 3
+    }
+  ]
+}
