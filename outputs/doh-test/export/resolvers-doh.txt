@@ -1,0 +1,10 @@
+https://cm3if9n4aw.cloudflare-gateway.com/dns-query
+https://ctif.hagezi.org/dns-query
+https://dns.alidns.com/dns-query
+https://dns.pub/dns-query
+https://doh.360.cn/dns-query
+https://doh.cm.edu.kg/CMLiussss
+https://doh.tiarap.org/dns-query
+https://frd4wvnobp.cloudflare-gateway.com/dns-query
+https://kids.ns.nwps.fi/dns-query
+https://my123.cloudflare-gateway.com/dns-query

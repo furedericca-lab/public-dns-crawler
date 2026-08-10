@@ -136,6 +136,8 @@ async def _probe_tls(
     candidate: Candidate,
     timeout_s: float,
     ssl_context: ssl.SSLContext | None = None,
+    trust_env: bool = False,
+    local_address: str | None = None,
 ) -> ProbeResult:
     """Check that the TLS certificate matches the expected server name."""
     probe_name = "doh:tls"
@@ -143,10 +145,17 @@ async def _probe_tls(
     sni = candidate.tls_server_name or candidate.host
     verify: bool | ssl.SSLContext = ssl_context if ssl_context is not None else True
     try:
+        transport = (
+            httpx.AsyncHTTPTransport(local_address=local_address, retries=0)
+            if local_address is not None
+            else None
+        )
         async with httpx.AsyncClient(
             http2=True,
             timeout=httpx.Timeout(timeout_s),
             verify=verify,
+            trust_env=trust_env,
+            transport=transport,
         ) as client:
             start = time.perf_counter()
             await client.head(url)
@@ -171,6 +180,8 @@ async def validate_doh_candidate(
     baseline_resolvers: list[str] | None = None,
     baseline_cache: dict[tuple[str, str], list[str]] | None = None,
     client: httpx.AsyncClient | None = None,
+    trust_env: bool = False,
+    local_address: str | None = None,
 ) -> list[ProbeResult]:
     """Run all DoH probes against a DoH candidate."""
     url = candidate.endpoint_url or ""
@@ -201,11 +212,16 @@ async def validate_doh_candidate(
         if client is not None:
             return await _execute(client)
 
-        async with build_doh_client(timeout_s=timeout_s, verify=verify) as owned_client:
+        async with build_doh_client(
+            timeout_s=timeout_s,
+            verify=verify,
+            trust_env=trust_env,
+            local_address=local_address,
+        ) as owned_client:
             return await _execute(owned_client)
 
     tls_result, probe_results = await asyncio.gather(
-        _probe_tls(candidate, timeout_s, ssl_context),
+        _probe_tls(candidate, timeout_s, ssl_context, trust_env, local_address),
         _run_probes(),
     )
     return [tls_result, *probe_results]

@@ -1,0 +1,2592 @@
+[
+  {
+    "url": "https://0ms.dev/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://1.1.1.1/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://3dns.eu/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 15,
+    "confidence_score": 40
+  },
+  {
+    "url": "https://8888.google/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 90,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://abel.waringer-atg.de/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 87,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://ada.openbld.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://adblock.dns.mullvad.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 88,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://adblock.krctech.dev/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://adblock.mydns.network/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://addns1.m-it.ro/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://adfree.usableprivacy.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://adfreedns.top/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://adguard.meddy94.de/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 87,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://adguard.shoupperuser.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 88,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://adl.adfilter.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 87,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://ae-fuj-w-p-1.nashkan.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 87,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://ae-fuj-w-p-2.nashkan.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 88,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://ae-fuj-w-p-3.nashkan.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 88,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://ag.apollohct.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://agh.dshubham.xyz/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 88,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://all.dns.mullvad.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 86,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://antivirus.bebasid.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://anycast.dns.nextdns.io",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://anycast.dns.nextdns.io/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://anycast.uncensoreddns.org/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 83,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://au-syd-w-f-1.nashkan.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://azure.cloudflare-dns.com/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://base.dns.mullvad.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://basic.rethinkdns.com/",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 90,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://bazooki-infra.dev/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 90,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://brave.cloudflare-dns.com/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://child-noads.joindns4.eu/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 22,
+    "confidence_score": 50
+  },
+  {
+    "url": "https://child.joindns4.eu/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 20,
+    "confidence_score": 50
+  },
+  {
+    "url": "https://chrome.cloudflare-dns.com/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://chuncheon.dnsovertor.cc/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "candidate",
+    "score": 61,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://chuncheon1.dnsovertor.cc/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://clean.dnsforge.de/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 32,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://cloudflare-dns.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 90,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://cm3if9n4aw.cloudflare-gateway.com/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://common.dot.dns.yandex.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 58,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://cryptostorm.is/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 15,
+    "confidence_score": 40
+  },
+  {
+    "url": "https://ctif.hagezi.org/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://dns-doh.dnsforfamily.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 81,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.a47.me/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 39,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.aa.net.uk/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "candidate",
+    "score": 65,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.adguard-dns.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.adnull.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.akbxr.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.alidns.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 90,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.anon.no/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 88,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.applewebkit.dev/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 88,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.aquilenet.fr/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 88,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.asterimoon.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 87,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.bebasid.com/dns-hagezi",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 15,
+    "confidence_score": 40
+  },
+  {
+    "url": "https://dns.bebasid.com/dns-oisd",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 18,
+    "confidence_score": 40
+  },
+  {
+    "url": "https://dns.bebasid.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 87,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.bebasid.com/unfiltered",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 18,
+    "confidence_score": 40
+  },
+  {
+    "url": "https://dns.belnet.be/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.bitservices.io/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "candidate",
+    "score": 79,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.blokada.org/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 87,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.bmwhocking.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.brembeck.cloud/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 81,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.busold.ws/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 86,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.caliph.dev/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "candidate",
+    "score": 79,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.caspervk.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "candidate",
+    "score": 62,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.cert.ee/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 86,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.chenu.ch/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 86,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.chunghwamc.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.cloudflare.com/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://dns.comss.one/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.controld.com/comss",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://dns.cynthialabs.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 19,
+    "confidence_score": 40
+  },
+  {
+    "url": "https://dns.d94.xyz/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 87,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.datenquark.de/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.de.futuredns.eu.org/dns-query/",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://dns.decky.eu/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 87,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.decloudus.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 81,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.dev-umbrellagov.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.digitale-gesellschaft.ch/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 81,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.digitalsize.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.dnsguard.pub/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "candidate",
+    "score": 78,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.dnshome.de/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 82,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.dnswarden.com/0000000000000000000000804",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://dns.dnswarden.com/0000000000000000000000o",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://dns.dnswarden.com/00000000000000000000018",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://dns.dnswarden.com/00000000000000000000028",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://dns.dnswarden.com/00000000000000000000048",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://dns.dnswarden.com/uncensored",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://dns.elemental.software/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 87,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.envs.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.faked.org/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.farshidhakimy.de/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.flatuslifir.is/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 81,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.floriantinney.de/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.furrix.zone/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 87,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.gamban.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.glf.wtf/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.google/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 90,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.guard.io/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 88,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.haka.se/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.hostux.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.inforlogia.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.jupitrdns.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://dns.kapite.in/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 86,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.kernel-error.de/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.kescher.at/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 82,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.koala.us.to/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.kosan.moe/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.l337.site/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.lobbygod.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.luma-medien.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 80,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.marasov.id/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.marbledfennec.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 87,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.mateo.ovh/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.mayx.eu.org/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 90,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.mh4ckt3mh4ckt1c4s.xyz/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 82,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.momou.ch/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://dns.momou.ch/dns-query/kids",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://dns.momou.ch/dns-query/unfiltered",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://dns.mullvad.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 88,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.mzjtechnology.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 87,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.neeb.it/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 15,
+    "confidence_score": 40
+  },
+  {
+    "url": "https://dns.nextdns.io",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://dns.nextdns.io/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.nick-slowinski.de/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 36,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.njal.la/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 88,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.novg.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 87,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.ofdoom.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 88,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.oszx.co/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://dns.paesa.es/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 87,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.paulo.nom.za/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 90,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.petqa.ru/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.practicallyunhackable.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 15,
+    "confidence_score": 40
+  },
+  {
+    "url": "https://dns.pub/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.pumplex.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://dns.quad9.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 86,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.quiet.rocks/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.rabbitdns.org/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://dns.rbn.gr/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 33,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.redhosting.com.ar/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.retakecs.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.roedel.cloud/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.seia.io/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://dns.silen.org/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.skrep.eu/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 88,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.slinkyman.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 87,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.smartguard.io/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 87,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.startupstack.tech/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.stirringphoto.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.surfsharkdns.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.switch.ch/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 83,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.t53.de/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 80,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.telekom.de/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 80,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.tipsy.coffee/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.tls-data.de/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.unx.io/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.us.futuredns.eu.org/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://dns.vaioswolke.xyz/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.w3ctag.org/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns.yuguan.xyz/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://dns1.in-berlin.de/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 80,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns1.techniverse.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns10.quad9.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 86,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns11.quad9.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns12.quad9.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns2.in-berlin.de/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 83,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns4eu.online/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dns64.cloudflare-dns.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://dns64.dns.google/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://dns9.quad9.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 86,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dnsforge.de/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 86,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dnsguard.pub/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://dnslow.me/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dnspub.restena.lu/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 19,
+    "confidence_score": 50
+  },
+  {
+    "url": "https://dnsvps.familiamv.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dog.dns.qwer.pw/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh-01.spectrum.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 88,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh-02.spectrum.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 88,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh-dilution-to-upstreams-adguardhome.nicolas-dorriere.fr/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh-pure.onedns.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://doh.090227.xyz/AdG-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://doh.090227.xyz/Ali-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://doh.090227.xyz/Next-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://doh.090227.xyz/SB-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://doh.090227.xyz/V-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://doh.18bit.cn/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "candidate",
+    "score": 72,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.360.cn/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.aaaab3n.moe/dns-query-114514",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 87,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.angry.im/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.applied-privacy.net/query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 58,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.buzz/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 88,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.cleanbrowsing.org/doh/adult-filter",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 36,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.cleanbrowsing.org/doh/family-filter",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 35,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.cleanbrowsing.org/doh/security-filter",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 35,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.cm.edu.kg/CMLiussss",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://doh.disconnect.app/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.dns.sb/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.dns4all.eu/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.domreg.lt/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 83,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.familyshield.opendns.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.ffmuc.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 81,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.futa.gg/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.la.ahadns.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://doh.lacontrevoie.fr/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 86,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.li/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.libredns.gr/ads",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.libredns.gr/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.lv/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.mmmalia.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.nic.lv/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.niyawe.de/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 83,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.nl.ahadns.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://doh.onedns.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 30,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.opendns.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.sandbox.opendns.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.sb/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://doh.seby.io/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.sz-dns.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 88,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.tiar.app/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 88,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.tiarap.org/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.umbrella.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://doh.viatech.com.tw/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dooh.cloudflare-dns.com/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://doth.huque.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://dukun.de/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://es-ma.foxyfy.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://extended.dns.mullvad.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 87,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://family.adguard-dns.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://family.canadianshield.cira.ca/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 83,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://family.cloudflare-dns.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 90,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://family.dns.mullvad.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 88,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://family.dot.dns.yandex.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 80,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://family.mydns.network/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://family.rabbitdns.org/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://fidelius.top/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://frd4wvnobp.cloudflare-gateway.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://freedns.controld.com/p0",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://freedns.controld.com/p1",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://freedns.controld.com/p2",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://freedns.controld.com/p3",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://freedom.mydns.network/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "candidate",
+    "score": 78,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://gb-lon-w-p-2.nashkan.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 86,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://gibblets.top/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://glacius.top/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://hard.dnsforge.de/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 32,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://helios.plan9-dns.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 55,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://hongkong.dnsovertor.cc/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://ibksturm.synology.me/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://ibuki.cgnat.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 86,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://imperio.top/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://internetsehat.bebasid.com/adblock",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://internetsehat.bebasid.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://japan.dnsovertor.cc/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 83,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://jp.tiar.app/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://jp.tiarap.org/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 19,
+    "confidence_score": 40
+  },
+  {
+    "url": "https://juuri.hagezi.org/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 86,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://kids.ns.nwps.fi/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 86,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://kronos.plan9-dns.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://loadlow.me/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://masters-of-cloud.de/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 87,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://mozilla.cloudflare-dns.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://my123.cloudflare-gateway.com/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://my123.family.cloudflare-dns.com/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://my123.security.cloudflare-dns.com/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://noads.joindns4.eu/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 20,
+    "confidence_score": 50
+  },
+  {
+    "url": "https://ns.data.haus/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 87,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://ns0.fdn.fr/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 83,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://ns1.fdn.fr/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 83,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://ns2.4netguides.org/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 86,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://nsec.arnor.org/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 81,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://odoh.cloudflare-dns.com/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://odvr.nic.cz/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 27,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://odvr.nic.cz/doh",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 18,
+    "confidence_score": 45
+  },
+  {
+    "url": "https://opera.cloudflare-dns.com/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://ordns.he.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 80,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://paranoia.mydns.network/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "candidate",
+    "score": 74,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://per.adfilter.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 87,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://pooblet.co.za/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 86,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://privacy.plumedns.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://private.canadianshield.cira.ca/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 83,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://protected.canadianshield.cira.ca/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 84,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://protective.joindns4.eu/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "candidate",
+    "score": 78,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://public.dns.iij.jp/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 90,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://public.ns.nwps.fi/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 86,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://regiopolis.cloud/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://renardbleu.dev/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://resolver.dnsprivacy.org.uk/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://resolver.sunet.se/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 82,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://revelio.top/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://rfree1.blue-shield.at/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 86,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://rfree2.blue-shield.at/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 86,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://ric.openbld.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 82,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://ro-buc-w-p-1.nashkan.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://root.hagezi.org/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://router.comss.one/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 15,
+    "confidence_score": 40
+  },
+  {
+    "url": "https://rx.techomespace.com/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://safe.dot.dns.yandex.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 80,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://safeservedns.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 87,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://secondary.dns.seia.io/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://secure.hafnova.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 85,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://security.cloudflare-dns.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 90,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://security.rabbitdns.org/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://seoul.dnsovertor.cc/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "candidate",
+    "score": 70,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://sg-w-p-1.nashkan.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "accepted",
+    "score": 89,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://singapore.dnsovertor.cc/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://sky.rethinkdns.com/1:AAkACAQA",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://sky.rethinkdns.com/1:AAkACAgA",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://sky.rethinkdns.com/1:AAoACAgA",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://sky.rethinkdns.com/1:AAoACBAA",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://sky.rethinkdns.com/1:gAgACABA",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://sky.rethinkdns.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://sm2.doh.pub/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 42,
+    "confidence_score": 55
+  },
+  {
+    "url": "https://staging.cloudflare-dns.com/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://staging.odoh.cloudflare-dns.com/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://sunnygyl.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://syd.adfilter.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://tiger.dns.qwer.pw/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://tor.cloudflare-dns.com/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://unfiltered.adguard-dns.com/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://unfiltered.joindns4.eu/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://us-chi-w-f-1.nashkan.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://us-chi-w-p-1.nashkan.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://us-jac-w-f-1.nashkan.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://us-jac-w-p-1.nashkan.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://us-kan-w-p-1.nashkan.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://us-nyc-w-p-1.nashkan.net/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://v.recipes/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://v.recipes/dns/ada.openbld.net/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/adblock.dns.mullvad.net/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/all.dns.mullvad.net/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/base.dns.mullvad.net/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/dns.adguard-dns.com/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/dns.arapurayil.com/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/dns.google/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/dns.marbledfennec.net/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/dns.mullvad.net/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/dns.surfsharkdns.com/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/dnsbunker.org/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/doh.cleanbrowsing.org/doh/adult-filter/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/doh.cleanbrowsing.org/doh/family-filter/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/doh.cleanbrowsing.org/doh/security-filter/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/doh.dns.sb/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/doh.la.ahadns.net/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/extended.dns.mullvad.net/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/family.adguard-dns.com/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/family.dns.mullvad.net/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/ibksturm.synology.me/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/max.rethinkdns.com/1:AEAAEA==/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/max.rethinkdns.com/1:EID-BwCB/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/max.rethinkdns.com/1:QAcCAIAcAhCkAg==/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/max.rethinkdns.com/pec/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/max.rethinkdns.com/rec/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/max.rethinkdns.com/sec/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/ordns.he.net/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/ric.openbld.net/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/ric.openbld.net/dns-query/hagezi",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/secondary.dns.seia.io/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/sky.rethinkdns.com/1:AEAAEA==/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/sky.rethinkdns.com/1:EID-BwCB/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/sky.rethinkdns.com/1:QAcCAIAcAhCkAg==/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/sky.rethinkdns.com/pec/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/sky.rethinkdns.com/rec/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/sky.rethinkdns.com/sec/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/unfiltered.adguard-dns.com/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v.recipes/dns/zero.dns0.eu/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "previous_status": "unvalidated",
+    "score": null,
+    "confidence_score": null
+  },
+  {
+    "url": "https://v0dka.ru/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://wikimedia-dns.org/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://wurzn.hagezi.org/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://xn--durhre-yxa.de/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  },
+  {
+    "url": "https://zdn.ro/dns-query",
+    "source": "doh-initial-validation",
+    "previous_status": "rejected",
+    "score": 0,
+    "confidence_score": 35
+  }
+]

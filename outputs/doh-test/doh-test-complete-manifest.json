@@ -1,0 +1,17 @@
+{
+  "dataset": "doh-test-complete",
+  "generated_at": "2026-08-10T10:08:28Z",
+  "inputs": {
+    "initial_doh_only": 279,
+    "tmp_doh_dns_addresses": 162,
+    "overlapping_urls": 71
+  },
+  "total_unique_candidates": 370,
+  "previous_validation_statuses": {
+    "accepted": 199,
+    "candidate": 11,
+    "rejected": 69,
+    "unvalidated": 91
+  },
+  "ordering": "endpoint_url_asc"
+}

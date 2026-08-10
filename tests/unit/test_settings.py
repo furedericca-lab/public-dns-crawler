@@ -23,11 +23,16 @@ class TestLoadSettings:
 
     def test_load_validation_config(self, tmp_path: Path) -> None:
         cfg = tmp_path / "config.toml"
-        cfg.write_bytes(b"[validation]\nrounds = 5\ntimeout_ms = 3000\nparallelism = 20\n")
+        cfg.write_bytes(
+            b"[validation]\nrounds = 5\ntimeout_ms = 3000\nparallelism = 20\n"
+            b"doh_trust_env = true\ndoh_local_address = \"0.0.0.0\"\n"
+        )
         s = load_settings(cfg)
         assert s.validation.rounds == 5
         assert s.validation.timeout_ms == 3000
         assert s.validation.parallelism == 20
+        assert s.validation.doh_trust_env is True
+        assert s.validation.doh_local_address == "0.0.0.0"
 
     def test_load_validation_dns_backend_config(self, tmp_path: Path) -> None:
         cfg = tmp_path / "config.toml"

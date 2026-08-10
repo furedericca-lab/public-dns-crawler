@@ -1,0 +1,208 @@
+[
+  {
+    "url": "https://dns.alidns.com/dns-query",
+    "source": "doh-initial-validation",
+    "status": "accepted",
+    "score": 90,
+    "confidence_score": 55,
+    "p50_latency_ms": 21.408346976386383,
+    "p95_latency_ms": 129.55157199758105,
+    "reasons": []
+  },
+  {
+    "url": "https://dns.pub/dns-query",
+    "source": "doh-initial-validation",
+    "status": "accepted",
+    "score": 89,
+    "confidence_score": 55,
+    "p50_latency_ms": 97.46673400513828,
+    "p95_latency_ms": 276.61667999927886,
+    "reasons": []
+  },
+  {
+    "url": "https://cm3if9n4aw.cloudflare-gateway.com/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "status": "accepted",
+    "score": 83,
+    "confidence_score": 55,
+    "p50_latency_ms": 660.4318659810815,
+    "p95_latency_ms": 2050.153891002992,
+    "reasons": [
+      "latency_moderate",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ]
+  },
+  {
+    "url": "https://doh.cm.edu.kg/CMLiussss",
+    "source": "tmp/doh_dns_addresses.csv",
+    "status": "accepted",
+    "score": 83,
+    "confidence_score": 55,
+    "p50_latency_ms": 234.86953499377705,
+    "p95_latency_ms": 2897.9008010064717,
+    "reasons": [
+      "latency_moderate",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ]
+  },
+  {
+    "url": "https://frd4wvnobp.cloudflare-gateway.com/dns-query",
+    "source": "doh-initial-validation",
+    "status": "accepted",
+    "score": 83,
+    "confidence_score": 55,
+    "p50_latency_ms": 626.0304700117558,
+    "p95_latency_ms": 2441.4858959789854,
+    "reasons": [
+      "latency_moderate",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ]
+  },
+  {
+    "url": "https://kids.ns.nwps.fi/dns-query",
+    "source": "doh-initial-validation",
+    "status": "accepted",
+    "score": 83,
+    "confidence_score": 55,
+    "p50_latency_ms": 689.1642510017846,
+    "p95_latency_ms": 1799.6453789819498,
+    "reasons": [
+      "latency_moderate",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ]
+  },
+  {
+    "url": "https://my123.cloudflare-gateway.com/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "status": "accepted",
+    "score": 83,
+    "confidence_score": 55,
+    "p50_latency_ms": 630.4935679945629,
+    "p95_latency_ms": 2107.507840002654,
+    "reasons": [
+      "latency_moderate",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ]
+  },
+  {
+    "url": "https://doh.360.cn/dns-query",
+    "source": "doh-initial-validation",
+    "status": "accepted",
+    "score": 81,
+    "confidence_score": 55,
+    "p50_latency_ms": 862.4258460185956,
+    "p95_latency_ms": 2493.0163369863294,
+    "reasons": [
+      "latency_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ]
+  },
+  {
+    "url": "https://doh.tiarap.org/dns-query",
+    "source": "doh-initial-validation",
+    "status": "accepted",
+    "score": 81,
+    "confidence_score": 55,
+    "p50_latency_ms": 863.7263489945326,
+    "p95_latency_ms": 2109.4067539961543,
+    "reasons": [
+      "latency_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ]
+  },
+  {
+    "url": "https://ctif.hagezi.org/dns-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "status": "accepted",
+    "score": 80,
+    "confidence_score": 55,
+    "p50_latency_ms": 774.463147012284,
+    "p95_latency_ms": 2817.5526770064607,
+    "reasons": [
+      "latency_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ]
+  },
+  {
+    "url": "https://doh.090227.xyz/V-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "status": "candidate",
+    "score": 78,
+    "confidence_score": 55,
+    "p50_latency_ms": 577.4672995030414,
+    "p95_latency_ms": 5699.721625016537,
+    "reasons": [
+      "timeout_or_error",
+      "latency_moderate",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ]
+  },
+  {
+    "url": "https://ag.apollohct.com/dns-query",
+    "source": "doh-initial-validation",
+    "status": "candidate",
+    "score": 72,
+    "confidence_score": 55,
+    "p50_latency_ms": 97.29026148852427,
+    "p95_latency_ms": 584.3168109713588,
+    "reasons": [
+      "error",
+      "timeout_or_error",
+      "latency_jitter_high"
+    ]
+  },
+  {
+    "url": "https://doh.090227.xyz/Ali-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "status": "candidate",
+    "score": 70,
+    "confidence_score": 55,
+    "p50_latency_ms": 1419.9183154996717,
+    "p95_latency_ms": 7228.933617996518,
+    "reasons": [
+      "timeout_or_error",
+      "latency_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ]
+  },
+  {
+    "url": "https://doh.090227.xyz/AdG-query",
+    "source": "tmp/doh_dns_addresses.csv",
+    "status": "candidate",
+    "score": 64,
+    "confidence_score": 55,
+    "p50_latency_ms": 1706.1013389902655,
+    "p95_latency_ms": 4680.634157004533,
+    "reasons": [
+      "timeout_or_error",
+      "latency_very_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ]
+  },
+  {
+    "url": "https://doh.18bit.cn/dns-query",
+    "source": "doh-initial-validation",
+    "status": "candidate",
+    "score": 61,
+    "confidence_score": 55,
+    "p50_latency_ms": 1246.8956469965633,
+    "p95_latency_ms": 4003.265691018896,
+    "reasons": [
+      "timeout_or_error",
+      "latency_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ]
+  }
+]

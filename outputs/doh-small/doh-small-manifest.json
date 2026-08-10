@@ -1,0 +1,26 @@
+{
+  "dataset": "doh-small",
+  "generated_at": "2026-08-10T10:47:59Z",
+  "source_run": "outputs/doh-test",
+  "source_files": [
+    "outputs/doh-test/export/accepted.json",
+    "outputs/doh-test/export/candidate.json"
+  ],
+  "selection": {
+    "statuses": [
+      "accepted",
+      "candidate"
+    ],
+    "ordering": [
+      "status_accepted_before_candidate",
+      "score_desc",
+      "endpoint_url_asc"
+    ]
+  },
+  "total_unique_candidates": 15,
+  "status_counts": {
+    "accepted": 10,
+    "candidate": 5
+  },
+  "validation_input": "outputs/doh-small/doh-small-input.json"
+}

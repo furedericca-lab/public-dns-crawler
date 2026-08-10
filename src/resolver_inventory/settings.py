@@ -25,6 +25,8 @@ class ValidationConfig:
     timeout_ms: int = 2000
     parallelism: int = 50
     doh_parallelism: int = 20
+    doh_trust_env: bool = False
+    doh_local_address: str | None = None
     require_tcp_for_dns: bool = False
     require_tls_valid_for_doh: bool = True
     baseline_resolvers: list[str] = field(default_factory=lambda: ["1.1.1.1", "9.9.9.9", "8.8.8.8"])
@@ -191,6 +193,9 @@ def load_settings(path: str | Path | None = None) -> Settings:
         vc.timeout_ms = int(v.get("timeout_ms", vc.timeout_ms))
         vc.parallelism = int(v.get("parallelism", vc.parallelism))
         vc.doh_parallelism = int(v.get("doh_parallelism", vc.doh_parallelism))
+        vc.doh_trust_env = bool(v.get("doh_trust_env", vc.doh_trust_env))
+        local_address = v.get("doh_local_address", vc.doh_local_address)
+        vc.doh_local_address = None if local_address in (None, "") else str(local_address)
         vc.require_tcp_for_dns = bool(v.get("require_tcp_for_dns", vc.require_tcp_for_dns))
         vc.require_tls_valid_for_doh = bool(
             v.get("require_tls_valid_for_doh", vc.require_tls_valid_for_doh)

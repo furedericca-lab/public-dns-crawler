@@ -81,6 +81,7 @@ async def _probe_positive(
         timeout_s=timeout_s,
         baseline_resolvers=baseline_resolvers,
         baseline_cache=baseline_cache,
+        transport=transport,
     )
 
 
@@ -124,6 +125,7 @@ async def evaluate_positive_probe_result(
     timeout_s: float,
     baseline_resolvers: list[str],
     baseline_cache: dict[tuple[str, str], list[str]],
+    transport: str = "dns-udp",
 ) -> ProbeResult:
     if rcode not in ("NOERROR", "NXDOMAIN"):
         return fail_probe(probe_name, f"unexpected_rcode:{rcode}", {"rcode": rcode})
@@ -145,6 +147,7 @@ async def evaluate_positive_probe_result(
                 baseline_resolvers,
                 timeout_s,
                 baseline_cache,
+                transport=transport,
             )
         except Exception as exc:
             return fail_probe(probe_name, f"baseline_error:{exc!s:.80}")

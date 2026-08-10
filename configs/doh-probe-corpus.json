@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "corpus_version": "doh-public-stable-2026-08",
+  "generated_at": "2026-08-10T00:00:00Z",
+  "probes": [
+    {
+      "id": "positive-root-a",
+      "kind": "positive_exact",
+      "qname": "a.root-servers.net.",
+      "qtype": "A",
+      "expected_mode": "exact_rrset",
+      "expected_answers": ["198.41.0.4"]
+    },
+    {
+      "id": "positive-root-b",
+      "kind": "positive_exact",
+      "qname": "b.root-servers.net.",
+      "qtype": "A",
+      "expected_mode": "exact_rrset",
+      "expected_answers": ["170.247.170.2"]
+    },
+    {
+      "id": "positive-root-c",
+      "kind": "positive_exact",
+      "qname": "c.root-servers.net.",
+      "qtype": "A",
+      "expected_mode": "exact_rrset",
+      "expected_answers": ["192.33.4.12"]
+    },
+    {
+      "id": "positive-root-d",
+      "kind": "positive_exact",
+      "qname": "d.root-servers.net.",
+      "qtype": "A",
+      "expected_mode": "exact_rrset",
+      "expected_answers": ["199.7.91.13"]
+    },
+    {
+      "id": "positive-root-e",
+      "kind": "positive_exact",
+      "qname": "e.root-servers.net.",
+      "qtype": "A",
+      "expected_mode": "exact_rrset",
+      "expected_answers": ["192.203.230.10"]
+    },
+    {
+      "id": "positive-root-f",
+      "kind": "positive_exact",
+      "qname": "f.root-servers.net.",
+      "qtype": "A",
+      "expected_mode": "exact_rrset",
+      "expected_answers": ["192.5.5.241"]
+    },
+    {
+      "id": "consensus-root-a",
+      "kind": "positive_consensus",
+      "qname": "a.root-servers.net.",
+      "qtype": "A",
+      "expected_mode": "consensus_match"
+    },
+    {
+      "id": "consensus-root-b",
+      "kind": "positive_consensus",
+      "qname": "b.root-servers.net.",
+      "qtype": "A",
+      "expected_mode": "consensus_match"
+    },
+    {
+      "id": "consensus-root-c",
+      "kind": "positive_consensus",
+      "qname": "c.root-servers.net.",
+      "qtype": "A",
+      "expected_mode": "consensus_match"
+    },
+    {
+      "id": "negative-root-generated",
+      "kind": "negative_generated",
+      "qname_template": "{uuid}.root-servers.net.",
+      "parent_zone": "root-servers.net.",
+      "qtype": "A",
+      "expected_mode": "nxdomain"
+    },
+    {
+      "id": "negative-root-generated-two",
+      "kind": "negative_generated",
+      "qname_template": "{uuid}.root-servers.net.",
+      "parent_zone": "root-servers.net.",
+      "qtype": "A",
+      "expected_mode": "nxdomain"
+    },
+    {
+      "id": "negative-root-generated-three",
+      "kind": "negative_generated",
+      "qname_template": "{uuid}.root-servers.net.",
+      "parent_zone": "root-servers.net.",
+      "qtype": "A",
+      "expected_mode": "nxdomain"
+    }
+  ]
+}

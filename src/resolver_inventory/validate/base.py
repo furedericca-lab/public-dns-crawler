@@ -47,6 +47,7 @@ async def resolve_baseline_answers(
     baseline_resolvers: list[str],
     timeout_s: float,
     baseline_cache: dict[tuple[str, str], list[str]],
+    transport: str = "dns-udp",
 ) -> list[str]:
     cache_key = (qname, rdtype)
     if cache_key in baseline_cache:
@@ -57,7 +58,10 @@ async def resolve_baseline_answers(
         host, port = parse_resolver_endpoint(resolver)
         msg = dns.message.make_query(qname, dns.rdatatype.from_text(rdtype))
         msg.id = 0
-        resp = await dns.asyncquery.udp(msg, host, port=port, timeout=timeout_s)
+        if transport == "dns-tcp":
+            resp = await dns.asyncquery.tcp(msg, host, port=port, timeout=timeout_s)
+        else:
+            resp = await dns.asyncquery.udp(msg, host, port=port, timeout=timeout_s)
         observed.append(normalize_answer_set(resp, rdtype))
 
     first = observed[0] if observed else []

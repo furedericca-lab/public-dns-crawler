@@ -1,0 +1,19 @@
+{
+  "dataset": "doh-test-complete",
+  "candidates": 370,
+  "probes_per_candidate": 37,
+  "total_probes": 13690,
+  "validation": {
+    "accepted": 10,
+    "candidate": 5,
+    "rejected": 355,
+    "usable_probe_results": 13690,
+    "status": "completed"
+  },
+  "runtime_fix": {
+    "doh_trust_env": false,
+    "doh_local_address": "0.0.0.0",
+    "doh_parallelism": 100
+  },
+  "generated_at": "2026-08-10T10:40:58Z"
+}

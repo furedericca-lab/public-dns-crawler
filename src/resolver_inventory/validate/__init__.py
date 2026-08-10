@@ -406,10 +406,17 @@ async def _execute_doh_probe(
     baseline_resolvers: list[str],
     baseline_cache: dict[tuple[str, str], list[str]],
     doh_clients: dict[int, Any],
+    trust_env: bool = False,
+    local_address: str | None = None,
 ) -> ProbeResult:
     candidate = task.candidate
     if task.kind == "doh_tls":
-        return await _probe_tls(candidate, timeout_s)
+        return await _probe_tls(
+            candidate,
+            timeout_s,
+            trust_env=trust_env,
+            local_address=local_address,
+        )
     if task.kind == "doh_positive":
         assert task.entry is not None
         return await _probe_positive_doh(
@@ -451,7 +458,11 @@ async def _run_doh_phase(
             idx = start_idx + offset
             if candidate.transport != "doh":
                 continue
-            doh_clients[idx] = build_doh_client(timeout_s=timeout_s)
+            doh_clients[idx] = build_doh_client(
+                timeout_s=timeout_s,
+                trust_env=settings.validation.doh_trust_env,
+                local_address=settings.validation.doh_local_address,
+            )
             tasks.extend(
                 _iter_doh_tasks_for_candidate(
                     candidate,
@@ -496,6 +507,8 @@ async def _run_doh_phase(
                         baseline_resolvers,
                         baseline_cache,
                         doh_clients,
+                        settings.validation.doh_trust_env,
+                        settings.validation.doh_local_address,
                     )
                     await accumulator.record_probe(task.candidate_idx, result)
                 finally:

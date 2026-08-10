@@ -133,6 +133,9 @@ path = "configs/manual-doh.toml"
 rounds = 3
 timeout_ms = 2000
 parallelism = 50
+doh_parallelism = 20
+doh_trust_env = false             # ignore HTTP(S)_PROXY for DoH by default
+doh_local_address = "0.0.0.0"      # optional IPv4 bind; omit to use the system default
 
 [validation.dns_backend]
 kind = "python"                       # default backend; "massdns" is optional

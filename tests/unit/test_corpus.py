@@ -84,6 +84,15 @@ class TestBuildCorpusDispatch:
         assert corpus.mode == expected.mode
         assert len(corpus.nxdomain) == len(expected.nxdomain)
 
+    def test_fallback_uses_current_iana_server_names(self) -> None:
+        corpus = build_builtin_fallback_corpus()
+        qnames = {entry.qname for entry in corpus.positive}
+
+        assert "a.iana-servers.net." in qnames
+        assert "b.iana-servers.net." in qnames
+        assert "ns1.iana.org." not in qnames
+        assert "ns2.iana.org." not in qnames
+
     def test_dispatch_external(self) -> None:
         corpus = build_corpus(
             CorpusConfig(

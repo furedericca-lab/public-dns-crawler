@@ -56,8 +56,8 @@ _FALLBACK_POSITIVE: list[tuple[str, str]] = [
     ("a.root-servers.net.", "A"),
     ("b.root-servers.net.", "A"),
     ("c.root-servers.net.", "A"),
-    ("ns1.iana.org.", "A"),
-    ("ns2.iana.org.", "A"),
+    ("a.iana-servers.net.", "A"),
+    ("b.iana-servers.net.", "A"),
     ("l.root-servers.net.", "A"),
 ]
 

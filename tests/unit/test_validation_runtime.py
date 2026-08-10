@@ -7,6 +7,7 @@ import dns.rrset
 import pytest
 
 from resolver_inventory.models import Candidate
+from resolver_inventory.validate.base import resolve_baseline_answers
 from resolver_inventory.validate.corpus import Corpus, CorpusEntry
 from resolver_inventory.validate.dns_plain import _probe_positive, validate_dns_candidate
 
@@ -76,6 +77,36 @@ async def test_consensus_ns_comparison(monkeypatch: pytest.MonkeyPatch) -> None:
 
     assert not result.ok
     assert result.error == "answer_mismatch"
+
+
+@pytest.mark.asyncio
+async def test_tcp_candidate_uses_tcp_for_baseline_consensus(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    calls = {"tcp": 0, "udp": 0}
+
+    async def fake_tcp(*args: object, **kwargs: object) -> dns.message.Message:
+        calls["tcp"] += 1
+        return _response("a.iana-servers.net.", "A", "199.43.135.53")
+
+    async def fake_udp(*args: object, **kwargs: object) -> dns.message.Message:
+        calls["udp"] += 1
+        return _response("a.iana-servers.net.", "A", "199.43.135.53")
+
+    monkeypatch.setattr("resolver_inventory.validate.base.dns.asyncquery.tcp", fake_tcp)
+    monkeypatch.setattr("resolver_inventory.validate.base.dns.asyncquery.udp", fake_udp)
+
+    answers = await resolve_baseline_answers(
+        "a.iana-servers.net.",
+        "A",
+        ["1.1.1.1"],
+        1.0,
+        {},
+        transport="dns-tcp",
+    )
+
+    assert answers == ["199.43.135.53"]
+    assert calls == {"tcp": 1, "udp": 0}
 
 
 @pytest.mark.asyncio
