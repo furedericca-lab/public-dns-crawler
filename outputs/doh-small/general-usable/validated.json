@@ -1,0 +1,6061 @@
+[
+  {
+    "status": "accepted",
+    "score": 90,
+    "accepted": true,
+    "reasons": [],
+    "candidate": {
+      "provider": null,
+      "source": "doh-initial-validation",
+      "transport": "doh",
+      "endpoint_url": "https://dns.alidns.com/dns-query",
+      "host": "dns.alidns.com",
+      "port": 443,
+      "path": "/dns-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "dns.alidns.com",
+      "metadata": {
+        "previous_status": "accepted",
+        "previous_score": 90,
+        "previous_confidence_score": 55
+      }
+    },
+    "median_latency_ms": 29.667208989849314,
+    "score_breakdown": {
+      "correctness": 50,
+      "availability": 20,
+      "performance": 20,
+      "history": 0
+    },
+    "confidence_score": 55,
+    "score_caps_applied": [
+      "source_reliability_unknown"
+    ],
+    "derived_metrics": {
+      "p50_latency_ms": 29.667208989849314,
+      "p95_latency_ms": 82.45193198672496,
+      "jitter_ms": 52.784722996875644,
+      "latency_sample_count": 37,
+      "runs_seen_30d": null,
+      "runs_seen_7d": null,
+      "flaps_30d": null
+    },
+    "probes": [
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 32.38322099787183,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 32.74984398740344,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 11.23046298744157,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 32.01792199979536,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 10.166515014134347,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 44.611625984543934,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 9.578377997968346,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 11.72560200211592,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 49.16062101256102,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 9.785625006770715,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 10.335979022784159,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 10.194938979111612,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 8.996573014883325,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 10.39805801701732,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 32.15624700533226,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 8.987605979200453,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 19.13159800460562,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 10.325008013751358,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 9.574700001394376,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 52.77210799977183,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 9.487012983299792,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 29.667208989849314,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 10.100437997607514,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 43.51289101759903,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 33.344704017508775,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 10.832330008270219,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 11.574271018616855,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 41.831370996078476,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 18.08307899045758,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 82.45193198672496,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 55.13927299762145,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 38.73417800059542,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 38.87708199908957,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 48.70296301669441,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 46.17222599335946,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 54.182480002054945,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:tls",
+        "latency_ms": 278.2060220197309,
+        "error": null,
+        "details": {
+          "sni": "dns.alidns.com"
+        }
+      }
+    ]
+  },
+  {
+    "status": "accepted",
+    "score": 89,
+    "accepted": true,
+    "reasons": [
+      "latency_moderate"
+    ],
+    "candidate": {
+      "provider": null,
+      "source": "doh-initial-validation",
+      "transport": "doh",
+      "endpoint_url": "https://dns.pub/dns-query",
+      "host": "dns.pub",
+      "port": 443,
+      "path": "/dns-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "dns.pub",
+      "metadata": {
+        "previous_status": "accepted",
+        "previous_score": 89,
+        "previous_confidence_score": 55
+      }
+    },
+    "median_latency_ms": 105.23323100642301,
+    "score_breakdown": {
+      "correctness": 50,
+      "availability": 20,
+      "performance": 19,
+      "history": 0
+    },
+    "confidence_score": 55,
+    "score_caps_applied": [
+      "source_reliability_unknown"
+    ],
+    "derived_metrics": {
+      "p50_latency_ms": 105.23323100642301,
+      "p95_latency_ms": 239.5332620071713,
+      "jitter_ms": 134.30003100074828,
+      "latency_sample_count": 37,
+      "runs_seen_30d": null,
+      "runs_seen_7d": null,
+      "flaps_30d": null
+    },
+    "probes": [
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 102.48960598255508,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 79.88397299777716,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 164.73131498787552,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 173.61595400143415,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 20.875418005743995,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:tls",
+        "latency_ms": 184.14840899640694,
+        "error": null,
+        "details": {
+          "sni": "dns.pub"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 85.0467819836922,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 105.23323100642301,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 49.52675200183876,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 92.01880800537765,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 102.35000800457783,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 23.148192005464807,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 49.18248299509287,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 105.8855410083197,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 47.165118012344465,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 19.07961899996735,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 21.19752499856986,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 35.76897701714188,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 51.36722800671123,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 81.85800397768617,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 71.74176600528881,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 81.50709202163853,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 158.44753599958494,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 127.43413899443112,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 99.8596380231902,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 178.41960399528034,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 143.72176898177713,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 107.92642898741178,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 157.0424959936645,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 128.75753399566747,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 158.64628701820038,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 176.64016599883325,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 134.13133801077493,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 239.5332620071713,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 253.09490898507647,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 176.75001599127427,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 190.34569000359625,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      }
+    ]
+  },
+  {
+    "status": "accepted",
+    "score": 86,
+    "accepted": true,
+    "reasons": [
+      "latency_moderate",
+      "latency_jitter_high"
+    ],
+    "candidate": {
+      "provider": null,
+      "source": "tmp/doh_dns_addresses.csv",
+      "transport": "doh",
+      "endpoint_url": "https://cm3if9n4aw.cloudflare-gateway.com/dns-query",
+      "host": "cm3if9n4aw.cloudflare-gateway.com",
+      "port": 443,
+      "path": "/dns-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "cm3if9n4aw.cloudflare-gateway.com",
+      "metadata": {
+        "previous_status": "unvalidated",
+        "previous_score": null,
+        "previous_confidence_score": null
+      }
+    },
+    "median_latency_ms": 608.0110949988011,
+    "score_breakdown": {
+      "correctness": 50,
+      "availability": 20,
+      "performance": 16,
+      "history": 0
+    },
+    "confidence_score": 55,
+    "score_caps_applied": [
+      "source_reliability_unknown"
+    ],
+    "derived_metrics": {
+      "p50_latency_ms": 608.0110949988011,
+      "p95_latency_ms": 1310.9694050217513,
+      "jitter_ms": 702.9583100229502,
+      "latency_sample_count": 37,
+      "runs_seen_30d": null,
+      "runs_seen_7d": null,
+      "flaps_30d": null
+    },
+    "probes": [
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 581.4660949981771,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 602.533149998635,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 618.2621199986897,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 651.1732740036678,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 651.8396110041067,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 637.7734270063229,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 580.1004189997911,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 577.127875003498,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 208.59091897727922,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 204.89837598870508,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 597.3776239843573,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 213.77066199784167,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 606.9459239952266,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 220.76155300601386,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 219.26992398221046,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 620.745016989531,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 607.7904120029416,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 211.46168699488044,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 617.0401709969155,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 206.84557600179687,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 210.2383750025183,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 213.04504200816154,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 208.21588099352084,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 860.7147249858826,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 653.9557849755511,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 1228.1459619989619,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 1310.9694050217513,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 641.5532869868912,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 636.9667999970261,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:tls",
+        "latency_ms": 1435.1325479801744,
+        "error": null,
+        "details": {
+          "sni": "cm3if9n4aw.cloudflare-gateway.com"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 604.0876889892388,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 613.3696000033524,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 619.6835339942481,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 608.0110949988011,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 696.7019970179535,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 886.9046839827206,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 884.7145180043299,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      }
+    ]
+  },
+  {
+    "status": "accepted",
+    "score": 85,
+    "accepted": true,
+    "reasons": [
+      "latency_moderate",
+      "latency_jitter_high"
+    ],
+    "candidate": {
+      "provider": null,
+      "source": "tmp/doh_dns_addresses.csv",
+      "transport": "doh",
+      "endpoint_url": "https://doh.cm.edu.kg/CMLiussss",
+      "host": "doh.cm.edu.kg",
+      "port": 443,
+      "path": "/CMLiussss",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "doh.cm.edu.kg",
+      "metadata": {
+        "previous_status": "unvalidated",
+        "previous_score": null,
+        "previous_confidence_score": null
+      }
+    },
+    "median_latency_ms": 273.00081102293916,
+    "score_breakdown": {
+      "correctness": 50,
+      "availability": 20,
+      "performance": 15,
+      "history": 0
+    },
+    "confidence_score": 55,
+    "score_caps_applied": [
+      "source_reliability_unknown"
+    ],
+    "derived_metrics": {
+      "p50_latency_ms": 273.00081102293916,
+      "p95_latency_ms": 1359.2090210004244,
+      "jitter_ms": 1086.2082099774852,
+      "latency_sample_count": 37,
+      "runs_seen_30d": null,
+      "runs_seen_7d": null,
+      "flaps_30d": null
+    },
+    "probes": [
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 256.9485909771174,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:tls",
+        "latency_ms": 285.19305601366796,
+        "error": null,
+        "details": {
+          "sni": "doh.cm.edu.kg"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 261.5813559968956,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 104.04787102015689,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 262.07435998367146,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 335.4740819777362,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 257.8251209924929,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 247.93766098446213,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 139.17008999851532,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 330.8988880016841,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 243.13045298913494,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 262.0237639930565,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 254.6825320168864,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 498.0738919985015,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 271.845237002708,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 257.0992010005284,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 545.069757004967,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 261.4108400011901,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 256.2455959850922,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 319.2281319934409,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 267.23985600983724,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 275.5998600041494,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 248.98304397356696,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 267.7099659922533,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 273.00081102293916,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 223.90627601998858,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 355.00047699315473,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 477.8228999930434,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 333.678963012062,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 510.44207499944605,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 387.1437889756635,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 574.120214994764,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 572.7962579985615,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 524.9377919826657,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 1017.8352299844846,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 1359.2090210004244,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 2438.544799981173,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      }
+    ]
+  },
+  {
+    "status": "accepted",
+    "score": 84,
+    "accepted": true,
+    "reasons": [
+      "latency_moderate",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "candidate": {
+      "provider": null,
+      "source": "tmp/doh_dns_addresses.csv",
+      "transport": "doh",
+      "endpoint_url": "https://my123.cloudflare-gateway.com/dns-query",
+      "host": "my123.cloudflare-gateway.com",
+      "port": 443,
+      "path": "/dns-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "my123.cloudflare-gateway.com",
+      "metadata": {
+        "previous_status": "unvalidated",
+        "previous_score": null,
+        "previous_confidence_score": null
+      }
+    },
+    "median_latency_ms": 216.0293869965244,
+    "score_breakdown": {
+      "correctness": 50,
+      "availability": 20,
+      "performance": 14,
+      "history": 0
+    },
+    "confidence_score": 55,
+    "score_caps_applied": [
+      "source_reliability_unknown"
+    ],
+    "derived_metrics": {
+      "p50_latency_ms": 216.0293869965244,
+      "p95_latency_ms": 1910.7075649953913,
+      "jitter_ms": 1694.6781779988669,
+      "latency_sample_count": 37,
+      "runs_seen_30d": null,
+      "runs_seen_7d": null,
+      "flaps_30d": null
+    },
+    "probes": [
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 581.698822992621,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 625.6722179823555,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 634.1008419985883,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 211.78559001418762,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 207.26625199313276,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:tls",
+        "latency_ms": 883.818403002806,
+        "error": null,
+        "details": {
+          "sni": "my123.cloudflare-gateway.com"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 890.0149230030365,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 212.88135898066685,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 612.2005909855943,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 211.89859497826546,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 192.939608998131,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 1053.2475450017955,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 212.2286669909954,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 192.3199110024143,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 188.926120987162,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 200.6646969821304,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 201.04409297346137,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 217.43079400039278,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 199.18338902061805,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 216.44955399096943,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 188.9912960177753,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 211.03539198520593,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 212.62033897801302,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 212.96615101164207,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 211.17900701938197,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 593.6214409884997,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 189.672660024371,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 564.247151982272,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 211.3038450188469,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 216.0293869965244,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 217.36244999920018,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 750.5086770106573,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 589.8565870011225,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 1519.9574660218786,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 2374.407903989777,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 1851.1153920262586,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 1910.7075649953913,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      }
+    ]
+  },
+  {
+    "status": "accepted",
+    "score": 83,
+    "accepted": true,
+    "reasons": [
+      "latency_moderate",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "candidate": {
+      "provider": null,
+      "source": "doh-initial-validation",
+      "transport": "doh",
+      "endpoint_url": "https://frd4wvnobp.cloudflare-gateway.com/dns-query",
+      "host": "frd4wvnobp.cloudflare-gateway.com",
+      "port": 443,
+      "path": "/dns-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "frd4wvnobp.cloudflare-gateway.com",
+      "metadata": {
+        "previous_status": "accepted",
+        "previous_score": 89,
+        "previous_confidence_score": 55
+      }
+    },
+    "median_latency_ms": 630.8923449832946,
+    "score_breakdown": {
+      "correctness": 50,
+      "availability": 20,
+      "performance": 13,
+      "history": 0
+    },
+    "confidence_score": 55,
+    "score_caps_applied": [
+      "source_reliability_unknown"
+    ],
+    "derived_metrics": {
+      "p50_latency_ms": 630.8923449832946,
+      "p95_latency_ms": 2350.6550480087753,
+      "jitter_ms": 1719.7627030254807,
+      "latency_sample_count": 37,
+      "runs_seen_30d": null,
+      "runs_seen_7d": null,
+      "flaps_30d": null
+    },
+    "probes": [
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 618.4562240086962,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 617.5327560049482,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 617.5160729908384,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 608.947389991954,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 629.6691129973624,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 638.6457579792477,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 629.1463520028628,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 213.81830298923887,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 644.5960350101814,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 634.8806149908341,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 632.9202990164049,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 630.8923449832946,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 659.9373529898003,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 610.5378360080067,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 641.2022260192316,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 601.397717022337,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 612.8740709973499,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 579.3027129839174,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 604.9898779892828,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 595.4077740025241,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 582.2365329950117,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 604.4935170211829,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 574.3011420127004,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 602.7186469873413,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 656.7715290002525,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 1342.9655380023178,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 835.6051570153795,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 594.8280919983517,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 647.7363320009317,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 1246.2652639951557,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 1036.0215510008857,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 1189.2936319927685,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:tls",
+        "latency_ms": 2350.6550480087753,
+        "error": null,
+        "details": {
+          "sni": "frd4wvnobp.cloudflare-gateway.com"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 1856.5264109929558,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 1890.7027379900683,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 1945.0224920001347,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 2685.2031770104077,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      }
+    ]
+  },
+  {
+    "status": "accepted",
+    "score": 80,
+    "accepted": true,
+    "reasons": [
+      "latency_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "candidate": {
+      "provider": null,
+      "source": "tmp/doh_dns_addresses.csv",
+      "transport": "doh",
+      "endpoint_url": "https://ctif.hagezi.org/dns-query",
+      "host": "ctif.hagezi.org",
+      "port": 443,
+      "path": "/dns-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "ctif.hagezi.org",
+      "metadata": {
+        "previous_status": "unvalidated",
+        "previous_score": null,
+        "previous_confidence_score": null
+      }
+    },
+    "median_latency_ms": 783.4951069962699,
+    "score_breakdown": {
+      "correctness": 50,
+      "availability": 20,
+      "performance": 10,
+      "history": 0
+    },
+    "confidence_score": 55,
+    "score_caps_applied": [
+      "source_reliability_unknown"
+    ],
+    "derived_metrics": {
+      "p50_latency_ms": 783.4951069962699,
+      "p95_latency_ms": 4496.574273012811,
+      "jitter_ms": 3713.0791660165414,
+      "latency_sample_count": 37,
+      "runs_seen_30d": null,
+      "runs_seen_7d": null,
+      "flaps_30d": null
+    },
+    "probes": [
+      {
+        "ok": true,
+        "probe": "doh:tls",
+        "latency_ms": 601.8925810058136,
+        "error": null,
+        "details": {
+          "sni": "ctif.hagezi.org"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 594.1207630094141,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 584.7790190018713,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 635.7908950012643,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 760.5691049830057,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 192.49517802381888,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 602.4016599985771,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 700.8146770240273,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 994.3146320001688,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 783.4951069962699,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 707.4957040022127,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 708.0629509873688,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 693.3619340125006,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 641.0984809917863,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 775.9238769940566,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 975.8582929789554,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 833.823407010641,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 606.9490409863647,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 1491.0713550052606,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 1739.6869030199014,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 710.2575759927277,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 699.6111620101146,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 1017.7323170064483,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 1614.3935270083603,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 728.4784890071023,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 1050.6288910110015,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 757.5806060049217,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 1044.9701220204588,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 1037.6749069837388,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 1545.2631350199226,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 1584.899501001928,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 1871.9512580137234,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 1685.9412020130549,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 2752.9570139886346,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 4163.339808990713,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 4496.574273012811,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 6092.6717490074225,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      }
+    ]
+  },
+  {
+    "status": "candidate",
+    "score": 76,
+    "accepted": false,
+    "reasons": [
+      "timeout_or_error",
+      "latency_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "candidate": {
+      "provider": null,
+      "source": "doh-initial-validation",
+      "transport": "doh",
+      "endpoint_url": "https://doh.tiarap.org/dns-query",
+      "host": "doh.tiarap.org",
+      "port": 443,
+      "path": "/dns-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "doh.tiarap.org",
+      "metadata": {
+        "previous_status": "accepted",
+        "previous_score": 89,
+        "previous_confidence_score": 55
+      }
+    },
+    "median_latency_ms": 1240.2306814910844,
+    "score_breakdown": {
+      "correctness": 47,
+      "availability": 19,
+      "performance": 10,
+      "history": 0
+    },
+    "confidence_score": 55,
+    "score_caps_applied": [
+      "source_reliability_unknown"
+    ],
+    "derived_metrics": {
+      "p50_latency_ms": 1240.2306814910844,
+      "p95_latency_ms": 3273.5021179832984,
+      "jitter_ms": 2033.271436492214,
+      "latency_sample_count": 36,
+      "runs_seen_30d": null,
+      "runs_seen_7d": null,
+      "flaps_30d": null
+    },
+    "probes": [
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 487.3197110136971,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 411.80412701214664,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 446.5654740051832,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 413.9648450072855,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 431.81446800008416,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:tls",
+        "latency_ms": 644.4856619928032,
+        "error": null,
+        "details": {
+          "sni": "doh.tiarap.org"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 719.3162059993483,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 803.6081820027903,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 804.8872430226766,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 805.9976900112815,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 784.8180180008058,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 789.2647570115514,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 792.2585719788913,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 780.4615040076897,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 795.8094750065356,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 793.4441440156661,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 795.6894240051042,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 1047.0239909773227,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 1433.437372004846,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 1453.3442949759774,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 1458.6447080073413,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 1617.7229230233934,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 1639.0765359974466,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 1595.6317050149664,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 1683.249462977983,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 1852.3949420196004,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 1893.0648870009463,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 1702.562547987327,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 1833.3366439910606,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 2200.738177023595,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 2415.676054020878,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 2919.934233999811,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 3273.5021179832984,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 3126.905543002067,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 3131.5882229828276,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 3336.721839994425,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": false,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      }
+    ]
+  },
+  {
+    "status": "candidate",
+    "score": 76,
+    "accepted": false,
+    "reasons": [
+      "timeout_or_error",
+      "latency_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "candidate": {
+      "provider": null,
+      "source": "doh-initial-validation",
+      "transport": "doh",
+      "endpoint_url": "https://kids.ns.nwps.fi/dns-query",
+      "host": "kids.ns.nwps.fi",
+      "port": 443,
+      "path": "/dns-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "kids.ns.nwps.fi",
+      "metadata": {
+        "previous_status": "accepted",
+        "previous_score": 86,
+        "previous_confidence_score": 55
+      }
+    },
+    "median_latency_ms": 1257.0753254985902,
+    "score_breakdown": {
+      "correctness": 47,
+      "availability": 19,
+      "performance": 10,
+      "history": 0
+    },
+    "confidence_score": 55,
+    "score_caps_applied": [
+      "source_reliability_unknown"
+    ],
+    "derived_metrics": {
+      "p50_latency_ms": 1257.0753254985902,
+      "p95_latency_ms": 3824.3141769780777,
+      "jitter_ms": 2567.2388514794875,
+      "latency_sample_count": 36,
+      "runs_seen_30d": null,
+      "runs_seen_7d": null,
+      "flaps_30d": null
+    },
+    "probes": [
+      {
+        "ok": true,
+        "probe": "doh:tls",
+        "latency_ms": 547.6274660031777,
+        "error": null,
+        "details": {
+          "sni": "kids.ns.nwps.fi"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 552.8364639903884,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 183.26886399881914,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 672.3916209884919,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 775.2097259799484,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 789.0670789929572,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 844.6251249988563,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 761.9004589796532,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 877.3408540000673,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 821.0952100052964,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 873.413541004993,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 722.5199039967265,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 1571.5227150067221,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 812.6398130261805,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 813.9409459836315,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 753.4566269896459,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 792.6630889996886,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 708.4287529869471,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 942.6279359904584,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 1823.246067011496,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 2016.18563500233,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 2342.4665309721604,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 2382.71639298182,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 1815.2668250259012,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 1861.2971990078222,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 2024.3014669977129,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 2897.3162219917867,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 2058.78376099281,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 2446.782395010814,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 2906.335018982645,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 3768.0106749758124,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 3551.9281330052763,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 4388.333673996385,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 3208.479016000638,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 3671.431882015895,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 3824.3141769780777,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": false,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      }
+    ]
+  },
+  {
+    "status": "candidate",
+    "score": 76,
+    "accepted": false,
+    "reasons": [
+      "timeout_or_error",
+      "latency_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "candidate": {
+      "provider": null,
+      "source": "doh-initial-validation",
+      "transport": "doh",
+      "endpoint_url": "https://public.ns.nwps.fi/dns-query",
+      "host": "public.ns.nwps.fi",
+      "port": 443,
+      "path": "/dns-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "public.ns.nwps.fi",
+      "metadata": {
+        "previous_status": "accepted",
+        "previous_score": 86,
+        "previous_confidence_score": 55
+      }
+    },
+    "median_latency_ms": 938.9328714896692,
+    "score_breakdown": {
+      "correctness": 47,
+      "availability": 19,
+      "performance": 10,
+      "history": 0
+    },
+    "confidence_score": 55,
+    "score_caps_applied": [
+      "source_reliability_unknown"
+    ],
+    "derived_metrics": {
+      "p50_latency_ms": 938.9328714896692,
+      "p95_latency_ms": 5432.920203980757,
+      "jitter_ms": 4493.987332491088,
+      "latency_sample_count": 36,
+      "runs_seen_30d": null,
+      "runs_seen_7d": null,
+      "flaps_30d": null
+    },
+    "probes": [
+      {
+        "ok": true,
+        "probe": "doh:tls",
+        "latency_ms": 816.9953399919905,
+        "error": null,
+        "details": {
+          "sni": "public.ns.nwps.fi"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 659.6579990000464,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 722.1668479905929,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 873.7888900213875,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 660.6050719856285,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 722.3994039813988,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 871.4652700000443,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 779.8042570066173,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 662.8494519973174,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 687.2940570174251,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 808.2789510081057,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 807.6826699834783,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 945.5120009952225,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 777.5699380144943,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 1016.0769609792624,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 706.8560479965527,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 932.3537419841159,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 722.161165002035,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 692.1232460008468,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 766.9105860113632,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 1804.468274989631,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 1797.7292079885956,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 1833.5844399989583,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 1551.6745330241974,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 1326.8225040228572,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 1668.3934559987392,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 1820.6016430049203,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 1682.097928976873,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 2755.9127819840796,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 2220.6883729959372,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 2358.76658099005,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 2655.33655899344,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 3566.973490989767,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 3297.930480010109,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": false,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 5432.920203980757,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 6224.656667996896,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      }
+    ]
+  },
+  {
+    "status": "candidate",
+    "score": 73,
+    "accepted": false,
+    "reasons": [
+      "error",
+      "timeout_or_error",
+      "latency_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "candidate": {
+      "provider": null,
+      "source": "doh-initial-validation",
+      "transport": "doh",
+      "endpoint_url": "https://doh.360.cn/dns-query",
+      "host": "doh.360.cn",
+      "port": 443,
+      "path": "/dns-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "doh.360.cn",
+      "metadata": {
+        "previous_status": "accepted",
+        "previous_score": 85,
+        "previous_confidence_score": 55
+      }
+    },
+    "median_latency_ms": 1083.792406017892,
+    "score_breakdown": {
+      "correctness": 45,
+      "availability": 18,
+      "performance": 10,
+      "history": 0
+    },
+    "confidence_score": 55,
+    "score_caps_applied": [
+      "source_reliability_unknown"
+    ],
+    "derived_metrics": {
+      "p50_latency_ms": 1083.792406017892,
+      "p95_latency_ms": 3828.9151260105427,
+      "jitter_ms": 2745.1227199926507,
+      "latency_sample_count": 35,
+      "runs_seen_30d": null,
+      "runs_seen_7d": null,
+      "flaps_30d": null
+    },
+    "probes": [
+      {
+        "ok": true,
+        "probe": "doh:tls",
+        "latency_ms": 702.1070219925605,
+        "error": null,
+        "details": {
+          "sni": "doh.360.cn"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 691.3752450200263,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 849.7027310077101,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 940.9738980175462,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 686.7742909817025,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 1145.4780290077906,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 907.5541100173723,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 861.1436979845166,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 699.5892210106831,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 859.8734749830328,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 840.8664470189251,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 1332.6852759928443,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 1083.792406017892,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 699.1176770243328,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 1085.115711990511,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 693.609195004683,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 837.8907960141078,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 1184.562067996012,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 1339.8238710069563,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 1242.0925309997983,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 1088.9399879961275,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 675.1832890149672,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 936.597846011864,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 1140.919216995826,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 901.8350560218096,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 1621.008239017101,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 1398.4703829919454,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 1083.6816240043845,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 1084.4402879884,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 1380.4501240083482,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 1962.3795179941226,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 1750.21341998945,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 1938.1608040130232,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 3828.9151260105427,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 4815.081317996373,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": false,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": null,
+        "error": "error:Server disconnected without sending a response.",
+        "details": {}
+      },
+      {
+        "ok": false,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      }
+    ]
+  },
+  {
+    "status": "candidate",
+    "score": 69,
+    "accepted": false,
+    "reasons": [
+      "timeout_or_error",
+      "latency_moderate",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "candidate": {
+      "provider": null,
+      "source": "tmp/doh_dns_addresses.csv",
+      "transport": "doh",
+      "endpoint_url": "https://doh.090227.xyz/Next-query",
+      "host": "doh.090227.xyz",
+      "port": 443,
+      "path": "/Next-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "doh.090227.xyz",
+      "metadata": {
+        "previous_status": "unvalidated",
+        "previous_score": null,
+        "previous_confidence_score": null
+      }
+    },
+    "median_latency_ms": 673.0246229853947,
+    "score_breakdown": {
+      "correctness": 40,
+      "availability": 17,
+      "performance": 12,
+      "history": 0
+    },
+    "confidence_score": 55,
+    "score_caps_applied": [
+      "source_reliability_unknown"
+    ],
+    "derived_metrics": {
+      "p50_latency_ms": 673.0246229853947,
+      "p95_latency_ms": 5542.963961022906,
+      "jitter_ms": 4869.939338037511,
+      "latency_sample_count": 33,
+      "runs_seen_30d": null,
+      "runs_seen_7d": null,
+      "flaps_30d": null
+    },
+    "probes": [
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 235.3003440075554,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 323.4706399962306,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 459.77627200772986,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 363.6056509858463,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 356.90510499989614,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 352.6825659791939,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 549.9216399912257,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 596.661474002758,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 362.75185499107465,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 591.701691999333,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 373.8730579789262,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 648.54335700511,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 632.0791080070194,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 439.1808589862194,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 449.01175098493695,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 719.0041689900681,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 868.0743730219547,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 571.8721479934175,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 673.0246229853947,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 1659.6222539956216,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 1944.8296379996464,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 1807.5842359976377,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:tls",
+        "latency_ms": 2441.4734930032864,
+        "error": null,
+        "details": {
+          "sni": "doh.090227.xyz"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 2357.4945050058886,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 2924.702830001479,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 2828.5399040032644,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 3344.2970089963637,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 4213.395105995005,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 4493.000017013401,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": false,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 5250.809471006505,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 5304.000631003873,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 5542.963961022906,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": false,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      },
+      {
+        "ok": false,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 6302.301010000519,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": false,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      }
+    ]
+  },
+  {
+    "status": "candidate",
+    "score": 67,
+    "accepted": false,
+    "reasons": [
+      "timeout_or_error",
+      "latency_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "candidate": {
+      "provider": null,
+      "source": "tmp/doh_dns_addresses.csv",
+      "transport": "doh",
+      "endpoint_url": "https://doh.090227.xyz/V-query",
+      "host": "doh.090227.xyz",
+      "port": 443,
+      "path": "/V-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "doh.090227.xyz",
+      "metadata": {
+        "previous_status": "unvalidated",
+        "previous_score": null,
+        "previous_confidence_score": null
+      }
+    },
+    "median_latency_ms": 1380.0576319918036,
+    "score_breakdown": {
+      "correctness": 40,
+      "availability": 17,
+      "performance": 10,
+      "history": 0
+    },
+    "confidence_score": 55,
+    "score_caps_applied": [
+      "source_reliability_unknown"
+    ],
+    "derived_metrics": {
+      "p50_latency_ms": 1380.0576319918036,
+      "p95_latency_ms": 5824.4399139948655,
+      "jitter_ms": 4444.382282003062,
+      "latency_sample_count": 33,
+      "runs_seen_30d": null,
+      "runs_seen_7d": null,
+      "flaps_30d": null
+    },
+    "probes": [
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 521.5713749930728,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 595.5955830286257,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 381.8573330063373,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 259.02364699868485,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 453.47920898348093,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 253.19338901317678,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 627.8665790159721,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 1014.7941360191908,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 513.4572220267728,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 1217.7000249794219,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 1179.087761003757,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 1380.0576319918036,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:tls",
+        "latency_ms": 1676.2012040126137,
+        "error": null,
+        "details": {
+          "sni": "doh.090227.xyz"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 1368.808152998099,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 1280.485975992633,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 1483.496455999557,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 1137.2962370223831,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 1321.7484969936777,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 1970.1076020137407,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 1282.9871870053466,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 2109.759073005989,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 1634.7881539841183,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 2201.0869180085137,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 1678.9446600014344,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 2050.708547991235,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 2823.232709983131,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 3183.8825379963964,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 3718.3362990035675,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": false,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 5120.451481983764,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 4806.494115007808,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 5593.374372983817,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 5824.4399139948655,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 6321.208386973012,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": false,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      },
+      {
+        "ok": false,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      },
+      {
+        "ok": false,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      }
+    ]
+  },
+  {
+    "status": "candidate",
+    "score": 67,
+    "accepted": false,
+    "reasons": [
+      "timeout_or_error",
+      "latency_moderate",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "candidate": {
+      "provider": null,
+      "source": "doh-initial-validation",
+      "transport": "doh",
+      "endpoint_url": "https://doh.18bit.cn/dns-query",
+      "host": "doh.18bit.cn",
+      "port": 443,
+      "path": "/dns-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "doh.18bit.cn",
+      "metadata": {
+        "previous_status": "candidate",
+        "previous_score": 72,
+        "previous_confidence_score": 55
+      }
+    },
+    "median_latency_ms": 674.3711619928945,
+    "score_breakdown": {
+      "correctness": 37,
+      "availability": 17,
+      "performance": 13,
+      "history": 0
+    },
+    "confidence_score": 55,
+    "score_caps_applied": [
+      "source_reliability_unknown"
+    ],
+    "derived_metrics": {
+      "p50_latency_ms": 674.3711619928945,
+      "p95_latency_ms": 2254.801922972547,
+      "jitter_ms": 1580.4307609796524,
+      "latency_sample_count": 32,
+      "runs_seen_30d": null,
+      "runs_seen_7d": null,
+      "flaps_30d": null
+    },
+    "probes": [
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 230.3494099760428,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 48.44693301129155,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 41.28943200339563,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 41.922756005078554,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 471.38605202781036,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 42.1168569882866,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 507.2989859909285,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 441.2267489824444,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 416.18982900399715,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 480.34578398801386,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 410.97526100929826,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 321.66739500826225,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 758.9790450001601,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 685.6590149982367,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 1207.7727880096063,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 1036.5686049917713,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 634.0311479871161,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 473.8943050033413,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 527.5360390078276,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 663.0833089875523,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 1023.8053770153783,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:tls",
+        "latency_ms": 1631.1990600079298,
+        "error": null,
+        "details": {
+          "sni": "doh.18bit.cn"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 1569.5742539828643,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 1562.6733539975248,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 1096.4514240040444,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 1449.966094980482,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 1662.7983700018376,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 1692.5005659868475,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 2254.801922972547,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 2203.40739301173,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 2422.283914987929,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 2174.3399020051584,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": false,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      },
+      {
+        "ok": false,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      },
+      {
+        "ok": false,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      },
+      {
+        "ok": false,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      },
+      {
+        "ok": false,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      }
+    ]
+  },
+  {
+    "status": "candidate",
+    "score": 61,
+    "accepted": false,
+    "reasons": [
+      "timeout_or_error",
+      "latency_very_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "candidate": {
+      "provider": null,
+      "source": "tmp/doh_dns_addresses.csv",
+      "transport": "doh",
+      "endpoint_url": "https://doh.090227.xyz/AdG-query",
+      "host": "doh.090227.xyz",
+      "port": 443,
+      "path": "/AdG-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "doh.090227.xyz",
+      "metadata": {
+        "previous_status": "unvalidated",
+        "previous_score": null,
+        "previous_confidence_score": null
+      }
+    },
+    "median_latency_ms": 1695.247006995487,
+    "score_breakdown": {
+      "correctness": 37,
+      "availability": 17,
+      "performance": 7,
+      "history": 0
+    },
+    "confidence_score": 55,
+    "score_caps_applied": [
+      "source_reliability_unknown"
+    ],
+    "derived_metrics": {
+      "p50_latency_ms": 1695.247006995487,
+      "p95_latency_ms": 5523.841724992963,
+      "jitter_ms": 3828.5947179974755,
+      "latency_sample_count": 32,
+      "runs_seen_30d": null,
+      "runs_seen_7d": null,
+      "flaps_30d": null
+    },
+    "probes": [
+      {
+        "ok": true,
+        "probe": "doh:tls",
+        "latency_ms": 238.17182300263084,
+        "error": null,
+        "details": {
+          "sni": "doh.090227.xyz"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 230.9869900054764,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 247.03815698740073,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 236.97683500358835,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 382.845775980968,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 238.85017400607467,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 493.4395360178314,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 556.939987000078,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 462.97383701312356,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 715.7739739923272,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 481.6150150145404,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 722.162391000893,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 966.0167690017261,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 765.3947649814654,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 1349.2563290055841,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 1767.4361090175807,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 1674.296985991532,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 1827.2585030063055,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 1744.2615570034832,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 2033.7259149819147,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 1716.197027999442,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 1846.311991015682,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 2214.478006993886,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 2325.237045006361,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 2251.9405990024097,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 2728.764398023486,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 4252.1515259868465,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 4626.977859006729,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": false,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 5235.434169997461,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 5523.841724992963,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": false,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 5405.336358002387,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 5563.081810018048,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": false,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      },
+      {
+        "ok": false,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      },
+      {
+        "ok": false,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      }
+    ]
+  },
+  {
+    "status": "candidate",
+    "score": 61,
+    "accepted": false,
+    "reasons": [
+      "timeout_or_error",
+      "error",
+      "latency_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "candidate": {
+      "provider": null,
+      "source": "tmp/doh_dns_addresses.csv",
+      "transport": "doh",
+      "endpoint_url": "https://doh.090227.xyz/Ali-query",
+      "host": "doh.090227.xyz",
+      "port": 443,
+      "path": "/Ali-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "doh.090227.xyz",
+      "metadata": {
+        "previous_status": "unvalidated",
+        "previous_score": null,
+        "previous_confidence_score": null
+      }
+    },
+    "median_latency_ms": 1480.9048589959275,
+    "score_breakdown": {
+      "correctness": 35,
+      "availability": 16,
+      "performance": 10,
+      "history": 0
+    },
+    "confidence_score": 55,
+    "score_caps_applied": [
+      "source_reliability_unknown"
+    ],
+    "derived_metrics": {
+      "p50_latency_ms": 1480.9048589959275,
+      "p95_latency_ms": 4859.771303017624,
+      "jitter_ms": 3378.866444021696,
+      "latency_sample_count": 31,
+      "runs_seen_30d": null,
+      "runs_seen_7d": null,
+      "flaps_30d": null
+    },
+    "probes": [
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 308.16777699510567,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 250.7745549955871,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 256.7889569909312,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 243.11488299281336,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 429.24659000709653,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 236.38836800819263,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 256.97630501235835,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-b",
+        "latency_ms": 237.92284601950087,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 535.4525849979836,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 440.53024498862214,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 695.0611250067595,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 792.311252997024,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 890.3080739837606,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 1340.6492810172495,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 1559.9301180045586,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 1640.665593004087,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-a",
+        "latency_ms": 1480.9048589959275,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 1347.4387660098728,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 2053.988449013559,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-e",
+        "latency_ms": 2069.3486020027194,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 2215.133532998152,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": 2338.480381993577,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-b",
+        "latency_ms": 2522.475256002508,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": 2631.471144995885,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 2683.9263869915158,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-d",
+        "latency_ms": 3385.3601799928583,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": 3151.8812459835317,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated",
+        "latency_ms": 3959.7820329945534,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:consensus-root-a",
+        "latency_ms": 4500.600887025939,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": true,
+        "probe": "doh:positive:positive-root-f",
+        "latency_ms": 4859.771303017624,
+        "error": null,
+        "details": {
+          "rcode": "NOERROR"
+        }
+      },
+      {
+        "ok": false,
+        "probe": "doh:positive:consensus-root-c",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      },
+      {
+        "ok": false,
+        "probe": "doh:nxdomain:negative-root-generated-two",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      },
+      {
+        "ok": true,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": 5798.053381004138,
+        "error": null,
+        "details": {
+          "rcode": "NXDOMAIN"
+        }
+      },
+      {
+        "ok": false,
+        "probe": "doh:tls",
+        "latency_ms": null,
+        "error": "error:",
+        "details": {
+          "sni": "doh.090227.xyz"
+        }
+      },
+      {
+        "ok": false,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      },
+      {
+        "ok": false,
+        "probe": "doh:positive:positive-root-c",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      },
+      {
+        "ok": false,
+        "probe": "doh:nxdomain:negative-root-generated-three",
+        "latency_ms": null,
+        "error": "timeout:",
+        "details": {}
+      }
+    ]
+  }
+]

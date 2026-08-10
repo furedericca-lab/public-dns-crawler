@@ -1,0 +1,8 @@
+"rank","url","general_status","general_score","pollution_status","pollution_score","general_p50_latency_ms","pollution_p50_latency_ms","pixiv_probe_ok_count","tls_ok"
+1,"https://cm3if9n4aw.cloudflare-gateway.com/dns-query","accepted",86,"accepted",85,608.0110949988011,977.9032939986791,3,true
+2,"https://doh.cm.edu.kg/CMLiussss","accepted",85,"accepted",87,273.00081102293916,348.55695751321036,3,true
+3,"https://my123.cloudflare-gateway.com/dns-query","accepted",84,"accepted",86,216.0293869965244,667.0853334944695,3,true
+4,"https://frd4wvnobp.cloudflare-gateway.com/dns-query","accepted",83,"accepted",81,630.8923449832946,700.6534605025081,3,true
+5,"https://ctif.hagezi.org/dns-query","accepted",80,"candidate",77,783.4951069962699,3161.645333006163,3,true
+6,"https://doh.tiarap.org/dns-query","candidate",76,"accepted",87,1240.2306814910844,334.8168319935212,3,true
+7,"https://doh.360.cn/dns-query","candidate",73,"accepted",80,1083.792406017892,1129.7170014877338,3,true

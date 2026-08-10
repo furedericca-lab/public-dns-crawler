@@ -1,0 +1,28 @@
+{
+  "dataset": "doh-small-clean-ranked",
+  "generated_at": "2026-08-10T11:22:07Z",
+  "source_general_validation": "outputs/doh-370-general/validated.json",
+  "source_general_usable": "outputs/doh-small/general-usable/input.json",
+  "source_pollution_validation": "outputs/doh-small/pollution-pixiv-usable/validated.json",
+  "pollution_corpus": "outputs/doh-small-pixiv/pixiv-probe-corpus.json",
+  "selection": {
+    "general_statuses": [
+      "accepted",
+      "candidate"
+    ],
+    "clean_rule": "three of three Pixiv fixed-A probes pass and doh:tls passes",
+    "ranking": [
+      "general_score_desc",
+      "accepted_before_candidate",
+      "general_p50_latency_asc",
+      "endpoint_url_asc"
+    ]
+  },
+  "counts": {
+    "general_usable": 16,
+    "clean_usable": 7,
+    "answer_clean_tls_issue": 1,
+    "polluted_or_wrong_rrset": 3,
+    "inconclusive": 5
+  }
+}

@@ -69,6 +69,23 @@
   },
   {
     "provider": null,
+    "source": "tmp/doh_dns_addresses.csv",
+    "transport": "doh",
+    "endpoint_url": "https://my123.cloudflare-gateway.com/dns-query",
+    "host": "my123.cloudflare-gateway.com",
+    "port": 443,
+    "path": "/dns-query",
+    "bootstrap_ipv4": [],
+    "bootstrap_ipv6": [],
+    "tls_server_name": "my123.cloudflare-gateway.com",
+    "metadata": {
+      "previous_status": "unvalidated",
+      "previous_score": null,
+      "previous_confidence_score": null
+    }
+  },
+  {
+    "provider": null,
     "source": "doh-initial-validation",
     "transport": "doh",
     "endpoint_url": "https://frd4wvnobp.cloudflare-gateway.com/dns-query",
@@ -78,6 +95,40 @@
     "bootstrap_ipv4": [],
     "bootstrap_ipv6": [],
     "tls_server_name": "frd4wvnobp.cloudflare-gateway.com",
+    "metadata": {
+      "previous_status": "accepted",
+      "previous_score": 89,
+      "previous_confidence_score": 55
+    }
+  },
+  {
+    "provider": null,
+    "source": "tmp/doh_dns_addresses.csv",
+    "transport": "doh",
+    "endpoint_url": "https://ctif.hagezi.org/dns-query",
+    "host": "ctif.hagezi.org",
+    "port": 443,
+    "path": "/dns-query",
+    "bootstrap_ipv4": [],
+    "bootstrap_ipv6": [],
+    "tls_server_name": "ctif.hagezi.org",
+    "metadata": {
+      "previous_status": "unvalidated",
+      "previous_score": null,
+      "previous_confidence_score": null
+    }
+  },
+  {
+    "provider": null,
+    "source": "doh-initial-validation",
+    "transport": "doh",
+    "endpoint_url": "https://doh.tiarap.org/dns-query",
+    "host": "doh.tiarap.org",
+    "port": 443,
+    "path": "/dns-query",
+    "bootstrap_ipv4": [],
+    "bootstrap_ipv6": [],
+    "tls_server_name": "doh.tiarap.org",
     "metadata": {
       "previous_status": "accepted",
       "previous_score": 89,
@@ -103,19 +154,19 @@
   },
   {
     "provider": null,
-    "source": "tmp/doh_dns_addresses.csv",
+    "source": "doh-initial-validation",
     "transport": "doh",
-    "endpoint_url": "https://my123.cloudflare-gateway.com/dns-query",
-    "host": "my123.cloudflare-gateway.com",
+    "endpoint_url": "https://public.ns.nwps.fi/dns-query",
+    "host": "public.ns.nwps.fi",
     "port": 443,
     "path": "/dns-query",
     "bootstrap_ipv4": [],
     "bootstrap_ipv6": [],
-    "tls_server_name": "my123.cloudflare-gateway.com",
+    "tls_server_name": "public.ns.nwps.fi",
     "metadata": {
-      "previous_status": "unvalidated",
-      "previous_score": null,
-      "previous_confidence_score": null
+      "previous_status": "accepted",
+      "previous_score": 86,
+      "previous_confidence_score": 55
     }
   },
   {
@@ -137,32 +188,15 @@
   },
   {
     "provider": null,
-    "source": "doh-initial-validation",
-    "transport": "doh",
-    "endpoint_url": "https://doh.tiarap.org/dns-query",
-    "host": "doh.tiarap.org",
-    "port": 443,
-    "path": "/dns-query",
-    "bootstrap_ipv4": [],
-    "bootstrap_ipv6": [],
-    "tls_server_name": "doh.tiarap.org",
-    "metadata": {
-      "previous_status": "accepted",
-      "previous_score": 89,
-      "previous_confidence_score": 55
-    }
-  },
-  {
-    "provider": null,
     "source": "tmp/doh_dns_addresses.csv",
     "transport": "doh",
-    "endpoint_url": "https://ctif.hagezi.org/dns-query",
-    "host": "ctif.hagezi.org",
+    "endpoint_url": "https://doh.090227.xyz/Next-query",
+    "host": "doh.090227.xyz",
     "port": 443,
-    "path": "/dns-query",
+    "path": "/Next-query",
     "bootstrap_ipv4": [],
     "bootstrap_ipv6": [],
-    "tls_server_name": "ctif.hagezi.org",
+    "tls_server_name": "doh.090227.xyz",
     "metadata": {
       "previous_status": "unvalidated",
       "previous_score": null,
@@ -190,34 +224,17 @@
     "provider": null,
     "source": "doh-initial-validation",
     "transport": "doh",
-    "endpoint_url": "https://ag.apollohct.com/dns-query",
-    "host": "ag.apollohct.com",
+    "endpoint_url": "https://doh.18bit.cn/dns-query",
+    "host": "doh.18bit.cn",
     "port": 443,
     "path": "/dns-query",
     "bootstrap_ipv4": [],
     "bootstrap_ipv6": [],
-    "tls_server_name": "ag.apollohct.com",
+    "tls_server_name": "doh.18bit.cn",
     "metadata": {
-      "previous_status": "accepted",
-      "previous_score": 89,
+      "previous_status": "candidate",
+      "previous_score": 72,
       "previous_confidence_score": 55
-    }
-  },
-  {
-    "provider": null,
-    "source": "tmp/doh_dns_addresses.csv",
-    "transport": "doh",
-    "endpoint_url": "https://doh.090227.xyz/Ali-query",
-    "host": "doh.090227.xyz",
-    "port": 443,
-    "path": "/Ali-query",
-    "bootstrap_ipv4": [],
-    "bootstrap_ipv6": [],
-    "tls_server_name": "doh.090227.xyz",
-    "metadata": {
-      "previous_status": "unvalidated",
-      "previous_score": null,
-      "previous_confidence_score": null
     }
   },
   {
@@ -239,19 +256,19 @@
   },
   {
     "provider": null,
-    "source": "doh-initial-validation",
+    "source": "tmp/doh_dns_addresses.csv",
     "transport": "doh",
-    "endpoint_url": "https://doh.18bit.cn/dns-query",
-    "host": "doh.18bit.cn",
+    "endpoint_url": "https://doh.090227.xyz/Ali-query",
+    "host": "doh.090227.xyz",
     "port": 443,
-    "path": "/dns-query",
+    "path": "/Ali-query",
     "bootstrap_ipv4": [],
     "bootstrap_ipv6": [],
-    "tls_server_name": "doh.18bit.cn",
+    "tls_server_name": "doh.090227.xyz",
     "metadata": {
-      "previous_status": "candidate",
-      "previous_score": 72,
-      "previous_confidence_score": 55
+      "previous_status": "unvalidated",
+      "previous_score": null,
+      "previous_confidence_score": null
     }
   }
 ]

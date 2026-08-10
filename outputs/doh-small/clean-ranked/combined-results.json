@@ -1,0 +1,721 @@
+[
+  {
+    "url": "https://dns.alidns.com/dns-query",
+    "candidate": {
+      "provider": null,
+      "source": "doh-initial-validation",
+      "transport": "doh",
+      "endpoint_url": "https://dns.alidns.com/dns-query",
+      "host": "dns.alidns.com",
+      "port": 443,
+      "path": "/dns-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "dns.alidns.com",
+      "metadata": {
+        "previous_status": "accepted",
+        "previous_score": 90,
+        "previous_confidence_score": 55
+      }
+    },
+    "general_status": "accepted",
+    "general_score": 90,
+    "general_confidence_score": 55,
+    "general_p50_latency_ms": 29.667208989849314,
+    "general_p95_latency_ms": 82.45193198672496,
+    "general_reasons": [],
+    "pollution_status": "rejected",
+    "pollution_score": 36,
+    "pollution_p50_latency_ms": 216.8194820114877,
+    "pollution_p95_latency_ms": 216.8194820114877,
+    "pollution_reasons": [
+      "answer_mismatch",
+      "latency_moderate"
+    ],
+    "pixiv_probe_count": 3,
+    "pixiv_probe_ok_count": 0,
+    "pixiv_exact_rrset_clean": false,
+    "tls_ok": false,
+    "has_answer_mismatch": true,
+    "classification": "polluted_or_wrong_rrset"
+  },
+  {
+    "url": "https://dns.pub/dns-query",
+    "candidate": {
+      "provider": null,
+      "source": "doh-initial-validation",
+      "transport": "doh",
+      "endpoint_url": "https://dns.pub/dns-query",
+      "host": "dns.pub",
+      "port": 443,
+      "path": "/dns-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "dns.pub",
+      "metadata": {
+        "previous_status": "accepted",
+        "previous_score": 89,
+        "previous_confidence_score": 55
+      }
+    },
+    "general_status": "accepted",
+    "general_score": 89,
+    "general_confidence_score": 55,
+    "general_p50_latency_ms": 105.23323100642301,
+    "general_p95_latency_ms": 239.5332620071713,
+    "general_reasons": [
+      "latency_moderate"
+    ],
+    "pollution_status": "rejected",
+    "pollution_score": 36,
+    "pollution_p50_latency_ms": 239.09459100104868,
+    "pollution_p95_latency_ms": 239.09459100104868,
+    "pollution_reasons": [
+      "answer_mismatch",
+      "latency_moderate"
+    ],
+    "pixiv_probe_count": 3,
+    "pixiv_probe_ok_count": 0,
+    "pixiv_exact_rrset_clean": false,
+    "tls_ok": false,
+    "has_answer_mismatch": true,
+    "classification": "polluted_or_wrong_rrset"
+  },
+  {
+    "url": "https://cm3if9n4aw.cloudflare-gateway.com/dns-query",
+    "candidate": {
+      "provider": null,
+      "source": "tmp/doh_dns_addresses.csv",
+      "transport": "doh",
+      "endpoint_url": "https://cm3if9n4aw.cloudflare-gateway.com/dns-query",
+      "host": "cm3if9n4aw.cloudflare-gateway.com",
+      "port": 443,
+      "path": "/dns-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "cm3if9n4aw.cloudflare-gateway.com",
+      "metadata": {
+        "previous_status": "unvalidated",
+        "previous_score": null,
+        "previous_confidence_score": null
+      }
+    },
+    "general_status": "accepted",
+    "general_score": 86,
+    "general_confidence_score": 55,
+    "general_p50_latency_ms": 608.0110949988011,
+    "general_p95_latency_ms": 1310.9694050217513,
+    "general_reasons": [
+      "latency_moderate",
+      "latency_jitter_high"
+    ],
+    "pollution_status": "accepted",
+    "pollution_score": 85,
+    "pollution_p50_latency_ms": 977.9032939986791,
+    "pollution_p95_latency_ms": 1099.0404389740434,
+    "pollution_reasons": [
+      "latency_high"
+    ],
+    "pixiv_probe_count": 3,
+    "pixiv_probe_ok_count": 3,
+    "pixiv_exact_rrset_clean": true,
+    "tls_ok": true,
+    "has_answer_mismatch": false,
+    "classification": "clean_usable"
+  },
+  {
+    "url": "https://doh.cm.edu.kg/CMLiussss",
+    "candidate": {
+      "provider": null,
+      "source": "tmp/doh_dns_addresses.csv",
+      "transport": "doh",
+      "endpoint_url": "https://doh.cm.edu.kg/CMLiussss",
+      "host": "doh.cm.edu.kg",
+      "port": 443,
+      "path": "/CMLiussss",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "doh.cm.edu.kg",
+      "metadata": {
+        "previous_status": "unvalidated",
+        "previous_score": null,
+        "previous_confidence_score": null
+      }
+    },
+    "general_status": "accepted",
+    "general_score": 85,
+    "general_confidence_score": 55,
+    "general_p50_latency_ms": 273.00081102293916,
+    "general_p95_latency_ms": 1359.2090210004244,
+    "general_reasons": [
+      "latency_moderate",
+      "latency_jitter_high"
+    ],
+    "pollution_status": "accepted",
+    "pollution_score": 87,
+    "pollution_p50_latency_ms": 348.55695751321036,
+    "pollution_p95_latency_ms": 592.906548990868,
+    "pollution_reasons": [
+      "latency_moderate"
+    ],
+    "pixiv_probe_count": 3,
+    "pixiv_probe_ok_count": 3,
+    "pixiv_exact_rrset_clean": true,
+    "tls_ok": true,
+    "has_answer_mismatch": false,
+    "classification": "clean_usable"
+  },
+  {
+    "url": "https://my123.cloudflare-gateway.com/dns-query",
+    "candidate": {
+      "provider": null,
+      "source": "tmp/doh_dns_addresses.csv",
+      "transport": "doh",
+      "endpoint_url": "https://my123.cloudflare-gateway.com/dns-query",
+      "host": "my123.cloudflare-gateway.com",
+      "port": 443,
+      "path": "/dns-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "my123.cloudflare-gateway.com",
+      "metadata": {
+        "previous_status": "unvalidated",
+        "previous_score": null,
+        "previous_confidence_score": null
+      }
+    },
+    "general_status": "accepted",
+    "general_score": 84,
+    "general_confidence_score": 55,
+    "general_p50_latency_ms": 216.0293869965244,
+    "general_p95_latency_ms": 1910.7075649953913,
+    "general_reasons": [
+      "latency_moderate",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "pollution_status": "accepted",
+    "pollution_score": 86,
+    "pollution_p50_latency_ms": 667.0853334944695,
+    "pollution_p95_latency_ms": 906.065162998857,
+    "pollution_reasons": [
+      "latency_moderate"
+    ],
+    "pixiv_probe_count": 3,
+    "pixiv_probe_ok_count": 3,
+    "pixiv_exact_rrset_clean": true,
+    "tls_ok": true,
+    "has_answer_mismatch": false,
+    "classification": "clean_usable"
+  },
+  {
+    "url": "https://frd4wvnobp.cloudflare-gateway.com/dns-query",
+    "candidate": {
+      "provider": null,
+      "source": "doh-initial-validation",
+      "transport": "doh",
+      "endpoint_url": "https://frd4wvnobp.cloudflare-gateway.com/dns-query",
+      "host": "frd4wvnobp.cloudflare-gateway.com",
+      "port": 443,
+      "path": "/dns-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "frd4wvnobp.cloudflare-gateway.com",
+      "metadata": {
+        "previous_status": "accepted",
+        "previous_score": 89,
+        "previous_confidence_score": 55
+      }
+    },
+    "general_status": "accepted",
+    "general_score": 83,
+    "general_confidence_score": 55,
+    "general_p50_latency_ms": 630.8923449832946,
+    "general_p95_latency_ms": 2350.6550480087753,
+    "general_reasons": [
+      "latency_moderate",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "pollution_status": "accepted",
+    "pollution_score": 81,
+    "pollution_p50_latency_ms": 700.6534605025081,
+    "pollution_p95_latency_ms": 2193.906179018086,
+    "pollution_reasons": [
+      "latency_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "pixiv_probe_count": 3,
+    "pixiv_probe_ok_count": 3,
+    "pixiv_exact_rrset_clean": true,
+    "tls_ok": true,
+    "has_answer_mismatch": false,
+    "classification": "clean_usable"
+  },
+  {
+    "url": "https://ctif.hagezi.org/dns-query",
+    "candidate": {
+      "provider": null,
+      "source": "tmp/doh_dns_addresses.csv",
+      "transport": "doh",
+      "endpoint_url": "https://ctif.hagezi.org/dns-query",
+      "host": "ctif.hagezi.org",
+      "port": 443,
+      "path": "/dns-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "ctif.hagezi.org",
+      "metadata": {
+        "previous_status": "unvalidated",
+        "previous_score": null,
+        "previous_confidence_score": null
+      }
+    },
+    "general_status": "accepted",
+    "general_score": 80,
+    "general_confidence_score": 55,
+    "general_p50_latency_ms": 783.4951069962699,
+    "general_p95_latency_ms": 4496.574273012811,
+    "general_reasons": [
+      "latency_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "pollution_status": "candidate",
+    "pollution_score": 77,
+    "pollution_p50_latency_ms": 3161.645333006163,
+    "pollution_p95_latency_ms": 4069.892775005428,
+    "pollution_reasons": [
+      "latency_very_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "pixiv_probe_count": 3,
+    "pixiv_probe_ok_count": 3,
+    "pixiv_exact_rrset_clean": true,
+    "tls_ok": true,
+    "has_answer_mismatch": false,
+    "classification": "clean_usable"
+  },
+  {
+    "url": "https://doh.tiarap.org/dns-query",
+    "candidate": {
+      "provider": null,
+      "source": "doh-initial-validation",
+      "transport": "doh",
+      "endpoint_url": "https://doh.tiarap.org/dns-query",
+      "host": "doh.tiarap.org",
+      "port": 443,
+      "path": "/dns-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "doh.tiarap.org",
+      "metadata": {
+        "previous_status": "accepted",
+        "previous_score": 89,
+        "previous_confidence_score": 55
+      }
+    },
+    "general_status": "candidate",
+    "general_score": 76,
+    "general_confidence_score": 55,
+    "general_p50_latency_ms": 1240.2306814910844,
+    "general_p95_latency_ms": 3273.5021179832984,
+    "general_reasons": [
+      "timeout_or_error",
+      "latency_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "pollution_status": "accepted",
+    "pollution_score": 87,
+    "pollution_p50_latency_ms": 334.8168319935212,
+    "pollution_p95_latency_ms": 524.9956010084134,
+    "pollution_reasons": [
+      "latency_moderate"
+    ],
+    "pixiv_probe_count": 3,
+    "pixiv_probe_ok_count": 3,
+    "pixiv_exact_rrset_clean": true,
+    "tls_ok": true,
+    "has_answer_mismatch": false,
+    "classification": "clean_usable"
+  },
+  {
+    "url": "https://kids.ns.nwps.fi/dns-query",
+    "candidate": {
+      "provider": null,
+      "source": "doh-initial-validation",
+      "transport": "doh",
+      "endpoint_url": "https://kids.ns.nwps.fi/dns-query",
+      "host": "kids.ns.nwps.fi",
+      "port": 443,
+      "path": "/dns-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "kids.ns.nwps.fi",
+      "metadata": {
+        "previous_status": "accepted",
+        "previous_score": 86,
+        "previous_confidence_score": 55
+      }
+    },
+    "general_status": "candidate",
+    "general_score": 76,
+    "general_confidence_score": 55,
+    "general_p50_latency_ms": 1257.0753254985902,
+    "general_p95_latency_ms": 3824.3141769780777,
+    "general_reasons": [
+      "timeout_or_error",
+      "latency_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "pollution_status": "candidate",
+    "pollution_score": 62,
+    "pollution_p50_latency_ms": 2720.3710680041695,
+    "pollution_p95_latency_ms": 3838.149565999629,
+    "pollution_reasons": [
+      "error",
+      "timeout_or_error",
+      "latency_very_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "pixiv_probe_count": 3,
+    "pixiv_probe_ok_count": 2,
+    "pixiv_exact_rrset_clean": false,
+    "tls_ok": false,
+    "has_answer_mismatch": false,
+    "classification": "inconclusive"
+  },
+  {
+    "url": "https://public.ns.nwps.fi/dns-query",
+    "candidate": {
+      "provider": null,
+      "source": "doh-initial-validation",
+      "transport": "doh",
+      "endpoint_url": "https://public.ns.nwps.fi/dns-query",
+      "host": "public.ns.nwps.fi",
+      "port": 443,
+      "path": "/dns-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "public.ns.nwps.fi",
+      "metadata": {
+        "previous_status": "accepted",
+        "previous_score": 86,
+        "previous_confidence_score": 55
+      }
+    },
+    "general_status": "candidate",
+    "general_score": 76,
+    "general_confidence_score": 55,
+    "general_p50_latency_ms": 938.9328714896692,
+    "general_p95_latency_ms": 5432.920203980757,
+    "general_reasons": [
+      "timeout_or_error",
+      "latency_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "pollution_status": "candidate",
+    "pollution_score": 72,
+    "pollution_p50_latency_ms": 750.2270069962833,
+    "pollution_p95_latency_ms": 3042.3570290149655,
+    "pollution_reasons": [
+      "timeout_or_error",
+      "latency_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "pixiv_probe_count": 3,
+    "pixiv_probe_ok_count": 2,
+    "pixiv_exact_rrset_clean": false,
+    "tls_ok": true,
+    "has_answer_mismatch": false,
+    "classification": "inconclusive"
+  },
+  {
+    "url": "https://doh.360.cn/dns-query",
+    "candidate": {
+      "provider": null,
+      "source": "doh-initial-validation",
+      "transport": "doh",
+      "endpoint_url": "https://doh.360.cn/dns-query",
+      "host": "doh.360.cn",
+      "port": 443,
+      "path": "/dns-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "doh.360.cn",
+      "metadata": {
+        "previous_status": "accepted",
+        "previous_score": 85,
+        "previous_confidence_score": 55
+      }
+    },
+    "general_status": "candidate",
+    "general_score": 73,
+    "general_confidence_score": 55,
+    "general_p50_latency_ms": 1083.792406017892,
+    "general_p95_latency_ms": 3828.9151260105427,
+    "general_reasons": [
+      "error",
+      "timeout_or_error",
+      "latency_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "pollution_status": "accepted",
+    "pollution_score": 80,
+    "pollution_p50_latency_ms": 1129.7170014877338,
+    "pollution_p95_latency_ms": 3462.7458119939547,
+    "pollution_reasons": [
+      "latency_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "pixiv_probe_count": 3,
+    "pixiv_probe_ok_count": 3,
+    "pixiv_exact_rrset_clean": true,
+    "tls_ok": true,
+    "has_answer_mismatch": false,
+    "classification": "clean_usable"
+  },
+  {
+    "url": "https://doh.090227.xyz/Next-query",
+    "candidate": {
+      "provider": null,
+      "source": "tmp/doh_dns_addresses.csv",
+      "transport": "doh",
+      "endpoint_url": "https://doh.090227.xyz/Next-query",
+      "host": "doh.090227.xyz",
+      "port": 443,
+      "path": "/Next-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "doh.090227.xyz",
+      "metadata": {
+        "previous_status": "unvalidated",
+        "previous_score": null,
+        "previous_confidence_score": null
+      }
+    },
+    "general_status": "candidate",
+    "general_score": 69,
+    "general_confidence_score": 55,
+    "general_p50_latency_ms": 673.0246229853947,
+    "general_p95_latency_ms": 5542.963961022906,
+    "general_reasons": [
+      "timeout_or_error",
+      "latency_moderate",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "pollution_status": "candidate",
+    "pollution_score": 72,
+    "pollution_p50_latency_ms": 890.6631710124202,
+    "pollution_p95_latency_ms": 7373.866016976535,
+    "pollution_reasons": [
+      "timeout_or_error",
+      "latency_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "pixiv_probe_count": 3,
+    "pixiv_probe_ok_count": 2,
+    "pixiv_exact_rrset_clean": false,
+    "tls_ok": true,
+    "has_answer_mismatch": false,
+    "classification": "inconclusive"
+  },
+  {
+    "url": "https://doh.090227.xyz/V-query",
+    "candidate": {
+      "provider": null,
+      "source": "tmp/doh_dns_addresses.csv",
+      "transport": "doh",
+      "endpoint_url": "https://doh.090227.xyz/V-query",
+      "host": "doh.090227.xyz",
+      "port": 443,
+      "path": "/V-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "doh.090227.xyz",
+      "metadata": {
+        "previous_status": "unvalidated",
+        "previous_score": null,
+        "previous_confidence_score": null
+      }
+    },
+    "general_status": "candidate",
+    "general_score": 67,
+    "general_confidence_score": 55,
+    "general_p50_latency_ms": 1380.0576319918036,
+    "general_p95_latency_ms": 5824.4399139948655,
+    "general_reasons": [
+      "timeout_or_error",
+      "latency_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "pollution_status": "candidate",
+    "pollution_score": 70,
+    "pollution_p50_latency_ms": 3073.2357290107757,
+    "pollution_p95_latency_ms": 3814.656864007702,
+    "pollution_reasons": [
+      "error",
+      "latency_very_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "pixiv_probe_count": 3,
+    "pixiv_probe_ok_count": 3,
+    "pixiv_exact_rrset_clean": true,
+    "tls_ok": false,
+    "has_answer_mismatch": false,
+    "classification": "answer_clean_tls_issue"
+  },
+  {
+    "url": "https://doh.18bit.cn/dns-query",
+    "candidate": {
+      "provider": null,
+      "source": "doh-initial-validation",
+      "transport": "doh",
+      "endpoint_url": "https://doh.18bit.cn/dns-query",
+      "host": "doh.18bit.cn",
+      "port": 443,
+      "path": "/dns-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "doh.18bit.cn",
+      "metadata": {
+        "previous_status": "candidate",
+        "previous_score": 72,
+        "previous_confidence_score": 55
+      }
+    },
+    "general_status": "candidate",
+    "general_score": 67,
+    "general_confidence_score": 55,
+    "general_p50_latency_ms": 674.3711619928945,
+    "general_p95_latency_ms": 2254.801922972547,
+    "general_reasons": [
+      "timeout_or_error",
+      "latency_moderate",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "pollution_status": "rejected",
+    "pollution_score": 32,
+    "pollution_p50_latency_ms": 1178.2056749798357,
+    "pollution_p95_latency_ms": 1178.2056749798357,
+    "pollution_reasons": [
+      "answer_mismatch",
+      "latency_high"
+    ],
+    "pixiv_probe_count": 3,
+    "pixiv_probe_ok_count": 0,
+    "pixiv_exact_rrset_clean": false,
+    "tls_ok": false,
+    "has_answer_mismatch": true,
+    "classification": "polluted_or_wrong_rrset"
+  },
+  {
+    "url": "https://doh.090227.xyz/AdG-query",
+    "candidate": {
+      "provider": null,
+      "source": "tmp/doh_dns_addresses.csv",
+      "transport": "doh",
+      "endpoint_url": "https://doh.090227.xyz/AdG-query",
+      "host": "doh.090227.xyz",
+      "port": 443,
+      "path": "/AdG-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "doh.090227.xyz",
+      "metadata": {
+        "previous_status": "unvalidated",
+        "previous_score": null,
+        "previous_confidence_score": null
+      }
+    },
+    "general_status": "candidate",
+    "general_score": 61,
+    "general_confidence_score": 55,
+    "general_p50_latency_ms": 1695.247006995487,
+    "general_p95_latency_ms": 5523.841724992963,
+    "general_reasons": [
+      "timeout_or_error",
+      "latency_very_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "pollution_status": "rejected",
+    "pollution_score": 32,
+    "pollution_p50_latency_ms": null,
+    "pollution_p95_latency_ms": null,
+    "pollution_reasons": [
+      "timeout_or_error",
+      "error",
+      "timeout_rate_high",
+      "no_latency_samples"
+    ],
+    "pixiv_probe_count": 0,
+    "pixiv_probe_ok_count": 0,
+    "pixiv_exact_rrset_clean": false,
+    "tls_ok": false,
+    "has_answer_mismatch": false,
+    "classification": "inconclusive"
+  },
+  {
+    "url": "https://doh.090227.xyz/Ali-query",
+    "candidate": {
+      "provider": null,
+      "source": "tmp/doh_dns_addresses.csv",
+      "transport": "doh",
+      "endpoint_url": "https://doh.090227.xyz/Ali-query",
+      "host": "doh.090227.xyz",
+      "port": 443,
+      "path": "/Ali-query",
+      "bootstrap_ipv4": [],
+      "bootstrap_ipv6": [],
+      "tls_server_name": "doh.090227.xyz",
+      "metadata": {
+        "previous_status": "unvalidated",
+        "previous_score": null,
+        "previous_confidence_score": null
+      }
+    },
+    "general_status": "candidate",
+    "general_score": 61,
+    "general_confidence_score": 55,
+    "general_p50_latency_ms": 1480.9048589959275,
+    "general_p95_latency_ms": 4859.771303017624,
+    "general_reasons": [
+      "timeout_or_error",
+      "error",
+      "latency_high",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "pollution_status": "candidate",
+    "pollution_score": 74,
+    "pollution_p50_latency_ms": 398.5870179894846,
+    "pollution_p95_latency_ms": 9233.935225987807,
+    "pollution_reasons": [
+      "timeout_or_error",
+      "latency_moderate",
+      "latency_p95_high",
+      "latency_jitter_high"
+    ],
+    "pixiv_probe_count": 3,
+    "pixiv_probe_ok_count": 2,
+    "pixiv_exact_rrset_clean": false,
+    "tls_ok": true,
+    "has_answer_mismatch": false,
+    "classification": "inconclusive"
+  }
+]

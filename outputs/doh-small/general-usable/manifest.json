@@ -1,0 +1,19 @@
+{
+  "dataset": "doh-small-general-usable",
+  "generated_at": "2026-08-10T11:19:48Z",
+  "source_dataset": "outputs/doh-test/doh-test-complete-input.json",
+  "source_validation": "outputs/doh-370-general/validated.json",
+  "selection": {
+    "statuses": [
+      "accepted",
+      "candidate"
+    ],
+    "count": 16,
+    "ordering": [
+      "score_desc",
+      "status_accepted_before_candidate",
+      "endpoint_url_asc"
+    ]
+  },
+  "validation_input": "outputs/doh-small/general-usable/input.json"
+}

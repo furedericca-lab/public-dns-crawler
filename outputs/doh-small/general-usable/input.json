@@ -1,0 +1,274 @@
+[
+  {
+    "provider": null,
+    "source": "doh-initial-validation",
+    "transport": "doh",
+    "endpoint_url": "https://dns.alidns.com/dns-query",
+    "host": "dns.alidns.com",
+    "port": 443,
+    "path": "/dns-query",
+    "bootstrap_ipv4": [],
+    "bootstrap_ipv6": [],
+    "tls_server_name": "dns.alidns.com",
+    "metadata": {
+      "previous_status": "accepted",
+      "previous_score": 90,
+      "previous_confidence_score": 55
+    }
+  },
+  {
+    "provider": null,
+    "source": "doh-initial-validation",
+    "transport": "doh",
+    "endpoint_url": "https://dns.pub/dns-query",
+    "host": "dns.pub",
+    "port": 443,
+    "path": "/dns-query",
+    "bootstrap_ipv4": [],
+    "bootstrap_ipv6": [],
+    "tls_server_name": "dns.pub",
+    "metadata": {
+      "previous_status": "accepted",
+      "previous_score": 89,
+      "previous_confidence_score": 55
+    }
+  },
+  {
+    "provider": null,
+    "source": "tmp/doh_dns_addresses.csv",
+    "transport": "doh",
+    "endpoint_url": "https://cm3if9n4aw.cloudflare-gateway.com/dns-query",
+    "host": "cm3if9n4aw.cloudflare-gateway.com",
+    "port": 443,
+    "path": "/dns-query",
+    "bootstrap_ipv4": [],
+    "bootstrap_ipv6": [],
+    "tls_server_name": "cm3if9n4aw.cloudflare-gateway.com",
+    "metadata": {
+      "previous_status": "unvalidated",
+      "previous_score": null,
+      "previous_confidence_score": null
+    }
+  },
+  {
+    "provider": null,
+    "source": "tmp/doh_dns_addresses.csv",
+    "transport": "doh",
+    "endpoint_url": "https://doh.cm.edu.kg/CMLiussss",
+    "host": "doh.cm.edu.kg",
+    "port": 443,
+    "path": "/CMLiussss",
+    "bootstrap_ipv4": [],
+    "bootstrap_ipv6": [],
+    "tls_server_name": "doh.cm.edu.kg",
+    "metadata": {
+      "previous_status": "unvalidated",
+      "previous_score": null,
+      "previous_confidence_score": null
+    }
+  },
+  {
+    "provider": null,
+    "source": "tmp/doh_dns_addresses.csv",
+    "transport": "doh",
+    "endpoint_url": "https://my123.cloudflare-gateway.com/dns-query",
+    "host": "my123.cloudflare-gateway.com",
+    "port": 443,
+    "path": "/dns-query",
+    "bootstrap_ipv4": [],
+    "bootstrap_ipv6": [],
+    "tls_server_name": "my123.cloudflare-gateway.com",
+    "metadata": {
+      "previous_status": "unvalidated",
+      "previous_score": null,
+      "previous_confidence_score": null
+    }
+  },
+  {
+    "provider": null,
+    "source": "doh-initial-validation",
+    "transport": "doh",
+    "endpoint_url": "https://frd4wvnobp.cloudflare-gateway.com/dns-query",
+    "host": "frd4wvnobp.cloudflare-gateway.com",
+    "port": 443,
+    "path": "/dns-query",
+    "bootstrap_ipv4": [],
+    "bootstrap_ipv6": [],
+    "tls_server_name": "frd4wvnobp.cloudflare-gateway.com",
+    "metadata": {
+      "previous_status": "accepted",
+      "previous_score": 89,
+      "previous_confidence_score": 55
+    }
+  },
+  {
+    "provider": null,
+    "source": "tmp/doh_dns_addresses.csv",
+    "transport": "doh",
+    "endpoint_url": "https://ctif.hagezi.org/dns-query",
+    "host": "ctif.hagezi.org",
+    "port": 443,
+    "path": "/dns-query",
+    "bootstrap_ipv4": [],
+    "bootstrap_ipv6": [],
+    "tls_server_name": "ctif.hagezi.org",
+    "metadata": {
+      "previous_status": "unvalidated",
+      "previous_score": null,
+      "previous_confidence_score": null
+    }
+  },
+  {
+    "provider": null,
+    "source": "doh-initial-validation",
+    "transport": "doh",
+    "endpoint_url": "https://doh.tiarap.org/dns-query",
+    "host": "doh.tiarap.org",
+    "port": 443,
+    "path": "/dns-query",
+    "bootstrap_ipv4": [],
+    "bootstrap_ipv6": [],
+    "tls_server_name": "doh.tiarap.org",
+    "metadata": {
+      "previous_status": "accepted",
+      "previous_score": 89,
+      "previous_confidence_score": 55
+    }
+  },
+  {
+    "provider": null,
+    "source": "doh-initial-validation",
+    "transport": "doh",
+    "endpoint_url": "https://kids.ns.nwps.fi/dns-query",
+    "host": "kids.ns.nwps.fi",
+    "port": 443,
+    "path": "/dns-query",
+    "bootstrap_ipv4": [],
+    "bootstrap_ipv6": [],
+    "tls_server_name": "kids.ns.nwps.fi",
+    "metadata": {
+      "previous_status": "accepted",
+      "previous_score": 86,
+      "previous_confidence_score": 55
+    }
+  },
+  {
+    "provider": null,
+    "source": "doh-initial-validation",
+    "transport": "doh",
+    "endpoint_url": "https://public.ns.nwps.fi/dns-query",
+    "host": "public.ns.nwps.fi",
+    "port": 443,
+    "path": "/dns-query",
+    "bootstrap_ipv4": [],
+    "bootstrap_ipv6": [],
+    "tls_server_name": "public.ns.nwps.fi",
+    "metadata": {
+      "previous_status": "accepted",
+      "previous_score": 86,
+      "previous_confidence_score": 55
+    }
+  },
+  {
+    "provider": null,
+    "source": "doh-initial-validation",
+    "transport": "doh",
+    "endpoint_url": "https://doh.360.cn/dns-query",
+    "host": "doh.360.cn",
+    "port": 443,
+    "path": "/dns-query",
+    "bootstrap_ipv4": [],
+    "bootstrap_ipv6": [],
+    "tls_server_name": "doh.360.cn",
+    "metadata": {
+      "previous_status": "accepted",
+      "previous_score": 85,
+      "previous_confidence_score": 55
+    }
+  },
+  {
+    "provider": null,
+    "source": "tmp/doh_dns_addresses.csv",
+    "transport": "doh",
+    "endpoint_url": "https://doh.090227.xyz/Next-query",
+    "host": "doh.090227.xyz",
+    "port": 443,
+    "path": "/Next-query",
+    "bootstrap_ipv4": [],
+    "bootstrap_ipv6": [],
+    "tls_server_name": "doh.090227.xyz",
+    "metadata": {
+      "previous_status": "unvalidated",
+      "previous_score": null,
+      "previous_confidence_score": null
+    }
+  },
+  {
+    "provider": null,
+    "source": "tmp/doh_dns_addresses.csv",
+    "transport": "doh",
+    "endpoint_url": "https://doh.090227.xyz/V-query",
+    "host": "doh.090227.xyz",
+    "port": 443,
+    "path": "/V-query",
+    "bootstrap_ipv4": [],
+    "bootstrap_ipv6": [],
+    "tls_server_name": "doh.090227.xyz",
+    "metadata": {
+      "previous_status": "unvalidated",
+      "previous_score": null,
+      "previous_confidence_score": null
+    }
+  },
+  {
+    "provider": null,
+    "source": "doh-initial-validation",
+    "transport": "doh",
+    "endpoint_url": "https://doh.18bit.cn/dns-query",
+    "host": "doh.18bit.cn",
+    "port": 443,
+    "path": "/dns-query",
+    "bootstrap_ipv4": [],
+    "bootstrap_ipv6": [],
+    "tls_server_name": "doh.18bit.cn",
+    "metadata": {
+      "previous_status": "candidate",
+      "previous_score": 72,
+      "previous_confidence_score": 55
+    }
+  },
+  {
+    "provider": null,
+    "source": "tmp/doh_dns_addresses.csv",
+    "transport": "doh",
+    "endpoint_url": "https://doh.090227.xyz/AdG-query",
+    "host": "doh.090227.xyz",
+    "port": 443,
+    "path": "/AdG-query",
+    "bootstrap_ipv4": [],
+    "bootstrap_ipv6": [],
+    "tls_server_name": "doh.090227.xyz",
+    "metadata": {
+      "previous_status": "unvalidated",
+      "previous_score": null,
+      "previous_confidence_score": null
+    }
+  },
+  {
+    "provider": null,
+    "source": "tmp/doh_dns_addresses.csv",
+    "transport": "doh",
+    "endpoint_url": "https://doh.090227.xyz/Ali-query",
+    "host": "doh.090227.xyz",
+    "port": 443,
+    "path": "/Ali-query",
+    "bootstrap_ipv4": [],
+    "bootstrap_ipv6": [],
+    "tls_server_name": "doh.090227.xyz",
+    "metadata": {
+      "previous_status": "unvalidated",
+      "previous_score": null,
+      "previous_confidence_score": null
+    }
+  }
+]
