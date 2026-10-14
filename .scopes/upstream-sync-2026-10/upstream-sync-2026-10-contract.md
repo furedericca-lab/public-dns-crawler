@@ -15,7 +15,7 @@ DoH measurement behavior. The user authorizes integration, commit, and push to
 
 ## Outcome
 
-Upstream integration and local verification complete. Publication pending.
+Complete. Upstream integration, local verification, and publication are verified.
 
 ## Goals / Non-goals
 
@@ -92,5 +92,12 @@ None.
   Discovery outputs were written under the private backup, not historical outputs.
 - All pre-existing untracked file hashes matched the backup manifest; tracked
   historical outputs and local input/configuration paths have no changes.
-- Public resolver remeasurement and remote CI execution are not acceptance
-  evidence for this local integration and were not run.
+- Public resolver remeasurement was not run; remote CI results were not inspected.
+- Added a local `upstream` remote with `upstream/main` at the verified source SHA.
+- Published merge commit `768bc9c1f1953c85377af6eb285bd2b3b3ea2cb2` to
+  `origin/main`. Local HEAD, origin tracking ref, and live remote branch SHA
+  matched after push. Both the old fork HEAD and upstream SHA are ancestors.
+- The only remaining untracked paths are pre-existing user configurations,
+  inputs, and outputs; they remain excluded and their hashes are unchanged.
+- This closeout updates documentation only. Final publication parity evidence is
+  saved as `publication-final.json` in the private backup directory.
