@@ -16,11 +16,23 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+import dns.edns
+import dns.message
+import dns.rdatatype
+
 from resolver_inventory.models import Candidate, ProbeResult, ValidationResult
-from resolver_inventory.settings import Settings
+from resolver_inventory.settings import CapabilitiesConfig, Settings
 from resolver_inventory.util.http import build_doh_client
 from resolver_inventory.util.logging import get_logger
-from resolver_inventory.validate.base import render_probe_qname, resolve_baseline_answers
+from resolver_inventory.validate.base import (
+    fail_probe,
+    render_probe_qname,
+    resolve_baseline_answers,
+)
+from resolver_inventory.validate.capabilities import (
+    capability_check_names,
+    run_capability_check,
+)
 from resolver_inventory.validate.corpus import Corpus, CorpusEntry, build_corpus
 from resolver_inventory.validate.doh import (
     _build_wire,
@@ -28,6 +40,16 @@ from resolver_inventory.validate.doh import (
     _probe_nxdomain_doh,
     _probe_positive_doh,
     _probe_tls,
+)
+from resolver_inventory.validate.doq import (
+    _probe_nxdomain_doq,
+    _probe_positive_doq,
+    _query_doq_candidate,
+)
+from resolver_inventory.validate.dot import (
+    _probe_nxdomain_dot,
+    _probe_positive_dot,
+    _query_dot_candidate,
 )
 from resolver_inventory.validate.massdns_backend import (
     run_massdns_batch,
@@ -65,7 +87,7 @@ class _DoHProbeTask:
     kind: str
     candidate_idx: int
     candidate: Candidate
-    entry: CorpusEntry | None
+    entry: CorpusEntry | str | None
 
 
 @dataclass(slots=True)
@@ -88,6 +110,8 @@ class _ValidationAccumulator:
         settings: Settings,
         emit_result: ValidationResultCallback,
         progress_callback: ProgressCallback | None,
+        history_connection: Any = None,
+        run_date: Any = None,
     ) -> None:
         self.candidates = candidates
         self.expected_counts = expected_counts
@@ -95,6 +119,8 @@ class _ValidationAccumulator:
         self.settings = settings
         self.emit_result = emit_result
         self.progress_callback = progress_callback
+        self.history_connection = history_connection
+        self.run_date = run_date
         self.completed_counts = {idx: 0 for idx in expected_counts}
         self.store = ValidationStateStore()
         self.ready_results: dict[int, ValidationResult] = {}
@@ -109,7 +135,13 @@ class _ValidationAccumulator:
         if self.completed_counts[candidate_idx] == self.expected_counts[candidate_idx]:
             probes = self.store.load_probe_results(candidate_idx)
             self.store.delete_candidate(candidate_idx)
-            validation = score(self.candidates[candidate_idx], probes, self.settings)
+            validation = score(
+                self.candidates[candidate_idx],
+                probes,
+                self.settings,
+                history_connection=self.history_connection,
+                run_date=self.run_date,
+            )
             self.ready_results[candidate_idx] = validation
             self._emit_ready()
 
@@ -141,6 +173,8 @@ class _ValidationAccumulator:
                 self.candidates[candidate_idx],
                 probes,
                 self.settings,
+                history_connection=self.history_connection,
+                run_date=self.run_date,
             )
         self._emit_ready()
 
@@ -148,11 +182,95 @@ class _ValidationAccumulator:
         self.store.close()
 
 
-def _candidate_probe_count(candidate: Candidate, corpus: Corpus, rounds: int) -> int:
+def _compute_rounds_map(
+    candidates: list[Candidate],
+    settings: Settings,
+    history_connection: Any,
+    run_date: Any,
+) -> dict[int, int] | None:
+    """Return per-candidate probe rounds for stable resolvers, or None.
+
+    When ``revalidation_stable_days`` is > 0 and history is available, a
+    resolver with at least that many consecutive accepted days and no current
+    fail streak gets ``revalidation_stable_rounds`` rounds instead of the
+    configured ``rounds``. Returns None when the policy is disabled or
+    history is unavailable so callers can use the configured default.
+    """
+    stable_days = settings.validation.revalidation_stable_days
+    if stable_days <= 0 or history_connection is None or run_date is None:
+        return None
+    full_rounds = settings.validation.rounds
+    stable_rounds = max(1, settings.validation.revalidation_stable_rounds)
+    if stable_rounds >= full_rounds:
+        return None
+
+    from resolver_inventory.history import (
+        get_resolver_stability_metrics,
+        normalize_resolver_key,
+    )
+
+    rounds_map: dict[int, int] = {}
+    for idx, candidate in enumerate(candidates):
+        try:
+            metrics = get_resolver_stability_metrics(
+                history_connection,
+                normalize_resolver_key(candidate),
+                run_date,
+            )
+        except Exception:
+            metrics = None
+        if (
+            metrics is not None
+            and metrics.consecutive_success_days >= stable_days
+            and metrics.consecutive_fail_days == 0
+        ):
+            rounds_map[idx] = stable_rounds
+    if not rounds_map:
+        return None
+    logger.info(
+        "revalidation: %d/%d candidates stable for %d+ days, using %d round(s)",
+        len(rounds_map),
+        len(candidates),
+        stable_days,
+        stable_rounds,
+    )
+    return rounds_map
+
+
+def _candidate_probe_count(
+    candidate: Candidate,
+    corpus: Corpus,
+    rounds: int,
+    num_capabilities: int = 0,
+) -> int:
     round_probes = len(corpus.positive) + len(corpus.nxdomain)
     if candidate.transport == "doh":
-        return 1 + (rounds * round_probes)
-    return rounds * round_probes
+        return 1 + (rounds * round_probes) + num_capabilities
+    return rounds * round_probes + num_capabilities
+
+
+def _iter_capability_specs_for_candidate(
+    candidate: Candidate,
+    idx: int,
+    capability_names: list[str],
+) -> Iterator[PlainDnsProbeSpec]:
+    for seq, name in enumerate(capability_names):
+        yield PlainDnsProbeSpec(
+            probe_id=f"{idx}:capability:{seq}",
+            kind="capability",
+            candidate_idx=idx,
+            candidate_transport=candidate.transport,
+            host=candidate.host,
+            port=candidate.port,
+            qname="",
+            rdtype="A",
+            probe_name=f"capability:{name}",
+            is_nxdomain_probe=False,
+            expected_answers=[],
+            baseline_key=None,
+            entry=CorpusEntry(rdtype="A", label=f"capability-{name}"),
+            capability_name=name,
+        )
 
 
 def _iter_plain_dns_specs_for_candidate(
@@ -160,6 +278,7 @@ def _iter_plain_dns_specs_for_candidate(
     idx: int,
     corpus: Corpus,
     rounds: int,
+    capability_names: list[str] | None = None,
 ) -> Iterator[PlainDnsProbeSpec]:
     seq = 0
     for round_idx in range(rounds):
@@ -201,6 +320,8 @@ def _iter_plain_dns_specs_for_candidate(
                 entry=entry,
             )
             seq += 1
+    if capability_names:
+        yield from _iter_capability_specs_for_candidate(candidate, idx, capability_names)
 
 
 def _iter_doh_tasks_for_candidate(
@@ -208,6 +329,7 @@ def _iter_doh_tasks_for_candidate(
     idx: int,
     corpus: Corpus,
     rounds: int,
+    capability_names: list[str] | None = None,
 ) -> Iterator[_DoHProbeTask]:
     if candidate.transport != "doh":
         return
@@ -217,6 +339,44 @@ def _iter_doh_tasks_for_candidate(
             yield _DoHProbeTask("doh_positive", idx, candidate, entry)
         for entry in corpus.nxdomain:
             yield _DoHProbeTask("doh_nxdomain", idx, candidate, entry)
+    for name in capability_names or []:
+        yield _DoHProbeTask("capability", idx, candidate, name)
+
+
+def _iter_dot_tasks_for_candidate(
+    candidate: Candidate,
+    idx: int,
+    corpus: Corpus,
+    rounds: int,
+    capability_names: list[str] | None = None,
+) -> Iterator[_DoHProbeTask]:
+    if candidate.transport != "dot":
+        return
+    for _ in range(rounds):
+        for entry in corpus.positive:
+            yield _DoHProbeTask("dot_positive", idx, candidate, entry)
+        for entry in corpus.nxdomain:
+            yield _DoHProbeTask("dot_nxdomain", idx, candidate, entry)
+    for name in capability_names or []:
+        yield _DoHProbeTask("capability", idx, candidate, name)
+
+
+def _iter_doq_tasks_for_candidate(
+    candidate: Candidate,
+    idx: int,
+    corpus: Corpus,
+    rounds: int,
+    capability_names: list[str] | None = None,
+) -> Iterator[_DoHProbeTask]:
+    if candidate.transport != "doq":
+        return
+    for _ in range(rounds):
+        for entry in corpus.positive:
+            yield _DoHProbeTask("doq_positive", idx, candidate, entry)
+        for entry in corpus.nxdomain:
+            yield _DoHProbeTask("doq_nxdomain", idx, candidate, entry)
+    for name in capability_names or []:
+        yield _DoHProbeTask("capability", idx, candidate, name)
 
 
 def _spill_spec(handle, spec: PlainDnsProbeSpec) -> None:
@@ -262,6 +422,7 @@ async def _run_plain_dns_specs(
             baseline_resolvers=baseline_resolvers,
             baseline_cache=baseline_cache,
             parallelism=settings.validation.parallelism,
+            capabilities_config=settings.validation.capabilities,
             on_execution=on_execution,
         )
 
@@ -282,14 +443,12 @@ async def _run_plain_dns_specs(
                 baseline_resolvers=baseline_resolvers,
                 baseline_cache=baseline_cache,
                 parallelism=settings.validation.parallelism,
+                capabilities_config=settings.validation.capabilities,
                 on_execution=on_execution,
             )
         )
 
-    for rdtype in ("A", "AAAA", "NS"):
-        batch = supported_by_rdtype.get(rdtype)
-        if not batch:
-            continue
+    for _rdtype, batch in sorted(supported_by_rdtype.items()):
         try:
             results, _ = await run_massdns_batch(
                 batch,
@@ -308,6 +467,7 @@ async def _run_plain_dns_specs(
                 baseline_resolvers=baseline_resolvers,
                 baseline_cache=baseline_cache,
                 parallelism=settings.validation.parallelism,
+                capabilities_config=settings.validation.capabilities,
                 on_execution=on_execution,
             )
         out.extend(results)
@@ -318,6 +478,8 @@ def _prepare_plain_dns_work(
     candidates: list[Candidate],
     corpus: Corpus,
     rounds: int,
+    rounds_map: dict[int, int] | None = None,
+    capability_names: list[str] | None = None,
 ) -> _PreparedPlainDnsWork:
     temp_dir = Path(tempfile.mkdtemp(prefix="resolver-inventory-plain-"))
     rdtype_paths: dict[str, Path] = {}
@@ -328,14 +490,20 @@ def _prepare_plain_dns_work(
     total_probes = 0
     massdns_supported_total = 0
     python_plain_total = 0
+    num_capabilities = len(capability_names or [])
 
     try:
         for idx, candidate in enumerate(candidates):
-            probes_expected[idx] = _candidate_probe_count(candidate, corpus, rounds)
+            candidate_rounds = rounds if rounds_map is None else rounds_map.get(idx, rounds)
+            probes_expected[idx] = _candidate_probe_count(
+                candidate, corpus, candidate_rounds, num_capabilities
+            )
             total_probes += probes_expected[idx]
-            if candidate.transport == "doh":
+            if candidate.transport not in ("dns-udp", "dns-tcp"):
                 continue
-            for spec in _iter_plain_dns_specs_for_candidate(candidate, idx, corpus, rounds):
+            for spec in _iter_plain_dns_specs_for_candidate(
+                candidate, idx, corpus, candidate_rounds, capability_names
+            ):
                 if supports_massdns_phase1(spec):
                     path = rdtype_paths.setdefault(
                         spec.rdtype,
@@ -386,6 +554,7 @@ async def _run_python_plain_specs_from_file(
                 baseline_resolvers=baseline_resolvers,
                 baseline_cache=baseline_cache,
                 parallelism=settings.validation.parallelism,
+                capabilities_config=settings.validation.capabilities,
                 on_execution=on_execution,
             )
             batch = []
@@ -396,6 +565,7 @@ async def _run_python_plain_specs_from_file(
             baseline_resolvers=baseline_resolvers,
             baseline_cache=baseline_cache,
             parallelism=settings.validation.parallelism,
+            capabilities_config=settings.validation.capabilities,
             on_execution=on_execution,
         )
 
@@ -406,6 +576,7 @@ async def _execute_doh_probe(
     baseline_resolvers: list[str],
     baseline_cache: dict[tuple[str, str], list[str]],
     doh_clients: dict[int, Any],
+    capabilities_config: CapabilitiesConfig,
     trust_env: bool = False,
     local_address: str | None = None,
 ) -> ProbeResult:
@@ -418,7 +589,7 @@ async def _execute_doh_probe(
             local_address=local_address,
         )
     if task.kind == "doh_positive":
-        assert task.entry is not None
+        assert isinstance(task.entry, CorpusEntry)
         return await _probe_positive_doh(
             task.entry,
             doh_clients[task.candidate_idx],
@@ -428,14 +599,182 @@ async def _execute_doh_probe(
             baseline_cache,
         )
     if task.kind == "doh_nxdomain":
-        assert task.entry is not None
+        assert isinstance(task.entry, CorpusEntry)
         return await _probe_nxdomain_doh(
             task.entry,
             doh_clients[task.candidate_idx],
             candidate.endpoint_url or "",
         )
-    from resolver_inventory.validate.base import fail_probe
+    if task.kind == "capability":
+        client = doh_clients[task.candidate_idx]
+        url = candidate.endpoint_url or ""
 
+        async def _send(
+            qname: str,
+            rdtype: str,
+            *,
+            want_dnssec: bool = False,
+            ecs: tuple[str, int] | None = None,
+        ) -> dns.message.Message:
+            options: list[dns.edns.Option] | None = None
+            if ecs is not None:
+                options = [dns.edns.ECSOption(ecs[0], ecs[1])]
+            msg = dns.message.make_query(
+                qname,
+                dns.rdatatype.from_text(rdtype),
+                use_edns=0 if (want_dnssec or ecs is not None) else None,
+                want_dnssec=want_dnssec,
+                options=options,
+            )
+            msg.id = 0
+            resp, _ = await _doh_post(client, url, msg.to_wire())
+            return resp
+
+        async def _baseline(qname: str, rdtype: str) -> list[str]:
+            return await resolve_baseline_answers(
+                qname, rdtype, baseline_resolvers, timeout_s, baseline_cache
+            )
+
+        return await run_capability_check(
+            str(task.entry),
+            _send,
+            capabilities_config,
+            resolve_baseline=_baseline,
+        )
+    return fail_probe(f"unknown:{task.kind}", "internal_error")
+
+
+async def _execute_dot_probe(
+    task: _DoHProbeTask,
+    timeout_s: float,
+    baseline_resolvers: list[str],
+    baseline_cache: dict[tuple[str, str], list[str]],
+    capabilities_config: CapabilitiesConfig,
+    addr_cache: dict[str, list[str]] | None = None,
+    addr_locks: dict[str, asyncio.Lock] | None = None,
+) -> ProbeResult:
+    candidate = task.candidate
+    if task.kind == "dot_positive":
+        assert isinstance(task.entry, CorpusEntry)
+        return await _probe_positive_dot(
+            task.entry,
+            candidate,
+            timeout_s,
+            baseline_resolvers,
+            baseline_cache,
+            addr_cache,
+            addr_locks,
+        )
+    if task.kind == "dot_nxdomain":
+        assert isinstance(task.entry, CorpusEntry)
+        return await _probe_nxdomain_dot(task.entry, candidate, timeout_s, addr_cache, addr_locks)
+    if task.kind == "capability":
+
+        async def _send(
+            qname: str,
+            rdtype: str,
+            *,
+            want_dnssec: bool = False,
+            ecs: tuple[str, int] | None = None,
+        ) -> dns.message.Message:
+            options: list[dns.edns.Option] | None = None
+            if ecs is not None:
+                options = [dns.edns.ECSOption(ecs[0], ecs[1])]
+            msg = dns.message.make_query(
+                qname,
+                dns.rdatatype.from_text(rdtype),
+                use_edns=0 if (want_dnssec or ecs is not None) else None,
+                want_dnssec=want_dnssec,
+                options=options,
+            )
+            msg.id = 0
+            resp, _ = await _query_dot_candidate(
+                candidate,
+                msg,
+                timeout_s,
+                addr_cache,
+                addr_locks,
+            )
+            return resp
+
+        async def _baseline(qname: str, rdtype: str) -> list[str]:
+            return await resolve_baseline_answers(
+                qname, rdtype, baseline_resolvers, timeout_s, baseline_cache
+            )
+
+        return await run_capability_check(
+            str(task.entry),
+            _send,
+            capabilities_config,
+            resolve_baseline=_baseline,
+        )
+    return fail_probe(f"unknown:{task.kind}", "internal_error")
+
+
+async def _execute_doq_probe(
+    task: _DoHProbeTask,
+    timeout_s: float,
+    baseline_resolvers: list[str],
+    baseline_cache: dict[tuple[str, str], list[str]],
+    capabilities_config: CapabilitiesConfig,
+    addr_cache: dict[str, list[str]] | None = None,
+    addr_locks: dict[str, asyncio.Lock] | None = None,
+) -> ProbeResult:
+    candidate = task.candidate
+    if task.kind == "doq_positive":
+        assert isinstance(task.entry, CorpusEntry)
+        return await _probe_positive_doq(
+            task.entry,
+            candidate,
+            timeout_s,
+            baseline_resolvers,
+            baseline_cache,
+            addr_cache,
+            addr_locks,
+        )
+    if task.kind == "doq_nxdomain":
+        assert isinstance(task.entry, CorpusEntry)
+        return await _probe_nxdomain_doq(task.entry, candidate, timeout_s, addr_cache, addr_locks)
+    if task.kind == "capability":
+
+        async def _send(
+            qname: str,
+            rdtype: str,
+            *,
+            want_dnssec: bool = False,
+            ecs: tuple[str, int] | None = None,
+        ) -> dns.message.Message:
+            options: list[dns.edns.Option] | None = None
+            if ecs is not None:
+                options = [dns.edns.ECSOption(ecs[0], ecs[1])]
+            msg = dns.message.make_query(
+                qname,
+                dns.rdatatype.from_text(rdtype),
+                use_edns=0 if (want_dnssec or ecs is not None) else None,
+                want_dnssec=want_dnssec,
+                options=options,
+            )
+            msg.id = 0
+            resp, _ = await _query_doq_candidate(
+                candidate,
+                msg,
+                timeout_s,
+                addr_cache,
+                addr_locks,
+            )
+            return resp
+
+        async def _baseline(qname: str, rdtype: str) -> list[str]:
+            return await resolve_baseline_answers(
+                qname, rdtype, baseline_resolvers, timeout_s, baseline_cache
+            )
+
+        return await run_capability_check(
+            str(task.entry),
+            _send,
+            capabilities_config,
+            resolve_baseline=_baseline,
+        )
     return fail_probe(f"unknown:{task.kind}", "internal_error")
 
 
@@ -445,6 +784,8 @@ async def _run_doh_phase(
     corpus: Corpus,
     baseline_cache: dict[tuple[str, str], list[str]],
     accumulator: _ValidationAccumulator,
+    rounds_map: dict[int, int] | None = None,
+    capability_names: list[str] | None = None,
 ) -> None:
     timeout_s = settings.validation.timeout_ms / 1000.0
     baseline_resolvers = settings.validation.baseline_resolvers
@@ -468,7 +809,10 @@ async def _run_doh_phase(
                     candidate,
                     idx,
                     corpus,
-                    settings.validation.rounds,
+                    settings.validation.rounds
+                    if rounds_map is None
+                    else rounds_map.get(idx, settings.validation.rounds),
+                    capability_names,
                 )
             )
         if not tasks:
@@ -501,16 +845,41 @@ async def _run_doh_phase(
                 except asyncio.QueueEmpty:
                     return
                 try:
-                    result = await _execute_doh_probe(
-                        task,
-                        timeout_s,
-                        baseline_resolvers,
-                        baseline_cache,
-                        doh_clients,
-                        settings.validation.doh_trust_env,
-                        settings.validation.doh_local_address,
-                    )
+                    try:
+                        result = await _execute_doh_probe(
+                            task,
+                            timeout_s,
+                            baseline_resolvers,
+                            baseline_cache,
+                            doh_clients,
+                            settings.validation.capabilities,
+                            trust_env=settings.validation.doh_trust_env,
+                            local_address=settings.validation.doh_local_address,
+                        )
+                    except Exception as exc:
+                        logger.warning(
+                            "DoH %s probe for %s raised: %s",
+                            task.kind,
+                            task.candidate.host,
+                            exc,
+                        )
+                        # Keep the capability: prefix so a crashed check is
+                        # still partitioned out of scoring math.
+                        fallback_name = (
+                            f"capability:{task.entry}"
+                            if task.kind == "capability"
+                            else f"doh:{task.kind}"
+                        )
+                        result = fail_probe(
+                            fallback_name,
+                            f"internal_error:{exc!s:.120}",
+                        )
                     await accumulator.record_probe(task.candidate_idx, result)
+                except Exception:
+                    logger.exception(
+                        "DoH worker failed to record probe result for %s",
+                        task.candidate.host,
+                    )
                 finally:
                     queue.task_done()
 
@@ -528,6 +897,206 @@ async def _run_doh_phase(
                 await client.aclose()
 
 
+async def _run_dot_phase(
+    candidates: list[Candidate],
+    settings: Settings,
+    corpus: Corpus,
+    baseline_cache: dict[tuple[str, str], list[str]],
+    accumulator: _ValidationAccumulator,
+    rounds_map: dict[int, int] | None = None,
+    capability_names: list[str] | None = None,
+) -> None:
+    timeout_s = settings.validation.timeout_ms / 1000.0
+    baseline_resolvers = settings.validation.baseline_resolvers
+    window_size = max(1, settings.validation.dot_parallelism)
+
+    for start_idx in range(0, len(candidates), window_size):
+        window = candidates[start_idx : start_idx + window_size]
+        tasks: list[_DoHProbeTask] = []
+        addr_cache: dict[str, list[str]] = {}
+        addr_locks: dict[str, asyncio.Lock] = {}
+        for offset, candidate in enumerate(window):
+            idx = start_idx + offset
+            if candidate.transport != "dot":
+                continue
+            tasks.extend(
+                _iter_dot_tasks_for_candidate(
+                    candidate,
+                    idx,
+                    corpus,
+                    settings.validation.rounds
+                    if rounds_map is None
+                    else rounds_map.get(idx, settings.validation.rounds),
+                    capability_names,
+                )
+            )
+        if not tasks:
+            continue
+
+        queue: asyncio.Queue[_DoHProbeTask] = asyncio.Queue()
+        for task in tasks:
+            queue.put_nowait(task)
+
+        async def worker(
+            queue: asyncio.Queue[_DoHProbeTask] = queue,
+            addr_cache: dict[str, list[str]] = addr_cache,
+            addr_locks: dict[str, asyncio.Lock] = addr_locks,
+        ) -> None:
+            while True:
+                try:
+                    task = queue.get_nowait()
+                except asyncio.QueueEmpty:
+                    return
+                try:
+                    try:
+                        result = await _execute_dot_probe(
+                            task,
+                            timeout_s,
+                            baseline_resolvers,
+                            baseline_cache,
+                            settings.validation.capabilities,
+                            addr_cache,
+                            addr_locks,
+                        )
+                    except Exception as exc:
+                        logger.warning(
+                            "DoT %s probe for %s raised: %s",
+                            task.kind,
+                            task.candidate.host,
+                            exc,
+                        )
+                        # Keep the capability: prefix so a crashed check is
+                        # still partitioned out of scoring math.
+                        fallback_name = (
+                            f"capability:{task.entry}"
+                            if task.kind == "capability"
+                            else f"dot:{task.kind}"
+                        )
+                        result = fail_probe(
+                            fallback_name,
+                            f"internal_error:{exc!s:.120}",
+                        )
+                    await accumulator.record_probe(task.candidate_idx, result)
+                except Exception:
+                    logger.exception(
+                        "DoT worker failed to record probe result for %s",
+                        task.candidate.host,
+                    )
+                finally:
+                    queue.task_done()
+
+        worker_count = max(1, min(settings.validation.dot_parallelism, len(tasks)))
+        worker_tasks = [asyncio.create_task(worker()) for _ in range(worker_count)]
+        try:
+            await queue.join()
+        finally:
+            for wt in worker_tasks:
+                wt.cancel()
+            for wt in worker_tasks:
+                with contextlib.suppress(asyncio.CancelledError):
+                    await wt
+
+
+async def _run_doq_phase(
+    candidates: list[Candidate],
+    settings: Settings,
+    corpus: Corpus,
+    baseline_cache: dict[tuple[str, str], list[str]],
+    accumulator: _ValidationAccumulator,
+    rounds_map: dict[int, int] | None = None,
+    capability_names: list[str] | None = None,
+) -> None:
+    timeout_s = settings.validation.timeout_ms / 1000.0
+    baseline_resolvers = settings.validation.baseline_resolvers
+    window_size = max(1, settings.validation.doq_parallelism)
+
+    for start_idx in range(0, len(candidates), window_size):
+        window = candidates[start_idx : start_idx + window_size]
+        tasks: list[_DoHProbeTask] = []
+        addr_cache: dict[str, list[str]] = {}
+        addr_locks: dict[str, asyncio.Lock] = {}
+        for offset, candidate in enumerate(window):
+            idx = start_idx + offset
+            if candidate.transport != "doq":
+                continue
+            tasks.extend(
+                _iter_doq_tasks_for_candidate(
+                    candidate,
+                    idx,
+                    corpus,
+                    settings.validation.rounds
+                    if rounds_map is None
+                    else rounds_map.get(idx, settings.validation.rounds),
+                    capability_names,
+                )
+            )
+        if not tasks:
+            continue
+
+        queue: asyncio.Queue[_DoHProbeTask] = asyncio.Queue()
+        for task in tasks:
+            queue.put_nowait(task)
+
+        async def worker(
+            queue: asyncio.Queue[_DoHProbeTask] = queue,
+            addr_cache: dict[str, list[str]] = addr_cache,
+            addr_locks: dict[str, asyncio.Lock] = addr_locks,
+        ) -> None:
+            while True:
+                try:
+                    task = queue.get_nowait()
+                except asyncio.QueueEmpty:
+                    return
+                try:
+                    try:
+                        result = await _execute_doq_probe(
+                            task,
+                            timeout_s,
+                            baseline_resolvers,
+                            baseline_cache,
+                            settings.validation.capabilities,
+                            addr_cache,
+                            addr_locks,
+                        )
+                    except Exception as exc:
+                        logger.warning(
+                            "DoQ %s probe for %s raised: %s",
+                            task.kind,
+                            task.candidate.host,
+                            exc,
+                        )
+                        # Keep the capability: prefix so a crashed check is
+                        # still partitioned out of scoring math.
+                        fallback_name = (
+                            f"capability:{task.entry}"
+                            if task.kind == "capability"
+                            else f"doq:{task.kind}"
+                        )
+                        result = fail_probe(
+                            fallback_name,
+                            f"internal_error:{exc!s:.120}",
+                        )
+                    await accumulator.record_probe(task.candidate_idx, result)
+                except Exception:
+                    logger.exception(
+                        "DoQ worker failed to record probe result for %s",
+                        task.candidate.host,
+                    )
+                finally:
+                    queue.task_done()
+
+        worker_count = max(1, min(settings.validation.doq_parallelism, len(tasks)))
+        worker_tasks = [asyncio.create_task(worker()) for _ in range(worker_count)]
+        try:
+            await queue.join()
+        finally:
+            for wt in worker_tasks:
+                wt.cancel()
+            for wt in worker_tasks:
+                with contextlib.suppress(asyncio.CancelledError):
+                    await wt
+
+
 async def _validate_candidates_async(
     candidates: list[Candidate],
     settings: Settings,
@@ -536,11 +1105,26 @@ async def _validate_candidates_async(
     *,
     emit_result: ValidationResultCallback,
     progress_callback: ProgressCallback | None,
+    history_connection: Any = None,
+    run_date: Any = None,
 ) -> None:
     if not candidates:
         return
 
-    prepared = _prepare_plain_dns_work(candidates, corpus, settings.validation.rounds)
+    capability_names = capability_check_names(settings.validation.capabilities)
+    rounds_map = _compute_rounds_map(
+        candidates,
+        settings,
+        history_connection,
+        run_date,
+    )
+    prepared = _prepare_plain_dns_work(
+        candidates,
+        corpus,
+        settings.validation.rounds,
+        rounds_map,
+        capability_names,
+    )
     accumulator = _ValidationAccumulator(
         candidates,
         prepared.probes_expected,
@@ -548,6 +1132,8 @@ async def _validate_candidates_async(
         settings,
         emit_result,
         progress_callback,
+        history_connection=history_connection,
+        run_date=run_date,
     )
     timeout_s = settings.validation.timeout_ms / 1000.0
     baseline_resolvers = settings.validation.baseline_resolvers
@@ -559,6 +1145,9 @@ async def _validate_candidates_async(
         prepared.massdns_supported_total,
         prepared.python_plain_total,
     )
+
+    async def _record_execution(execution: PlainDnsProbeExecution) -> None:
+        await accumulator.record_probe(execution.spec.candidate_idx, execution.result)
 
     try:
         if settings.validation.dns_backend.kind == "massdns":
@@ -572,22 +1161,38 @@ async def _validate_candidates_async(
                 "massdns_terminal_failures_matched": 0,
                 "massdns_unmatched_results": 0,
             }
-            for rdtype in ("A", "AAAA", "NS"):
-                path = prepared.rdtype_paths.get(rdtype)
-                if path is None or not path.exists():
+            for rdtype in sorted(prepared.rdtype_paths):
+                path = prepared.rdtype_paths[rdtype]
+                if not path.exists():
                     continue
                 summary["massdns_sessions_started"] += 1
-                _, metrics = await run_massdns_rdtype_session(
-                    lambda path=path: _iter_spilled_specs(path),
-                    rdtype=rdtype,
-                    config=settings.validation.dns_backend,
-                    timeout_s=timeout_s,
-                    baseline_resolvers=baseline_resolvers,
-                    baseline_cache=baseline_cache,
-                    on_execution=lambda execution: accumulator.record_probe(
-                        execution.spec.candidate_idx, execution.result
-                    ),
-                )
+                try:
+                    _, metrics = await run_massdns_rdtype_session(
+                        lambda path=path: _iter_spilled_specs(path),
+                        rdtype=rdtype,
+                        config=settings.validation.dns_backend,
+                        timeout_s=timeout_s,
+                        baseline_resolvers=baseline_resolvers,
+                        baseline_cache=baseline_cache,
+                        on_execution=_record_execution,
+                    )
+                except Exception:
+                    if not settings.validation.dns_backend.fallback_to_python_on_error:
+                        raise
+                    summary["massdns_sessions_failed"] += 1
+                    logger.exception(
+                        "massdns session rdtype=%s crashed; falling back to python backend",
+                        rdtype,
+                    )
+                    await _run_python_plain_specs_from_file(
+                        path,
+                        settings,
+                        timeout_s=timeout_s,
+                        baseline_resolvers=baseline_resolvers,
+                        baseline_cache=baseline_cache,
+                        on_execution=_record_execution,
+                    )
+                    continue
                 logger.debug(
                     (
                         "massdns session rdtype=%s sent=%d parsed=%d stdout_lines=%d "
@@ -615,6 +1220,18 @@ async def _validate_candidates_async(
             logger.debug("massdns summary: %s", summary)
         else:
             logger.debug("massdns summary: backend disabled")
+            # The massdns-supported spill files contain all UDP/53 specs; the
+            # python backend can execute every one of them, so nothing may be
+            # skipped here or those probes would never run.
+            for path in sorted(prepared.rdtype_paths.values()):
+                await _run_python_plain_specs_from_file(
+                    path,
+                    settings,
+                    timeout_s=timeout_s,
+                    baseline_resolvers=baseline_resolvers,
+                    baseline_cache=baseline_cache,
+                    on_execution=_record_execution,
+                )
 
         await _run_python_plain_specs_from_file(
             prepared.unsupported_path,
@@ -622,11 +1239,35 @@ async def _validate_candidates_async(
             timeout_s=timeout_s,
             baseline_resolvers=baseline_resolvers,
             baseline_cache=baseline_cache,
-            on_execution=lambda execution: accumulator.record_probe(
-                execution.spec.candidate_idx, execution.result
-            ),
+            on_execution=_record_execution,
         )
-        await _run_doh_phase(candidates, settings, corpus, baseline_cache, accumulator)
+        await _run_doh_phase(
+            candidates,
+            settings,
+            corpus,
+            baseline_cache,
+            accumulator,
+            rounds_map,
+            capability_names,
+        )
+        await _run_dot_phase(
+            candidates,
+            settings,
+            corpus,
+            baseline_cache,
+            accumulator,
+            rounds_map,
+            capability_names,
+        )
+        await _run_doq_phase(
+            candidates,
+            settings,
+            corpus,
+            baseline_cache,
+            accumulator,
+            rounds_map,
+            capability_names,
+        )
         accumulator.finalize_remaining()
     finally:
         accumulator.close()
@@ -642,6 +1283,8 @@ def validate_candidates_stream(
     emit_result: ValidationResultCallback,
     settings: Settings | None = None,
     progress_callback: ProgressCallback | None = None,
+    history_connection: Any = None,
+    run_date: Any = None,
 ) -> None:
     if settings is None:
         from resolver_inventory.settings import Settings as S
@@ -671,6 +1314,8 @@ def validate_candidates_stream(
             baseline_cache,
             emit_result=emit_result,
             progress_callback=progress_callback,
+            history_connection=history_connection,
+            run_date=run_date,
         )
 
     asyncio.run(_run())
@@ -680,6 +1325,8 @@ def validate_candidates_iter(
     candidates: list[Candidate],
     settings: Settings | None = None,
     progress_callback: ProgressCallback | None = None,
+    history_connection: Any = None,
+    run_date: Any = None,
 ) -> Iterator[ValidationResult]:
     results: list[ValidationResult] = []
     validate_candidates_stream(
@@ -687,6 +1334,8 @@ def validate_candidates_iter(
         lambda result: results.append(result),
         settings=settings,
         progress_callback=progress_callback,
+        history_connection=history_connection,
+        run_date=run_date,
     )
     yield from results
 
@@ -695,5 +1344,15 @@ def validate_candidates(
     candidates: list[Candidate],
     settings: Settings | None = None,
     progress_callback: ProgressCallback | None = None,
+    history_connection: Any = None,
+    run_date: Any = None,
 ) -> list[ValidationResult]:
-    return list(validate_candidates_iter(candidates, settings, progress_callback))
+    return list(
+        validate_candidates_iter(
+            candidates,
+            settings,
+            progress_callback,
+            history_connection,
+            run_date,
+        )
+    )

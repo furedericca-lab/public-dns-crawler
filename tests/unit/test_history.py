@@ -8,7 +8,9 @@ from resolver_inventory.history import (
     DNS_QUARANTINE_DAYS,
     HISTORY_SCHEMA_VERSION,
     apply_dns_quarantine,
+    compute_latest_summary,
     connect_history_db,
+    connect_history_db_readonly,
     derive_dns_host_outcomes,
     ensure_history_schema,
     get_resolver_stability_metrics,
@@ -18,13 +20,21 @@ from resolver_inventory.history import (
     prune_history,
     update_history,
 )
-from resolver_inventory.models import Candidate, ProbeResult, ValidationResult
+from resolver_inventory.models import (
+    Candidate,
+    FilteredCandidate,
+    ProbeResult,
+    ValidationResult,
+)
 from resolver_inventory.readme_report import (
     GENERATED_STATS_END,
     GENERATED_STATS_START,
     render_stats_section,
     replace_generated_section,
 )
+from resolver_inventory.settings import Settings
+from resolver_inventory.validate import _compute_rounds_map, _prepare_plain_dns_work
+from resolver_inventory.validate.corpus import Corpus, CorpusEntry
 
 
 def _dns_result(
@@ -400,6 +410,102 @@ class TestResolverKeyNormalization:
         assert transport == "doh"
         assert url == "https://dns.example.com/query"
         assert port is None
+
+    def test_normalize_dot_key_hostname(self) -> None:
+        candidate = Candidate(
+            provider=None,
+            source="test",
+            transport="dot",
+            endpoint_url=None,
+            host="dns.quad9.net",
+            port=853,
+            path=None,
+            tls_server_name="dns.quad9.net",
+        )
+        assert normalize_resolver_key(candidate) == "dot|dns.quad9.net|853"
+
+    def test_normalize_dot_key_ip_with_tls_name(self) -> None:
+        """An IP endpoint's TLS auth name is part of its identity - two
+        endpoints on the same address with different names must not collide
+        on the (run_id, resolver_key) primary key."""
+        a = Candidate(
+            provider=None,
+            source="test",
+            transport="dot",
+            endpoint_url=None,
+            host="9.9.9.9",
+            port=853,
+            path=None,
+            tls_server_name="dns.quad9.net",
+        )
+        b = Candidate(
+            provider=None,
+            source="test",
+            transport="dot",
+            endpoint_url=None,
+            host="9.9.9.9",
+            port=853,
+            path=None,
+            tls_server_name="other.name.example",
+        )
+        assert normalize_resolver_key(a) == "dot|9.9.9.9|853|dns.quad9.net"
+        assert normalize_resolver_key(b) == "dot|9.9.9.9|853|other.name.example"
+
+    def test_normalize_dot_key_ip_without_tls_name(self) -> None:
+        candidate = Candidate(
+            provider=None,
+            source="test",
+            transport="dot",
+            endpoint_url=None,
+            host="9.9.9.9",
+            port=853,
+            path=None,
+        )
+        assert normalize_resolver_key(candidate) == "dot|9.9.9.9|853"
+
+    def test_parse_dot_key_with_tls_name(self) -> None:
+        transport, host, port = parse_resolver_key("dot|9.9.9.9|853|dns.quad9.net")
+        assert transport == "dot"
+        assert host == "9.9.9.9"
+        assert port == 853
+
+    def test_parse_dot_key_default_port(self) -> None:
+        transport, host, port = parse_resolver_key("dot|dns.quad9.net")
+        assert transport == "dot"
+        assert host == "dns.quad9.net"
+        assert port == 853
+
+    def test_normalize_doq_key_hostname(self) -> None:
+        candidate = Candidate(
+            provider=None,
+            source="test",
+            transport="doq",
+            endpoint_url=None,
+            host="dns.adguard-dns.com",
+            port=853,
+            path=None,
+            tls_server_name="dns.adguard-dns.com",
+        )
+        assert normalize_resolver_key(candidate) == "doq|dns.adguard-dns.com|853"
+
+    def test_normalize_doq_key_ip_with_tls_name(self) -> None:
+        candidate = Candidate(
+            provider=None,
+            source="test",
+            transport="doq",
+            endpoint_url=None,
+            host="94.140.14.14",
+            port=853,
+            path=None,
+            tls_server_name="dns.adguard-dns.com",
+        )
+        assert normalize_resolver_key(candidate) == "doq|94.140.14.14|853|dns.adguard-dns.com"
+
+    def test_parse_doq_key_default_port(self) -> None:
+        transport, host, port = parse_resolver_key("doq|dns.adguard-dns.com")
+        assert transport == "doq"
+        assert host == "dns.adguard-dns.com"
+        assert port == 853
 
     def test_same_host_different_transports_different_keys(self) -> None:
         """Same host on UDP and TCP should have different resolver_keys."""
@@ -794,3 +900,496 @@ class TestSchemaManagement:
             assert connection.execute("SELECT COUNT(*) FROM runs").fetchone()[0] == 0
             assert connection.execute("SELECT COUNT(*) FROM resolver_run_status").fetchone()[0] == 0
             assert connection.execute("SELECT COUNT(*) FROM resolver_daily").fetchone()[0] == 0
+
+
+def _filtered(host: str = "198.51.100.1") -> FilteredCandidate:
+    return FilteredCandidate(
+        candidate=Candidate(
+            provider=None,
+            source="test",
+            transport="dns-udp",
+            endpoint_url=None,
+            host=host,
+            port=53,
+            path=None,
+        ),
+        reason="invalid_dns_host",
+        detail="test filtered candidate",
+        stage="source",
+    )
+
+
+class TestSummaryCountsAndDeltas:
+    """compute_latest_summary reports filtered counts and per-run deltas."""
+
+    def test_first_run_records_filtered_and_deltas(self, tmp_path) -> None:
+        db_path = tmp_path / "history.duckdb"
+        with connect_history_db(db_path) as connection:
+            update_history(
+                connection,
+                _metadata(date(2026, 1, 1)),
+                [
+                    _dns_result("1.1.1.1", "dns-udp", "accepted"),
+                    _dns_result("2.2.2.2", "dns-udp", "rejected"),
+                ],
+                [_filtered(), _filtered("198.51.100.2")],
+            )
+            summary = compute_latest_summary(connection)
+        assert summary["accepted_count"] == 1
+        assert summary["rejected_count"] == 1
+        assert summary["filtered_count"] == 2
+        # With no previous run, deltas are relative to zero
+        assert summary["accepted_delta"] == 1
+        assert summary["rejected_delta"] == 1
+
+    def test_deltas_compare_to_previous_run(self, tmp_path) -> None:
+        db_path = tmp_path / "history.duckdb"
+        with connect_history_db(db_path) as connection:
+            update_history(
+                connection,
+                _metadata(date(2026, 1, 1)),
+                [
+                    _dns_result("1.1.1.1", "dns-udp", "accepted"),
+                    _dns_result("2.2.2.2", "dns-udp", "rejected"),
+                ],
+                [_filtered(), _filtered("198.51.100.2")],
+            )
+            update_history(
+                connection,
+                _metadata(date(2026, 1, 2)),
+                [
+                    _dns_result("1.1.1.1", "dns-udp", "accepted"),
+                    _dns_result("3.3.3.3", "dns-udp", "accepted"),
+                ],
+                [_filtered()],
+            )
+            summary = compute_latest_summary(connection)
+        assert summary["accepted_count"] == 2
+        assert summary["rejected_count"] == 0
+        assert summary["filtered_count"] == 1
+        assert summary["accepted_delta"] == 1
+        assert summary["rejected_delta"] == -1
+
+
+class TestSchemaMigration:
+    """Older schema versions migrate in place instead of rebuilding."""
+
+    def test_v3_schema_migrates_preserving_data(self, tmp_path) -> None:
+        db_path = tmp_path / "history.duckdb"
+        with connect_history_db(db_path) as connection:
+            update_history(
+                connection,
+                _metadata(date(2026, 1, 1)),
+                [_dns_result("1.1.1.1", "dns-udp", "accepted")],
+                [_filtered()],
+            )
+            # Simulate a v3 database: drop the v4 column and mark version 3
+            connection.execute("ALTER TABLE runs DROP COLUMN filtered_count")
+            connection.execute(
+                "UPDATE schema_metadata SET value = '3' WHERE key = 'schema_version'"
+            )
+
+        # Reopening must migrate v3 -> v4 in place, keeping existing rows
+        with connect_history_db(db_path) as connection:
+            columns = {row[1] for row in connection.execute("PRAGMA table_info(runs)").fetchall()}
+            assert "filtered_count" in columns
+            assert connection.execute("SELECT COUNT(*) FROM runs").fetchone()[0] == 1
+            version = connection.execute(
+                "SELECT value FROM schema_metadata WHERE key = 'schema_version'"
+            ).fetchone()[0]
+            assert int(version) == HISTORY_SCHEMA_VERSION
+            # Old v3 row predates filtered tracking: count defaults to zero
+            filtered_count = connection.execute("SELECT filtered_count FROM runs").fetchone()[0]
+            assert filtered_count == 0
+
+    def test_unknown_schema_version_rebuilds(self, tmp_path) -> None:
+        db_path = tmp_path / "history.duckdb"
+        with connect_history_db(db_path) as connection:
+            update_history(
+                connection,
+                _metadata(date(2026, 1, 1)),
+                [_dns_result("1.1.1.1", "dns-udp", "accepted")],
+                [],
+            )
+            connection.execute(
+                "UPDATE schema_metadata SET value = '99' WHERE key = 'schema_version'"
+            )
+
+        with connect_history_db(db_path) as connection:
+            assert connection.execute("SELECT COUNT(*) FROM runs").fetchone()[0] == 0
+
+
+class TestReadonlyHistoryConnection:
+    """Validation opens history read-only and degrades gracefully."""
+
+    def test_missing_database_returns_none(self, tmp_path) -> None:
+        assert connect_history_db_readonly(tmp_path / "nope.duckdb") is None
+
+    def test_empty_database_returns_none(self, tmp_path) -> None:
+        db_path = tmp_path / "history.duckdb"
+        db_path.touch()
+        assert connect_history_db_readonly(db_path) is None
+
+    def test_opens_existing_database(self, tmp_path) -> None:
+        db_path = tmp_path / "history.duckdb"
+        with connect_history_db(db_path) as connection:
+            update_history(
+                connection,
+                _metadata(date(2026, 1, 1)),
+                [_dns_result("1.1.1.1", "dns-udp", "accepted")],
+                [],
+            )
+        connection = connect_history_db_readonly(db_path)
+        try:
+            assert connection is not None
+            metrics = get_resolver_stability_metrics(
+                connection,
+                "dns-udp|1.1.1.1|53",
+                date(2026, 1, 2),
+            )
+            assert metrics is not None
+            assert metrics.runs_seen_30d == 1
+        finally:
+            connection.close()
+
+
+class TestStreakAnchor:
+    """Streaks anchor at the latest observed day, not the requested run_date."""
+
+    def test_streak_anchored_at_latest_observed_day(self, tmp_path) -> None:
+        db_path = tmp_path / "history.duckdb"
+        resolver_key = "dns-udp|1.1.1.1|53"
+        with connect_history_db(db_path) as connection:
+            for offset in range(3):
+                day = date(2026, 1, 1) + timedelta(days=offset)
+                update_history(
+                    connection,
+                    _metadata(day),
+                    [_dns_result("1.1.1.1", "dns-udp", "accepted")],
+                    [],
+                )
+            # Query a date whose rollup has not been written yet (validation
+            # runs before today's update_history call)
+            metrics = get_resolver_stability_metrics(
+                connection,
+                resolver_key,
+                date(2026, 1, 5),
+            )
+            assert metrics is not None
+            assert metrics.consecutive_success_days == 3
+            assert metrics.consecutive_fail_days == 0
+
+
+def _udp_candidate(host: str) -> Candidate:
+    return Candidate(
+        provider=None,
+        source="test",
+        transport="dns-udp",
+        endpoint_url=None,
+        host=host,
+        port=53,
+        path=None,
+    )
+
+
+class TestRevalidationRounds:
+    """Stable resolvers get reduced probe rounds when history is consulted."""
+
+    def test_disabled_returns_none(self) -> None:
+        settings = Settings()  # revalidation_stable_days defaults to 0
+        assert (
+            _compute_rounds_map([_udp_candidate("1.1.1.1")], settings, object(), date(2026, 1, 1))
+            is None
+        )
+
+    def test_no_history_connection_returns_none(self) -> None:
+        settings = Settings()
+        settings.validation.revalidation_stable_days = 7
+        assert (
+            _compute_rounds_map([_udp_candidate("1.1.1.1")], settings, None, date(2026, 1, 1))
+            is None
+        )
+
+    def test_stable_resolver_gets_reduced_rounds(self, tmp_path) -> None:
+        db_path = tmp_path / "history.duckdb"
+        with connect_history_db(db_path) as connection:
+            for offset in range(8):
+                day = date(2026, 1, 1) + timedelta(days=offset)
+                update_history(
+                    connection,
+                    _metadata(day),
+                    [_dns_result("1.1.1.1", "dns-udp", "accepted")],
+                    [],
+                )
+            settings = Settings()
+            settings.validation.revalidation_stable_days = 7
+            settings.validation.revalidation_stable_rounds = 1
+            rounds_map = _compute_rounds_map(
+                [_udp_candidate("1.1.1.1"), _udp_candidate("9.9.9.9")],
+                settings,
+                connection,
+                date(2026, 1, 9),
+            )
+        assert rounds_map == {0: 1}
+
+    def test_recent_failure_keeps_full_rounds(self, tmp_path) -> None:
+        db_path = tmp_path / "history.duckdb"
+        with connect_history_db(db_path) as connection:
+            for offset in range(8):
+                day = date(2026, 1, 1) + timedelta(days=offset)
+                update_history(
+                    connection,
+                    _metadata(day),
+                    [_dns_result("1.1.1.1", "dns-udp", "accepted")],
+                    [],
+                )
+            update_history(
+                connection,
+                _metadata(date(2026, 1, 9)),
+                [_dns_result("1.1.1.1", "dns-udp", "rejected", ["timeout"])],
+                [],
+            )
+            settings = Settings()
+            settings.validation.revalidation_stable_days = 7
+            settings.validation.revalidation_stable_rounds = 1
+            rounds_map = _compute_rounds_map(
+                [_udp_candidate("1.1.1.1")],
+                settings,
+                connection,
+                date(2026, 1, 10),
+            )
+        assert rounds_map is None
+
+    def test_prepare_uses_per_candidate_rounds(self) -> None:
+        corpus = Corpus(
+            positive=[
+                CorpusEntry(
+                    qname="a.ok.test.",
+                    rdtype="A",
+                    expected_mode="exact_rrset",
+                    expected_answers=["192.0.2.1"],
+                    label="a",
+                )
+            ],
+            nxdomain=[CorpusEntry(qname="nx.test.", rdtype="A", label="nx")],
+        )
+        candidates = [_udp_candidate("1.1.1.1"), _udp_candidate("9.9.9.9")]
+        prepared = _prepare_plain_dns_work(candidates, corpus, 3, {0: 1})
+        try:
+            # stable candidate: 1 round x (1 positive + 1 nxdomain)
+            # unstable candidate: 3 rounds x 2
+            assert prepared.probes_expected == {0: 2, 1: 6}
+            assert prepared.total_probes == 8
+        finally:
+            for child in prepared.temp_dir.iterdir():
+                child.unlink()
+            prepared.temp_dir.rmdir()
+
+
+def _dot_result(host: str, status: str, port: int = 853) -> ValidationResult:
+    return ValidationResult(
+        candidate=Candidate(
+            provider=None,
+            source="test",
+            transport="dot",
+            endpoint_url=None,
+            host=host,
+            port=port,
+            path=None,
+            tls_server_name=host,
+        ),
+        accepted=status == "accepted",
+        score=90 if status == "accepted" else 10,
+        status=status,  # type: ignore[arg-type]
+        reasons=[],
+        probes=[ProbeResult(ok=status == "accepted", probe="probe", error=None)],
+    )
+
+
+class TestChangelog:
+    def test_none_with_fewer_than_two_runs(self, tmp_path) -> None:
+        db_path = tmp_path / "history.duckdb"
+        with connect_history_db(db_path) as connection:
+            update_history(
+                connection,
+                _metadata(date(2026, 1, 1)),
+                [_dns_result("1.1.1.1", "dns-udp", "accepted")],
+                [],
+            )
+            from resolver_inventory.history import compute_changelog
+
+            assert compute_changelog(connection) is None
+
+    def test_diffs_two_runs(self, tmp_path) -> None:
+        db_path = tmp_path / "history.duckdb"
+        with connect_history_db(db_path) as connection:
+            update_history(
+                connection,
+                _metadata(date(2026, 1, 1)),
+                [
+                    _dns_result("1.1.1.1", "dns-udp", "accepted"),
+                    _dns_result("8.8.8.8", "dns-udp", "accepted"),
+                    _dot_result("dns.quad9.net", "accepted"),
+                ],
+                [],
+            )
+            update_history(
+                connection,
+                _metadata(date(2026, 1, 2)),
+                [
+                    _dns_result("1.1.1.1", "dns-udp", "accepted"),
+                    _dns_result("8.8.8.8", "dns-udp", "rejected", ["timeout"]),
+                    _dns_result("9.9.9.9", "dns-udp", "accepted"),
+                ],
+                [],
+            )
+            from resolver_inventory.history import compute_changelog
+
+            changelog = compute_changelog(connection)
+
+        assert changelog is not None
+        assert changelog["run_date"] == "2026-01-02"
+        assert changelog["previous_run_date"] == "2026-01-01"
+        assert changelog["added_count"] == 1
+        assert changelog["added"] == ["dns-udp|9.9.9.9|53"]
+        assert changelog["removed_count"] == 1
+        assert changelog["removed"] == ["dot|dns.quad9.net|853"]
+        assert changelog["transition_counts"] == {"accepted->rejected": 1}
+        assert changelog["status_changes_total"] == 1
+        assert changelog["status_changes"] == [
+            {"resolver": "dns-udp|8.8.8.8|53", "from": "accepted", "to": "rejected"}
+        ]
+
+    def test_no_changes_between_runs(self, tmp_path) -> None:
+        db_path = tmp_path / "history.duckdb"
+        with connect_history_db(db_path) as connection:
+            results = [_dns_result("1.1.1.1", "dns-udp", "accepted")]
+            update_history(connection, _metadata(date(2026, 1, 1)), results, [])
+            update_history(connection, _metadata(date(2026, 1, 2)), results, [])
+            from resolver_inventory.history import compute_changelog
+
+            changelog = compute_changelog(connection)
+
+        assert changelog is not None
+        assert changelog["added_count"] == 0
+        assert changelog["removed_count"] == 0
+        assert changelog["status_changes_total"] == 0
+        assert changelog["transition_counts"] == {}
+
+    def test_truncation_caps_added_list(self, tmp_path) -> None:
+        db_path = tmp_path / "history.duckdb"
+        with connect_history_db(db_path) as connection:
+            update_history(connection, _metadata(date(2026, 1, 1)), [], [])
+            update_history(
+                connection,
+                _metadata(date(2026, 1, 2)),
+                [_dns_result(f"10.0.0.{i}", "dns-udp", "accepted") for i in range(1, 8)],
+                [],
+            )
+            from resolver_inventory.history import compute_changelog
+
+            changelog = compute_changelog(connection, max_entries=3)
+
+        assert changelog is not None
+        assert changelog["added_count"] == 7
+        assert len(changelog["added"]) == 3
+        assert changelog["truncated"] is True
+
+    def test_truncation_covers_status_changes(self, tmp_path) -> None:
+        db_path = tmp_path / "history.duckdb"
+        with connect_history_db(db_path) as connection:
+            update_history(
+                connection,
+                _metadata(date(2026, 1, 1)),
+                [_dns_result(f"10.0.0.{i}", "dns-udp", "accepted") for i in range(1, 8)],
+                [],
+            )
+            update_history(
+                connection,
+                _metadata(date(2026, 1, 2)),
+                [_dns_result(f"10.0.0.{i}", "dns-udp", "rejected") for i in range(1, 8)],
+                [],
+            )
+            from resolver_inventory.history import compute_changelog
+
+            changelog = compute_changelog(connection, max_entries=3)
+
+        assert changelog is not None
+        assert changelog["status_changes_total"] == 7
+        assert len(changelog["status_changes"]) == 3
+        assert changelog["truncated"] is True
+
+    def test_same_date_runs_use_deterministic_order(self, tmp_path) -> None:
+        """Identical run_date/run_started_at pairs fall back to run_id order."""
+        db_path = tmp_path / "history.duckdb"
+        day = date(2026, 1, 2)
+        stamp = datetime.combine(day, datetime.min.time(), tzinfo=UTC)
+        from resolver_inventory.history import RunMetadata
+
+        def meta(run_id: str) -> RunMetadata:
+            return RunMetadata(
+                run_date=day,
+                generated_at=stamp,
+                github_run_id=run_id,
+                repo_sha="repo-sha",
+                crawler_sha="crawler-sha",
+            )
+
+        with connect_history_db(db_path) as connection:
+            update_history(
+                connection,
+                meta("run-aaa"),
+                [_dns_result("1.1.1.1", "dns-udp", "accepted")],
+                [],
+            )
+            update_history(
+                connection,
+                meta("run-bbb"),
+                [
+                    _dns_result("1.1.1.1", "dns-udp", "accepted"),
+                    _dns_result("8.8.8.8", "dns-udp", "accepted"),
+                ],
+                [],
+            )
+            from resolver_inventory.history import compute_changelog
+
+            changelog = compute_changelog(connection)
+
+        assert changelog is not None
+        assert changelog["run_id"].startswith("run-bbb_")
+        assert changelog["previous_run_id"].startswith("run-aaa_")
+        assert changelog["added"] == ["dns-udp|8.8.8.8|53"]
+
+    def test_readme_section_renders_changelog(self) -> None:
+        section = render_stats_section(
+            {
+                "latest_run_date": "2026-01-02",
+                "latest_run_id": "run-2",
+                "runs_tracked": 2,
+                "accepted_count": 10,
+                "candidate_count": 2,
+                "rejected_count": 5,
+                "filtered_count": 1,
+                "accepted_delta": 4,
+                "rejected_delta": -1,
+                "quarantined_count": 0,
+                "top_reasons": [],
+            },
+            {
+                "run_id": "run-2",
+                "run_date": "2026-01-02",
+                "previous_run_id": "run-1",
+                "previous_run_date": "2026-01-01",
+                "added_count": 3,
+                "added": ["dns-udp|9.9.9.9|53"],
+                "removed_count": 1,
+                "removed": ["dot|dns.quad9.net|853"],
+                "transition_counts": {"accepted->rejected": 2},
+                "status_changes": [],
+                "status_changes_total": 2,
+                "truncated": False,
+            },
+        )
+        assert "Latest Run Changes" in section
+        assert "+3" in section and "-1" in section
+        assert "accepted->rejected" in section

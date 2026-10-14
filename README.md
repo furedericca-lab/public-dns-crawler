@@ -1,13 +1,14 @@
-# Public DNS and DoH resolver crawler
+# Public DNS, DoT, DoQ, and DoH resolver crawler
 
-Aggregate, validate, score, and export public DNS and DoH resolvers.
+Aggregate, validate, score, and export public DNS, DoT, DoQ, and DoH resolvers.
 
 ## Features
 
-- **Multi-source discovery** - plain DNS from public-dns.info, DoH from curl wiki and AdGuard provider lists, manual seed files
+- **Multi-source discovery** - plain DNS from public-dns.info, the AdGuard provider list, and the paulmillr/encrypted-dns profiles; DoH from the curl wiki, AdGuard, DNSCrypt resolver lists (public-resolvers, parental-control, OpenNIC), paulmillr, and the dibdot DoH blocklists; DoT from AdGuard, paulmillr, and dibdot; DoQ from the AdGuard provider list; manual seed files
 - **Pre-validation filtering records** - source and normalization drops are exported as `filtered.json` with reason codes
-- **Full endpoint metadata** - DoH records preserve URL, host, port, path, TLS server name, bootstrap IPs, and provenance
+- **Full endpoint metadata** - DoH records preserve URL, host, port, path, TLS server name, bootstrap IPs, and provenance; DoT/DoQ records preserve host, port, TLS server name, and bootstrap IPs
 - **Active validation** - reachability, NXDOMAIN fidelity, latency, consistency, TLS validity
+- **Capability tags** - non-scoring measurements (DNSSEC validation, ECS support, filtering detection) exported as a `capabilities` object per result
 - **Pluggable test corpus** - controlled zone, local external JSON corpus, or tiny built-in fallback
 - **Scored output** - component-based scoring (correctness, availability, performance, history) with separate confidence score, score caps, and derived metrics
 - **Multiple export formats** - JSON, plain text, dnsdist config, Unbound forward-zone
@@ -18,11 +19,19 @@ Default discovery sources configured in `configs/default.toml`:
 
 - `publicdns_info` (plain DNS): <https://public-dns.info/nameservers.csv>
   - default filter: `min_reliability = 0.50`
+- `adguard` (plain DNS): same providers markdown, `DNS, IPv4`/`DNS, IPv6` rows
 - `curl_wiki` (DoH): <https://raw.githubusercontent.com/wiki/curl/curl/DNS-over-HTTPS.md>
 - `adguard` (DoH): <https://raw.githubusercontent.com/AdguardTeam/KnowledgeBaseDNS/master/docs/general/dns-providers.md>
+- `adguard` (DoT): same AdGuard providers markdown, `tls://` rows (including `Hostname:`/`IP:`-prefixed cells; `IP:`/`IPv6:` fields become bootstrap addresses)
+- `adguard` (DoQ): same AdGuard providers markdown, `quic://` rows
+- `dnscrypt` (DoH/DoT/DoQ/plain): <https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md> - `sdns://` stamps decoded per the DNS Stamps spec; enabled for `doh` by default. Any file in the same format can be used via `url`; `label` overrides the recorded `source` name. The default config also enables the `parental-control.md` and `opennic.md` sibling lists
+- `paulmillr` (plain DNS/DoH/DoT): <https://github.com/paulmillr/encrypted-dns> - per-provider JSON profiles under `src/`, enumerated via the GitHub contents API. Variant `https`/`tls` endpoints plus `ServerAddresses` (also used as bootstrap IPs); variant `region`/`censorship` flow into candidate metadata
+- `dibdot` (DoH/DoT): <https://github.com/dibdot/DoH-IP-blocklists> - `doh-domains.txt` becomes `https://<domain>/dns-query` candidates; `doh-ipv4.txt`/`doh-ipv6.txt` `# hostname` comments become DoT candidates with the listed IPs as bootstrap addresses, plus DoH guesses for each commented hostname. Aggregate blocklist data - expect a lower hit rate; validation does the filtering
 - `manual` seeds (local files):
   - `configs/manual-dns.txt`
   - `configs/manual-doh.toml`
+  - `configs/manual-dot.toml`
+  - `configs/manual-doq.toml` (same schema as manual-dot)
 
 ## Quick start
 
@@ -66,7 +75,7 @@ resolver-inventory export unbound  [--input FILE] [--output FILE]
 
 Global flags: `--config FILE`, `--log-level {DEBUG,INFO,WARNING,ERROR}`.
 
-Validation commands also support `--probe-corpus FILE`, `--validation-parallelism N`, `--dns-backend {python,massdns}`, `--massdns-bin PATH`, and `--massdns-hashmap-size N`. When `--probe-corpus` is provided, the CLI sets `validation.corpus.mode = "external"` and loads probes from that local JSON file.
+Validation commands also support `--probe-corpus FILE`, `--validation-parallelism N`, `--dns-backend {python,massdns}`, `--massdns-bin PATH`, `--massdns-hashmap-size N`, `--history-db FILE`, and `--run-date YYYY-MM-DD`. When `--probe-corpus` is provided, the CLI sets `validation.corpus.mode = "external"` and loads probes from that local JSON file. `--history-db` opens the history database read-only so shard jobs can score against shared history without locking it.
 JSON exports are written in compact form and sorted deterministically by endpoint identity to keep diffs stable.
 Use `--split-json-max-bytes N` on `refresh`, `materialize-results`, or `export json` to split large JSON outputs into `.part-XXXX` files.
 
@@ -87,8 +96,11 @@ For multi-VM flows (for example GitHub Actions matrix validation), use:
 - `filtered.json` - candidates dropped before validation, including source filtering, normalization failures, duplicates, and historical quarantine
 - `resolvers.txt` - accepted plain DNS resolvers only, as `host:port`
 - `resolvers-doh.txt` - accepted DoH resolvers only, as full HTTPS endpoints
-- `dnsdist.conf` - dnsdist backends for all non-rejected resolvers
+- `resolvers-dot.txt` - accepted DoT resolvers only, as `tls://host[:port][#tls-name]`
+- `resolvers-doq.txt` - accepted DoQ resolvers only, as `quic://host[:port][#tls-name]`
+- `dnsdist.conf` - dnsdist backends for all non-rejected resolvers (plain DNS, DoT, and DoH sections; dnsdist has no DoQ backend protocol, so DoQ resolvers appear only in text/JSON exports)
 - `unbound-forward.conf` - accepted plain DNS resolvers rendered as Unbound forward zones
+- `unbound-forward-dot.conf` - accepted DoT resolvers rendered as an Unbound TLS forward zone (`forward-tls-upstream: yes`)
 
 If `--split-json-max-bytes` is used, large JSON outputs are written as `name.part-XXXX.json` chunks instead of a single large file.
 
@@ -108,307 +120,29 @@ print(export_json(results))
 
 ## Configuration
 
-Copy `configs/default.toml` and edit. Config format is **TOML** (stdlib `tomllib`, no extra deps):
+Copy `configs/default.toml` and edit. Config format is **TOML** (stdlib
+`tomllib`, no extra deps). The full reference - all `sources.*` entries,
+`validation`, `capabilities`, the optional `massdns` backend, corpus modes,
+`scoring`, and `export` - lives in
+[HOW_IT_WORKS](HOW_IT_WORKS.md#configuration-reference).
 
-```toml
-[[sources.dns]]
-type = "publicdns_info"        # fetch from public-dns.info CSV
-min_reliability = 0.50         # drop unstable entries below this reliability score
+### Fork DoH measurement settings
 
-[[sources.dns]]
-type = "manual"
-path = "configs/manual-dns.txt"
+This fork retains `validation.doh_trust_env = false` to prevent unrelated
+HTTP(S) proxies from influencing DoH measurements. Set
+`validation.doh_local_address = "0.0.0.0"` for explicit IPv4 binding; both the
+TLS check and DNS POST path use these settings. See [AGENTS.md](AGENTS.md)
+for the external corpus and repeatable two-stage measurement workflow.
 
-[[sources.doh]]
-type = "curl_wiki"             # scrape curl's DoH providers page
+## Validation and scoring internals
 
-[[sources.doh]]
-type = "adguard"               # fetch AdGuard providers markdown list
+The validation pipeline (corpus modes, per-transport probe flow, reason
+codes), the scoring model, and the exported JSON field reference are
+documented in [HOW_IT_WORKS](HOW_IT_WORKS.md):
 
-[[sources.doh]]
-type = "manual"
-path = "configs/manual-doh.toml"
-
-[validation]
-rounds = 3
-timeout_ms = 2000
-parallelism = 50
-doh_parallelism = 20
-doh_trust_env = false             # ignore HTTP(S)_PROXY for DoH by default
-doh_local_address = "0.0.0.0"      # optional IPv4 bind; omit to use the system default
-
-[validation.dns_backend]
-kind = "python"                       # default backend; "massdns" is optional
-massdns_bin = "massdns"
-hashmap_size = 2000
-processes = 1
-socket_count = 1
-interval_ms = 0
-predictable = true
-flush = true
-batch_max_queries = 50000
-stderr_log_level = "debug"
-fallback_to_python_on_error = true
-
-[validation.corpus]
-mode = "external"                     # "controlled", "fallback", or "external"
-zone = "dns-test.example.net"         # controlled mode only
-path = "tests/fixtures/probe-corpus-valid.json"
-schema_version = 1
-allow_builtin_fallback = false
-strict = true
-
-[scoring]
-accept_min_score = 80
-candidate_min_score = 60
-
-[export]
-formats = ["json", "text", "dnsdist"]
-output_dir = "outputs/latest"
-```
-
-`publicdns_info` accepts an optional `min_reliability` setting. Entries with a lower score are ignored before validation. The default is `0.50`.
-
-### Optional MassDNS backend
-
-Plain DNS validation supports two backends:
-
-- `python` (default): existing dnspython probe path
-- `massdns` (optional): batched subprocess path with streaming stdin/stdout pipes
-
-DoH validation is unchanged and never uses MassDNS.
-
-MassDNS phase-1 routing limitations:
-
-- Only `dns-udp` probes on port `53` are routed to MassDNS.
-- `dns-tcp` and non-53 plain DNS probes automatically use the python backend.
-- `doh` probes always use the existing DoH path.
-- `latency_ms` on MassDNS can have lower fidelity depending on output fields.
-
-Install MassDNS before enabling it:
-
-```bash
-massdns --help
-```
-
-Start with conservative tuning in CI. Increase `hashmap_size` (`-s`) only after validating memory and throughput tradeoffs in your environment.
-
-### Corpus modes
-
-| Mode | Description |
-|---|---|
-| `controlled` | Uses your own authoritative zone with fixed RRs. Best accuracy. Requires `zone` to be set. |
-| `external` | Loads a local JSON corpus file, validates schema/version, and converts it into validator probes. Requires `path`. |
-| `fallback` | Uses a tiny built-in low-variance fallback corpus. Intended as an emergency/dev fallback, not the main path. |
-
-### External corpus example
-
-```toml
-[validation.corpus]
-mode = "external"
-path = "tests/fixtures/probe-corpus-valid.json"
-schema_version = 1
-allow_builtin_fallback = false
-strict = true
-```
-
-Minimal required external corpus shape:
-
-```json
-{
-  "schema_version": 1,
-  "corpus_version": "test-001",
-  "generated_at": "2026-04-04T00:00:00Z",
-  "probes": [
-    {
-      "id": "pos-example-a",
-      "kind": "positive_consensus",
-      "qname": "example.com.",
-      "qtype": "A",
-      "expected_mode": "baseline_match"
-    },
-    {
-      "id": "neg-generated-a",
-      "kind": "negative_generated",
-      "qname_template": "{uuid}.com.",
-      "qtype": "A",
-      "expected_mode": "nxdomain"
-    }
-  ]
-}
-```
-
-## Validation Flow
-
-The corpus is built or loaded once per validation run, then reused for every candidate in that run.
-
-```mermaid
-flowchart TD
-    A[CLI command<br/>validate or refresh] --> B[load_settings]
-    B --> C{--probe-corpus provided?}
-    C -->|yes| D[force corpus mode to external<br/>set validation.corpus.path]
-    C -->|no| E[use config as written]
-    D --> F[validate_candidates]
-    E --> F
-    F --> G[build_corpus once per run]
-    G --> H{corpus mode}
-    H -->|controlled| I[build controlled corpus from zone]
-    H -->|external| J[load local JSON file]
-    H -->|fallback| K[build tiny built-in fallback corpus]
-    J --> L[validate schema and schema_version]
-    L --> M{load succeeded?}
-    M -->|yes| N[convert probes to internal Corpus]
-    M -->|no and allow_builtin_fallback=true| K
-    M -->|no and allow_builtin_fallback=false| O[fail run]
-    I --> P[reuse same Corpus for all candidates]
-    K --> P
-    N --> P
-    P --> Q{candidate transport}
-    Q -->|dns-udp or dns-tcp| R[validate_dns_candidate]
-    Q -->|doh| S[validate_doh_candidate]
-
-    R --> R1[run positive probes]
-    R1 --> R2{expected_mode}
-    R2 -->|exact_rrset| R3[query candidate over plain DNS<br/>normalize RRset<br/>compare with expected_answers]
-    R2 -->|consensus_match| R4[query candidate over plain DNS<br/>query trusted baselines<br/>compare unordered normalized answers]
-    R2 -->|nxdomain| R5[expand qname_template at runtime<br/>query candidate over plain DNS<br/>require negative response without spoofing]
-    R3 --> T[score results<br/>load history<br/>compute components<br/>apply caps]
-    R4 --> T
-    R5 --> T
-
-    S --> S1[run positive probes]
-    S1 --> S2{expected_mode}
-    S2 -->|exact_rrset| S3[query candidate over DoH<br/>validate TLS / HTTP path<br/>normalize RRset<br/>compare with expected_answers]
-    S2 -->|consensus_match| S4[query candidate over DoH<br/>query trusted baselines<br/>compare unordered normalized answers]
-    S2 -->|nxdomain| S5[expand qname_template at runtime<br/>query candidate over DoH<br/>require negative response without synthetic answers]
-    S3 --> T
-    S4 --> T
-    S5 --> T
-
-    T --> U[export outputs]
-```
-
-`validate_dns_candidate` and `validate_doh_candidate` both consume the same prebuilt corpus,
-but they execute transport-specific query code. `exact_rrset` probes compare directly against
-pinned answers, `consensus_match` probes compare the candidate against the configured trusted
-baseline resolvers, and `negative_generated` probes keep the template in the corpus and expand a
-fresh query name at execution time.
-
-### Validation reason codes
-
-| Code | Meaning |
-|---|---|
-| `nxdomain_spoofing` | Resolver returned NOERROR for a nonexistent name |
-| `tls_name_mismatch` | DoH TLS certificate does not match the expected server name |
-| `timeout_rate_high` | More than 50% of probes timed out |
-| `latency_p95_high` | 95th-percentile latency exceeds 2 s |
-| `unexpected_nxdomain` | Resolver returned NXDOMAIN for a name that should exist |
-| `unexpected_rcode` | Resolver returned an unexpected RCODE |
-| `udp_only` | Only UDP probes ran (no TCP confirmation) |
-
-## Scoring System
-
-The validation result includes a composite `score` (0-100) that reflects resolver quality, as well as a separate `confidence_score` (0-100) that reflects how certain we are about the measurement.
-
-### Score Components
-
-The final score is a weighted sum of four components:
-
-| Component | Weight | Description |
-|-----------|--------|-------------|
-| `correctness` | 0-50 | Penalties for DNS/TLS errors, answer mismatches, NXDOMAIN spoofing |
-| `availability` | 0-20 | Based on probe success rate (100% = 20 pts, 50% = 10 pts) |
-| `performance` | 0-20 | Latency penalties for p50, p95, and jitter thresholds |
-| `history` | 0-10 | Rewards sustained stability, penalizes flapping and recent failures |
-
-Component scores are included in the JSON export as `score_breakdown`.
-
-### Performance Penalty Thresholds
-
-**p50 (median) latency:**
-- >100 ms: -3 points
-- >300 ms: -8 points
-- >700 ms: -18 points
-- >1500 ms: -30 points
-
-**p95 (tail) latency:**
-- >400 ms: -2 points
-- >800 ms: -6 points
-- >1500 ms: -12 points
-- >2500 ms: -20 points
-
-**Jitter (p95 - p50):**
-- >150 ms: -2 points
-- >400 ms: -6 points
-- >900 ms: -12 points
-
-Reason codes: `latency_high`, `latency_very_high`, `latency_p95_high`, `latency_jitter_high`
-
-### Hard-Fail Correctness Issues
-
-Severe correctness problems cap the final score at ≤59 regardless of other factors:
-- `nxdomain_spoofing`
-- `tls_name_mismatch`
-- `answer_mismatch`
-- `unexpected_rcode_suspicious` (REFUSED/SERVFAIL patterns)
-
-### History-Based Caps
-
-Without sufficient observation history, scores are capped:
-- <3 runs observed: max 90
-- 3-6 runs observed: max 95
-- 7-13 runs observed: max 98
-- 14+ runs: no cap from history
-
-### Score of 100 Requirements
-
-A perfect score of 100 requires ALL of the following:
-- No correctness issues (no penalties)
-- No performance penalties (low latency)
-- 100% probe success rate
-- ≥14 observed runs in history
-- ≤2 status flaps in 30 days
-- No consecutive failure days
-- Confidence score ≥90
-
-### Confidence Score
-
-The `confidence_score` (0-100) is computed separately and reflects measurement certainty, not resolver quality:
-- Probe count (max 30): more probes = higher confidence
-- Latency samples (max 20): more samples = higher confidence
-- Historical observations (max 35): more runs = higher confidence
-- Source metadata (max 15): reliability data present = higher confidence
-
-Missing source reliability reduces confidence but does not penalize the quality score.
-
-### Exported Score Fields
-
-JSON exports include these new fields:
-
-```json
-{
-  "score": 87,
-  "score_breakdown": {
-    "correctness": 50,
-    "availability": 18,
-    "performance": 12,
-    "history": 7
-  },
-  "confidence_score": 65,
-  "score_caps_applied": ["insufficient_history"],
-  "derived_metrics": {
-    "p50_latency_ms": 45.2,
-    "p95_latency_ms": 120.5,
-    "jitter_ms": 75.3,
-    "latency_sample_count": 10,
-    "runs_seen_30d": 5,
-    "runs_seen_7d": 3,
-    "flaps_30d": 0,
-    "consecutive_success_days": 5,
-    "consecutive_fail_days": 0
-  }
-}
-```
+- [Validation flow and reason codes](HOW_IT_WORKS.md#validation-flow)
+- [Scoring system and caps](HOW_IT_WORKS.md#scoring-system)
+- [Exported score fields](HOW_IT_WORKS.md#exported-score-fields)
 
 ## Development
 
@@ -495,7 +229,8 @@ These helper scripts are used by the parent data repo workflow and are intention
 
 - `scripts/apply_history_quarantine.py` - drops currently quarantined plain DNS hosts from discovered candidates and appends `historical_dns_quarantine` entries to `filtered.json`
 - `scripts/update_history.py` - updates `meta/history.duckdb` from `validated.json`, `filtered.json`, and build metadata
-- `scripts/generate_stats_report.py` - regenerates the `<!-- GENERATED_STATS_* -->` README statistics section from history data
+- `scripts/generate_changelog.py` - diffs the two most recent runs in `meta/history.duckdb` and writes `meta/changelog.json` (added, removed, and status-transition records)
+- `scripts/generate_stats_report.py` - regenerates the `<!-- GENERATED_STATS_* -->` README statistics section from history data, including the latest-run changelog summary
 - `scripts/analyze_scores.py` - analyzes score distribution from validation results and can compare before/after runs
 - `scripts/analyze_history.py` - inspects history database and prints diagnostics about resolver history coverage
 
@@ -504,6 +239,8 @@ These helper scripts are used by the parent data repo workflow and are intention
 The crawler maintains historical data in `meta/history.duckdb` using DuckDB. The history system tracks resolver status over time to support:
 
 1. **Score history caps** - resolvers with insufficient observation history get capped scores
+   and, when `revalidation_stable_days` is enabled, resolvers with sustained accepted
+   history get probed with fewer rounds
 2. **DNS host quarantine** - hosts rejected for 14+ consecutive days are temporarily excluded
 3. **Stability metrics** - streaks, flapping detection, and success rate tracking
 
@@ -538,6 +275,10 @@ History is tracked per-endpoint using a canonical `resolver_key`:
 
 - **DNS UDP**: `dns-udp|host|port` (e.g., `dns-udp|1.1.1.1|53`)
 - **DNS TCP**: `dns-tcp|host|port` (e.g., `dns-tcp|1.1.1.1|53`)
+- **DoT**: `dot|host|port` (e.g., `dot|dns.quad9.net|853`), or
+  `dot|host|port|tls_name` when the TLS authentication name differs from
+  the connect host (e.g., `dot|9.9.9.9|853|dns.quad9.net`)
+- **DoQ**: `doq|host|port`, or `doq|host|port|tls_name` (same rules as DoT)
 - **DoH**: `doh|url` (e.g., `doh|https://dns.example.com/dns-query`)
 
 This allows:
@@ -547,8 +288,9 @@ This allows:
 
 ### History Availability
 
-Scoring distinguishes between:
-- **No history rows for a resolver**: history analysis is skipped (no history score/caps/reasons).
+Validation consults history when `--history-db` is provided (read-only). Scoring distinguishes between:
+- **No history database**: history analysis is skipped entirely (no history score/caps/reasons).
+- **No history rows for a resolver**: the resolver counts as zero observed runs and the `<3 runs` cap applies.
 - **Sparse existing history**: history-based caps and stability logic can still apply.
 - **Meaningful history**: full history scoring behavior applies.
 

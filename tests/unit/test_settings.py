@@ -25,7 +25,7 @@ class TestLoadSettings:
         cfg = tmp_path / "config.toml"
         cfg.write_bytes(
             b"[validation]\nrounds = 5\ntimeout_ms = 3000\nparallelism = 20\n"
-            b"doh_trust_env = true\ndoh_local_address = \"0.0.0.0\"\n"
+            b'doh_trust_env = true\ndoh_local_address = "0.0.0.0"\n'
         )
         s = load_settings(cfg)
         assert s.validation.rounds == 5
@@ -135,3 +135,73 @@ class TestLoadSettings:
         monkeypatch.setenv("RESOLVER_INVENTORY_CONFIG", str(cfg))
         s = load_settings(None)
         assert s.validation.rounds == 7
+
+    def test_load_validation_revalidation_config(self, tmp_path: Path) -> None:
+        cfg = tmp_path / "config.toml"
+        cfg.write_bytes(
+            b"[validation]\nrevalidation_stable_days = 7\nrevalidation_stable_rounds = 1\n"
+        )
+        s = load_settings(cfg)
+        assert s.validation.revalidation_stable_days == 7
+        assert s.validation.revalidation_stable_rounds == 1
+
+    def test_load_dot_sources(self, tmp_path: Path) -> None:
+        cfg = tmp_path / "config.toml"
+        cfg.write_bytes(
+            b'[[sources.dot]]\ntype = "manual"\npath = "seed-dot.toml"\n'
+            b'[[sources.dot]]\ntype = "adguard"\n'
+        )
+        s = load_settings(cfg)
+        assert len(s.sources.dot) == 2
+        assert s.sources.dot[0].type == "manual"
+        assert s.sources.dot[0].path == "seed-dot.toml"
+        assert s.sources.dot[1].type == "adguard"
+
+    def test_load_dot_validation_settings(self, tmp_path: Path) -> None:
+        cfg = tmp_path / "config.toml"
+        cfg.write_bytes(b"[validation]\ndot_parallelism = 7\nrequire_tls_valid_for_dot = false\n")
+        s = load_settings(cfg)
+        assert s.validation.dot_parallelism == 7
+        assert s.validation.require_tls_valid_for_dot is False
+
+    def test_load_doq_sources(self, tmp_path: Path) -> None:
+        cfg = tmp_path / "config.toml"
+        cfg.write_bytes(
+            b'[[sources.doq]]\ntype = "manual"\npath = "seed-doq.toml"\n'
+            b'[[sources.doq]]\ntype = "adguard"\n'
+            b'[[sources.doq]]\ntype = "dnscrypt"\n'
+        )
+        s = load_settings(cfg)
+        assert len(s.sources.doq) == 3
+        assert s.sources.doq[0].type == "manual"
+        assert s.sources.doq[0].path == "seed-doq.toml"
+        assert s.sources.doq[1].type == "adguard"
+        assert s.sources.doq[2].type == "dnscrypt"
+
+    def test_load_doq_validation_settings(self, tmp_path: Path) -> None:
+        cfg = tmp_path / "config.toml"
+        cfg.write_bytes(b"[validation]\ndoq_parallelism = 9\nrequire_tls_valid_for_doq = false\n")
+        s = load_settings(cfg)
+        assert s.validation.doq_parallelism == 9
+        assert s.validation.require_tls_valid_for_doq is False
+
+    def test_load_dnscrypt_dns_source(self, tmp_path: Path) -> None:
+        cfg = tmp_path / "config.toml"
+        cfg.write_bytes(b'[[sources.dns]]\ntype = "dnscrypt"\n')
+        s = load_settings(cfg)
+        assert len(s.sources.dns) == 1
+        assert s.sources.dns[0].type == "dnscrypt"
+
+    def test_load_capabilities_config(self, tmp_path: Path) -> None:
+        cfg = tmp_path / "config.toml"
+        cfg.write_bytes(
+            b"[validation.capabilities]\nenabled = false\n"
+            b'dnssec_sentinels = ["bad.test."]\n'
+            b'ecs_probe_qname = "probe.test."\n'
+            b'filter_domains = ["ads.test."]\n'
+        )
+        s = load_settings(cfg)
+        assert s.validation.capabilities.enabled is False
+        assert s.validation.capabilities.dnssec_sentinels == ["bad.test."]
+        assert s.validation.capabilities.ecs_probe_qname == "probe.test."
+        assert s.validation.capabilities.filter_domains == ["ads.test."]

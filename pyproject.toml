@@ -26,10 +26,11 @@ classifiers = [
   "Topic :: System :: Networking",
 ]
 dependencies = [
+  "aioquic>=1.2,<2",
   "dnspython>=2.7",
-  "duckdb>=1.3",
+  "duckdb>=1.5.4",
   "httpx[http2]>=0.28.1",
-  "pyright>=1.1.409",
+  "pyright>=1.1.410",
 ]
 
 [project.urls]
@@ -48,13 +49,13 @@ network = []
 dev = [
   "bandit>=1.8",
   "coverage[toml]>=7.14.1",
-  "pyright>=1.1.408",
+  "pyright>=1.1.410",
   "pytest>=9.1.0",
-  "pytest-asyncio>=0.26",
+  "pytest-asyncio>=1.4.0",
   "pytest-cov>=6.0",
   "radon>=6.0",
   "respx>=0.23.1",
-  "ruff>=0.11",
+  "ruff>=0.15.18",
   "vulture>=2.8",
   "xenon>=0.9.3",
   "dnslib>=0.9.26",
@@ -93,6 +94,8 @@ skip_covered = true
 fail_under = 90
 
 [tool.pyright]
+venvPath = "."
+venv = ".venv"
 exclude = [
   "**/__pycache__",
   "**/node_modules",

@@ -6,6 +6,36 @@ from pathlib import Path
 
 from resolver_inventory.models import ValidationResult
 
+_PLAIN_TRANSPORTS = ("dns-udp", "dns-tcp")
+
+
+def _format_host_port(host: str, port: int) -> str:
+    return f"[{host}]:{port}" if ":" in host else f"{host}:{port}"
+
+
+def _format_tls_endpoint(scheme: str, host: str, port: int, tls_server_name: str | None) -> str:
+    """Render a DoT/DoQ endpoint as ``<scheme>://host[:port][#tls_name]``.
+
+    The ``#name`` suffix carries the TLS authentication name when it differs
+    from the connect host (for example an IP endpoint with a certificate
+    name), matching the ``host#name`` convention used by Unbound and
+    systemd-resolved.
+    """
+    display_host = f"[{host}]" if ":" in host else host
+    suffix = f":{port}" if port != 853 else ""
+    name_suffix = ""
+    if tls_server_name and tls_server_name != host:
+        name_suffix = f"#{tls_server_name}"
+    return f"{scheme}://{display_host}{suffix}{name_suffix}"
+
+
+def _format_dot_endpoint(host: str, port: int, tls_server_name: str | None) -> str:
+    return _format_tls_endpoint("tls", host, port, tls_server_name)
+
+
+def _format_doq_endpoint(host: str, port: int, tls_server_name: str | None) -> str:
+    return _format_tls_endpoint("quic", host, port, tls_server_name)
+
 
 def export_text(
     results: list[ValidationResult],
@@ -13,22 +43,34 @@ def export_text(
     accepted_only: bool = True,
     path: str | Path | None = None,
     include_doh: bool = False,
+    transport: str | None = None,
 ) -> str:
-    """Export resolver list as newline-separated IPs or URLs.
+    """Export resolver list as newline-separated endpoints.
 
-    Classic DNS resolvers emit ``host:port`` lines.
-    By default this exports plain DNS resolvers only. Set *include_doh* to export
-    DoH resolvers instead.
+    Output depends on *transport*:
+
+    - ``"dns"`` (default): plain DNS resolvers as ``host:port``
+    - ``"doh"``: DoH resolvers as full HTTPS endpoint URLs
+    - ``"dot"``: DoT resolvers as ``tls://host[:port][#name]``
+    - ``"doq"``: DoQ resolvers as ``quic://host[:port][#name]``
+
+    *include_doh* is a deprecated alias for ``transport="doh"``.
     Returns the text. If *path* is given, also writes it to disk.
     """
+    if transport is None:
+        transport = "doh" if include_doh else "dns"
     records = [r for r in results if r.accepted] if accepted_only else results
     lines: list[str] = []
     for r in records:
         c = r.candidate
-        if c.transport in ("dns-udp", "dns-tcp") and not include_doh:
-            lines.append(f"{c.host}:{c.port}")
-        elif c.transport == "doh" and include_doh:
+        if c.transport in _PLAIN_TRANSPORTS and transport == "dns":
+            lines.append(_format_host_port(c.host, c.port))
+        elif c.transport == "doh" and transport == "doh":
             lines.append(c.endpoint_url or f"https://{c.host}:{c.port}{c.path}")
+        elif c.transport == "dot" and transport == "dot":
+            lines.append(_format_dot_endpoint(c.host, c.port, c.tls_server_name))
+        elif c.transport == "doq" and transport == "doq":
+            lines.append(_format_doq_endpoint(c.host, c.port, c.tls_server_name))
 
     seen: set[str] = set()
     deduped: list[str] = []

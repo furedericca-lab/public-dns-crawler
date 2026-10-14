@@ -16,7 +16,13 @@ def build_doh_client(
 ) -> httpx.AsyncClient:
     """Return an async httpx client configured for DoH use."""
     transport = (
-        httpx.AsyncHTTPTransport(local_address=local_address, retries=0)
+        httpx.AsyncHTTPTransport(
+            verify=verify,
+            trust_env=trust_env,
+            http2=True,
+            local_address=local_address,
+            retries=0,
+        )
         if local_address is not None
         else None
     )

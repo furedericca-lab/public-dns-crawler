@@ -46,7 +46,14 @@ def _doh_candidate(host: str, port: int, url: str) -> Candidate:
 
 
 class TestGoodDoHServer:
-    def test_good_doh_server_passes(self) -> None:
+    @pytest.mark.parametrize("local_address", [None, "0.0.0.0"])
+    def test_good_doh_server_passes(
+        self, local_address: str | None, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        monkeypatch.setenv("HTTP_PROXY", "http://127.0.0.1:1")
+        monkeypatch.setenv("HTTPS_PROXY", "http://127.0.0.1:1")
+        monkeypatch.setenv("ALL_PROXY", "http://127.0.0.1:1")
+        monkeypatch.setenv("NO_PROXY", "")
         with DoHServerFixture() as fix:
             candidate = _doh_candidate(fix.host, fix.port, fix.url)
             settings = _make_settings()
@@ -58,6 +65,8 @@ class TestGoodDoHServer:
                     timeout_s=settings.validation.timeout_ms / 1000,
                     rounds=settings.validation.rounds,
                     ssl_context=fix.client_ssl_context,
+                    trust_env=False,
+                    local_address=local_address,
                 )
             )
             result = score(candidate, probes, settings)

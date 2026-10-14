@@ -146,7 +146,13 @@ async def _probe_tls(
     verify: bool | ssl.SSLContext = ssl_context if ssl_context is not None else True
     try:
         transport = (
-            httpx.AsyncHTTPTransport(local_address=local_address, retries=0)
+            httpx.AsyncHTTPTransport(
+                verify=verify,
+                trust_env=trust_env,
+                http2=True,
+                local_address=local_address,
+                retries=0,
+            )
             if local_address is not None
             else None
         )

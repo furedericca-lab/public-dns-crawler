@@ -6,6 +6,12 @@ min_reliability = 0.50
 type = "manual"
 path = "configs/manual-dns.txt"
 
+[[sources.dns]]
+type = "adguard"
+
+[[sources.dns]]
+type = "paulmillr"
+
 [[sources.doh]]
 type = "curl_wiki"
 
@@ -13,16 +19,65 @@ type = "curl_wiki"
 type = "adguard"
 
 [[sources.doh]]
+type = "dnscrypt"
+
+[[sources.doh]]
+type = "dnscrypt"
+url = "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/parental-control.md"
+label = "dnscrypt-parental-control"
+
+[[sources.doh]]
+type = "dnscrypt"
+url = "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/opennic.md"
+label = "dnscrypt-opennic"
+
+[[sources.doh]]
+type = "paulmillr"
+
+[[sources.doh]]
+type = "dibdot"
+
+[[sources.doh]]
 type = "manual"
 path = "configs/manual-doh.toml"
+
+[[sources.dot]]
+type = "adguard"
+
+[[sources.dot]]
+type = "paulmillr"
+
+[[sources.dot]]
+type = "dibdot"
+
+[[sources.dot]]
+type = "manual"
+path = "configs/manual-dot.toml"
+
+[[sources.doq]]
+type = "adguard"
+
+[[sources.doq]]
+type = "manual"
+path = "configs/manual-doq.toml"
 
 [validation]
 rounds = 3
 timeout_ms = 2000
 parallelism = 50
 doh_parallelism = 20
+dot_parallelism = 15
+doq_parallelism = 15
 require_tcp_for_dns = false
 require_tls_valid_for_doh = true
+require_tls_valid_for_dot = true
+require_tls_valid_for_doq = true
+revalidation_stable_days = 7
+revalidation_stable_rounds = 1
+
+# Non-scoring capability tags measured per resolver endpoint.
+[validation.capabilities]
+enabled = true
 
 [validation.dns_backend]
 kind = "python"

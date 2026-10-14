@@ -5,6 +5,8 @@ from __future__ import annotations
 from resolver_inventory.models import Candidate, FilteredCandidate
 from resolver_inventory.normalize.dns import normalize_dns_candidates
 from resolver_inventory.normalize.doh import normalize_doh_candidates
+from resolver_inventory.normalize.doq import normalize_doq_candidates
+from resolver_inventory.normalize.dot import normalize_dot_candidates
 
 
 def _dns(host: str, transport: str = "dns-udp") -> Candidate:
@@ -178,3 +180,194 @@ class TestNormalizeDoh:
     def test_tls_server_name_preserved(self) -> None:
         result = normalize_doh_candidates([_doh("https://dns.example.com/dns-query")])
         assert result[0].tls_server_name == "dns.example.com"
+
+
+def _dot(
+    host: str,
+    port: int = 853,
+    tls_server_name: str | None = None,
+) -> Candidate:
+    return Candidate(
+        provider=None,
+        source="test",
+        transport="dot",
+        endpoint_url=None,
+        host=host,
+        port=port,
+        path=None,
+        tls_server_name=tls_server_name,
+    )
+
+
+class TestNormalizeDot:
+    def test_hostname_endpoint(self) -> None:
+        result = normalize_dot_candidates([_dot("dns.example.com")])
+        assert len(result) == 1
+        assert result[0].host == "dns.example.com"
+        assert result[0].port == 853
+        assert result[0].tls_server_name == "dns.example.com"
+
+    def test_ip_endpoint_has_no_tls_name_by_default(self) -> None:
+        result = normalize_dot_candidates([_dot("192.0.2.1")])
+        assert len(result) == 1
+        assert result[0].host == "192.0.2.1"
+        assert result[0].tls_server_name is None
+
+    def test_ip_endpoint_with_explicit_tls_name(self) -> None:
+        result = normalize_dot_candidates([_dot("1.1.1.1", tls_server_name="one.one.one.one")])
+        assert len(result) == 1
+        assert result[0].tls_server_name == "one.one.one.one"
+
+    def test_invalid_host_dropped(self) -> None:
+        filtered: list[FilteredCandidate] = []
+        result = normalize_dot_candidates([_dot("not a host!!")], filtered=filtered)
+        assert result == []
+        assert len(filtered) == 1
+        assert filtered[0].reason == "invalid_dot_endpoint"
+
+    def test_invalid_port_dropped(self) -> None:
+        filtered: list[FilteredCandidate] = []
+        result = normalize_dot_candidates([_dot("dns.example.com", port=70000)], filtered=filtered)
+        assert result == []
+        assert filtered[0].reason == "invalid_dot_endpoint"
+
+    def test_deduplication(self) -> None:
+        filtered: list[FilteredCandidate] = []
+        candidates = [_dot("dns.example.com"), _dot("DNS.EXAMPLE.COM.")]
+        result = normalize_dot_candidates(candidates, filtered=filtered)
+        assert len(result) == 1
+        assert filtered[0].reason == "duplicate_dot_candidate"
+
+    def test_distinct_tls_names_not_merged(self) -> None:
+        result = normalize_dot_candidates(
+            [
+                _dot("192.0.2.1", tls_server_name="a.example.com"),
+                _dot("192.0.2.1", tls_server_name="b.example.com"),
+            ]
+        )
+        assert len(result) == 2
+
+    def test_non_dot_candidates_skipped(self) -> None:
+        result = normalize_dot_candidates([_dns("1.1.1.1")])
+        assert result == []
+
+    def test_host_lowercased(self) -> None:
+        result = normalize_dot_candidates([_dot("DNS.Example.COM")])
+        assert result[0].host == "dns.example.com"
+        assert result[0].tls_server_name == "dns.example.com"
+
+    def test_bootstrap_addresses_preserved(self) -> None:
+        c = _dot("dns.example.com")
+        c.bootstrap_ipv4 = ["192.0.2.1"]
+        c.bootstrap_ipv6 = ["2001:db8::1"]
+        result = normalize_dot_candidates([c])
+        assert result[0].bootstrap_ipv4 == ["192.0.2.1"]
+        assert result[0].bootstrap_ipv6 == ["2001:db8::1"]
+
+    def test_explicit_tls_name_equal_to_host_dedupes_with_implicit(self) -> None:
+        """A redundant explicit name must not produce a second endpoint -
+        both forms collapse to the same resolver key."""
+        filtered: list[FilteredCandidate] = []
+        result = normalize_dot_candidates(
+            [_dot("192.0.2.1"), _dot("192.0.2.1", tls_server_name="192.0.2.1")],
+            filtered=filtered,
+        )
+        assert len(result) == 1
+        assert filtered[0].reason == "duplicate_dot_candidate"
+
+    def test_invalid_bootstrap_ipv4_dropped(self) -> None:
+        filtered: list[FilteredCandidate] = []
+        c = _dot("dns.example.com")
+        c.bootstrap_ipv4 = ["not-an-ip"]
+        result = normalize_dot_candidates([c], filtered=filtered)
+        assert result == []
+        assert filtered[0].reason == "invalid_dot_endpoint"
+
+    def test_wrong_family_bootstrap_dropped(self) -> None:
+        filtered: list[FilteredCandidate] = []
+        c = _dot("dns.example.com")
+        c.bootstrap_ipv4 = ["2001:db8::1"]
+        result = normalize_dot_candidates([c], filtered=filtered)
+        assert result == []
+        assert filtered[0].reason == "invalid_dot_endpoint"
+
+    def test_invalid_tls_server_name_dropped(self) -> None:
+        filtered: list[FilteredCandidate] = []
+        result = normalize_dot_candidates(
+            [_dot("192.0.2.1", tls_server_name="not a host!")],
+            filtered=filtered,
+        )
+        assert result == []
+        assert filtered[0].reason == "invalid_dot_endpoint"
+
+    def test_tls_server_name_normalized(self) -> None:
+        result = normalize_dot_candidates([_dot("192.0.2.1", tls_server_name="DNS.Example.COM.")])
+        assert result[0].tls_server_name == "dns.example.com"
+
+
+def _doq(
+    host: str,
+    port: int = 853,
+    tls_server_name: str | None = None,
+) -> Candidate:
+    return Candidate(
+        provider=None,
+        source="test",
+        transport="doq",
+        endpoint_url=None,
+        host=host,
+        port=port,
+        path=None,
+        tls_server_name=tls_server_name,
+    )
+
+
+class TestNormalizeDoq:
+    def test_hostname_endpoint(self) -> None:
+        result = normalize_doq_candidates([_doq("dns.example.com")])
+        assert len(result) == 1
+        assert result[0].host == "dns.example.com"
+        assert result[0].port == 853
+        assert result[0].tls_server_name == "dns.example.com"
+
+    def test_ip_endpoint_with_explicit_tls_name(self) -> None:
+        result = normalize_doq_candidates([_doq("1.1.1.1", tls_server_name="one.one.one.one")])
+        assert result[0].tls_server_name == "one.one.one.one"
+
+    def test_invalid_host_dropped(self) -> None:
+        filtered: list[FilteredCandidate] = []
+        result = normalize_doq_candidates([_doq("not a host!!")], filtered=filtered)
+        assert result == []
+        assert filtered[0].reason == "invalid_doq_endpoint"
+
+    def test_deduplication_uses_doq_reason(self) -> None:
+        filtered: list[FilteredCandidate] = []
+        result = normalize_doq_candidates(
+            [_doq("dns.example.com"), _doq("DNS.EXAMPLE.COM.")], filtered=filtered
+        )
+        assert len(result) == 1
+        assert filtered[0].reason == "duplicate_doq_candidate"
+
+    def test_distinct_tls_names_not_merged(self) -> None:
+        result = normalize_doq_candidates(
+            [
+                _doq("192.0.2.1", tls_server_name="a.example.com"),
+                _doq("192.0.2.1", tls_server_name="b.example.com"),
+            ]
+        )
+        assert len(result) == 2
+
+    def test_invalid_bootstrap_dropped(self) -> None:
+        filtered: list[FilteredCandidate] = []
+        c = _doq("dns.example.com")
+        c.bootstrap_ipv6 = ["192.0.2.1"]
+        result = normalize_doq_candidates([c], filtered=filtered)
+        assert result == []
+        assert filtered[0].reason == "invalid_doq_endpoint"
+
+    def test_dot_and_doq_not_cross_deduped(self) -> None:
+        """A dot and doq endpoint on the same host:port are distinct."""
+        candidates = normalize_dot_candidates([_dot("dns.example.com")]) + normalize_doq_candidates(
+            [_doq("dns.example.com")]
+        )
+        assert len(candidates) == 2

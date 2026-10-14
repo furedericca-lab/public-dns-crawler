@@ -14,6 +14,7 @@ from resolver_inventory.history import (
 )
 from resolver_inventory.models import Candidate, ProbeResult, ValidationResult
 from resolver_inventory.settings import Settings
+from resolver_inventory.validate.capabilities import parse_capability_probes
 
 if TYPE_CHECKING:
     import duckdb
@@ -38,6 +39,10 @@ _SEVERITY_PENALTIES: dict[str, int] = {
 _HARD_FAIL_REASONS: frozenset[str] = frozenset(
     set(SEVERE_CORRECTNESS_REASONS).union({"unexpected_rcode_suspicious"})
 )
+
+# TLS-validity failure reasons; downgraded to soft penalties for DoH
+# candidates when validation.require_tls_valid_for_doh is false.
+_TLS_VALIDITY_REASONS: frozenset[str] = frozenset({"tls_error", "tls_name_mismatch"})
 
 # --- Configuration: Latency penalty tiers ---
 # (threshold_ms, penalty_points)
@@ -507,15 +512,18 @@ def _apply_source_reliability_penalty(
 
 
 def _apply_history_caps(
-    metrics: ResolverStabilityMetrics | None,
+    runs_seen: int | None,
     current_score: int,
     components: ScoreComponents,
 ) -> int:
-    """Apply caps based on observation history."""
-    if metrics is None:
-        return current_score
+    """Apply caps based on observation history.
 
-    runs_seen = metrics.runs_seen_30d
+    *runs_seen* is ``None`` when no history database was consulted at all;
+    in that case no caps apply. A resolver that was looked up but has no
+    recorded observations counts as zero runs and is capped accordingly.
+    """
+    if runs_seen is None:
+        return current_score
 
     for min_runs, max_score in _HISTORY_CAPS:
         if runs_seen < min_runs:
@@ -529,6 +537,8 @@ def _apply_history_caps(
 def _apply_perfect_score_requirements(
     probes: list[ProbeResult],
     metrics: ResolverStabilityMetrics | None,
+    *,
+    history_consulted: bool,
     components: ScoreComponents,
     reasons: list[str],
 ) -> int:
@@ -543,21 +553,23 @@ def _apply_perfect_score_requirements(
         components.caps_applied.append("performance_not_perfect")
         return 99
 
-    # Check history requirements only when history exists.
-    if metrics is None:
+    # Check history requirements only when a history database was consulted.
+    if not history_consulted:
         return 100
 
-    if metrics.runs_seen_30d < _MIN_RUNS_FOR_PERFECT_SCORE:
-        components.caps_applied.append(f"insufficient_history_for_100:{metrics.runs_seen_30d}_runs")
+    runs_seen = metrics.runs_seen_30d if metrics is not None else 0
+    if runs_seen < _MIN_RUNS_FOR_PERFECT_SCORE:
+        components.caps_applied.append(f"insufficient_history_for_100:{runs_seen}_runs")
         return 99
 
-    if metrics.status_flaps_30d > _MAX_FLAPS_FOR_PERFECT_SCORE:
-        components.caps_applied.append(f"too_much_flapping:{metrics.status_flaps_30d}_flaps")
-        return 99
+    if metrics is not None:
+        if metrics.status_flaps_30d > _MAX_FLAPS_FOR_PERFECT_SCORE:
+            components.caps_applied.append(f"too_much_flapping:{metrics.status_flaps_30d}_flaps")
+            return 99
 
-    if metrics.consecutive_fail_days > 0:
-        components.caps_applied.append("recent_failures")
-        return 99
+        if metrics.consecutive_fail_days > 0:
+            components.caps_applied.append("recent_failures")
+            return 99
 
     # Check for perfect availability
     if probes:
@@ -574,9 +586,12 @@ def _apply_perfect_score_requirements(
     return 100
 
 
-def _has_hard_fail(reasons: list[str]) -> bool:
+def _has_hard_fail(
+    reasons: list[str],
+    hard_fail_reasons: frozenset[str] = _HARD_FAIL_REASONS,
+) -> bool:
     """Check if any hard-fail reasons are present."""
-    return bool(_HARD_FAIL_REASONS.intersection(reasons))
+    return bool(hard_fail_reasons.intersection(reasons))
 
 
 def score(
@@ -599,7 +614,13 @@ def score(
     reasons: list[str] = []
     components = ScoreComponents()
 
-    # Get historical metrics if available
+    # Capability probes carry measured properties, not pass/fail signals.
+    # Extract them up front so they never affect scoring math.
+    capabilities = parse_capability_probes(probes)
+    probes = [p for p in probes if not p.probe.startswith("capability:")]
+
+    # Get historical metrics if a history database was provided
+    history_consulted = history_connection is not None and run_date is not None
     metrics: ResolverStabilityMetrics | None = None
     if history_connection is not None and run_date is not None:
         try:
@@ -633,15 +654,32 @@ def score(
     # Apply source reliability penalty
     final_score = _apply_source_reliability_penalty(candidate, final_score, components, reasons)
 
-    # Apply history-based caps
-    final_score = _apply_history_caps(metrics, final_score, components)
+    # Apply history-based caps (when history was consulted, a resolver with
+    # no recorded observations counts as zero runs and is capped accordingly)
+    runs_seen = None if not history_consulted else (metrics.runs_seen_30d if metrics else 0)
+    final_score = _apply_history_caps(runs_seen, final_score, components)
 
     # Apply perfect score requirements (100 -> 99 if not meeting criteria)
     if final_score >= 100:
-        final_score = _apply_perfect_score_requirements(probes, metrics, components, reasons)
+        final_score = _apply_perfect_score_requirements(
+            probes,
+            metrics,
+            history_consulted=history_consulted,
+            components=components,
+            reasons=reasons,
+        )
 
-    # Check for hard-fail correctness issues and apply final clamp before status.
-    has_hard_fail = _has_hard_fail(reasons)
+    # Honor require_tls_valid_for_doh/dot/doq: when false, TLS-validity
+    # failures keep their correctness penalty but do not hard-fail the
+    # candidate.
+    hard_fail_reasons = _HARD_FAIL_REASONS
+    if candidate.transport == "doh" and not settings.validation.require_tls_valid_for_doh:
+        hard_fail_reasons = _HARD_FAIL_REASONS - _TLS_VALIDITY_REASONS
+    elif candidate.transport == "dot" and not settings.validation.require_tls_valid_for_dot:
+        hard_fail_reasons = _HARD_FAIL_REASONS - _TLS_VALIDITY_REASONS
+    elif candidate.transport == "doq" and not settings.validation.require_tls_valid_for_doq:
+        hard_fail_reasons = _HARD_FAIL_REASONS - _TLS_VALIDITY_REASONS
+    has_hard_fail = _has_hard_fail(reasons, hard_fail_reasons)
     if has_hard_fail and final_score > 59:
         final_score = 59
         components.caps_applied.append("hard_fail_cap")
@@ -683,4 +721,5 @@ def score(
         },
         score_caps_applied=components.caps_applied,
         derived_metrics=components.derived_metrics,
+        capabilities=capabilities,
     )

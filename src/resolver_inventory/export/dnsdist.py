@@ -12,9 +12,14 @@ _HEADER = """\
 """
 
 
+def _format_host_port(host: str, port: int) -> str:
+    return f"[{host}]:{port}" if ":" in host else f"{host}:{port}"
+
+
 def _dns_backend(host: str, port: int, provider: str | None) -> str:
     comment = f"  -- {provider}" if provider else ""
-    return f'newServer({{address="{host}:{port}", checkName="dns.msftncsi.com."}}){comment}'
+    address = _format_host_port(host, port)
+    return f'newServer({{address="{address}", checkName="dns.msftncsi.com."}}){comment}'
 
 
 def _doh_backend(result: ValidationResult) -> str:
@@ -25,13 +30,32 @@ def _doh_backend(result: ValidationResult) -> str:
     provider = c.provider or ""
     lines = [
         "newServer({",
-        f'  address="{c.host}:{c.port}",',
+        f'  address="{_format_host_port(c.host, c.port)}",',
         '  tls="openssl",',
         f'  subjectName="{sni}",',
         f'  dohPath="{path}",',
         "  validateCertificates=true,",
         '  checkName="dns.msftncsi.com.",',
         f"  -- url: {url}",
+    ]
+    if provider:
+        lines.append(f"  -- provider: {provider}")
+    lines.append("})")
+    return "\n".join(lines)
+
+
+def _dot_backend(result: ValidationResult) -> str:
+    """Render a DoT backend: ``newServer`` with TLS but no ``dohPath``."""
+    c = result.candidate
+    sni = c.tls_server_name or c.host
+    provider = c.provider or ""
+    lines = [
+        "newServer({",
+        f'  address="{_format_host_port(c.host, c.port)}",',
+        '  tls="openssl",',
+        f'  subjectName="{sni}",',
+        "  validateCertificates=true,",
+        '  checkName="dns.msftncsi.com.",',
     ]
     if provider:
         lines.append(f"  -- provider: {provider}")
@@ -47,18 +71,21 @@ def export_dnsdist(
 ) -> str:
     """Render a dnsdist backend configuration snippet.
 
-    Only includes classic DNS and DoH backends separately.
+    Includes classic DNS, DoT, and DoH backends in separate sections.
     Returns the config text. If *path* is given, also writes it to disk.
     """
     records = [r for r in results if r.status != "rejected"] if accepted_only else results
 
     dns_lines: list[str] = []
+    dot_lines: list[str] = []
     doh_lines: list[str] = []
 
     for r in records:
         c = r.candidate
         if c.transport in ("dns-udp", "dns-tcp"):
             dns_lines.append(_dns_backend(c.host, c.port, c.provider))
+        elif c.transport == "dot":
+            dot_lines.append(_dot_backend(r))
         elif c.transport == "doh":
             doh_lines.append(_doh_backend(r))
 
@@ -66,6 +93,10 @@ def export_dnsdist(
     if dns_lines:
         sections.append("-- Plain DNS backends")
         sections.extend(dns_lines)
+        sections.append("")
+    if dot_lines:
+        sections.append("-- DoT backends")
+        sections.extend(dot_lines)
         sections.append("")
     if doh_lines:
         sections.append("-- DoH backends")

@@ -10,6 +10,7 @@ import shlex
 import sys
 import threading
 import time
+from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import TYPE_CHECKING
 
@@ -233,6 +234,8 @@ def cmd_discover(args: argparse.Namespace) -> int:
     from resolver_inventory.export.json import export_filtered_json
     from resolver_inventory.normalize.dns import normalize_dns_candidates
     from resolver_inventory.normalize.doh import normalize_doh_candidates
+    from resolver_inventory.normalize.doq import normalize_doq_candidates
+    from resolver_inventory.normalize.dot import normalize_dot_candidates
     from resolver_inventory.serialization import candidate_to_dict, write_json
     from resolver_inventory.settings import load_settings
     from resolver_inventory.sources import discover_candidates_with_filtered
@@ -242,8 +245,17 @@ def cmd_discover(args: argparse.Namespace) -> int:
     filtered_candidates = list(discovery.filtered)
     dns_c = normalize_dns_candidates(discovery.candidates, filtered=filtered_candidates)
     doh_c = normalize_doh_candidates(discovery.candidates, filtered=filtered_candidates)
-    all_c = dns_c + doh_c
-    logger.info("Discovered %d candidates (%d DNS, %d DoH)", len(all_c), len(dns_c), len(doh_c))
+    dot_c = normalize_dot_candidates(discovery.candidates, filtered=filtered_candidates)
+    doq_c = normalize_doq_candidates(discovery.candidates, filtered=filtered_candidates)
+    all_c = dns_c + doh_c + dot_c + doq_c
+    logger.info(
+        "Discovered %d candidates (%d DNS, %d DoH, %d DoT, %d DoQ)",
+        len(all_c),
+        len(dns_c),
+        len(doh_c),
+        len(dot_c),
+        len(doq_c),
+    )
     _github_output("candidates_total", str(len(all_c)))
     _github_output("filtered_total", str(len(filtered_candidates)))
 
@@ -258,6 +270,59 @@ def cmd_discover(args: argparse.Namespace) -> int:
     return 0
 
 
+def _resolve_history_context(args: argparse.Namespace):
+    """Open the history database read-only when --history-db is provided."""
+    from resolver_inventory.history import connect_history_db_readonly
+
+    history_path = getattr(args, "history_db", None)
+    if not history_path:
+        return None, None
+    connection = connect_history_db_readonly(history_path)
+    if connection is None:
+        logger.warning(
+            "History database %s unavailable; scoring without history",
+            history_path,
+        )
+    run_date_arg = getattr(args, "run_date", None)
+    run_date = date.fromisoformat(run_date_arg) if run_date_arg else datetime.now(UTC).date()
+    return connection, run_date
+
+
+def _enforce_tcp_requirement(results: list[ValidationResult], settings: Settings) -> int:
+    """Demote accepted dns-udp results whose host:port has no accepted dns-tcp.
+
+    Enforces validation.require_tcp_for_dns at result-aggregation time since
+    it is a cross-candidate rule. Returns the number of demoted results.
+    """
+    if not settings.validation.require_tcp_for_dns:
+        return 0
+    tcp_accepted = {
+        (r.candidate.host, r.candidate.port)
+        for r in results
+        if r.candidate.transport == "dns-tcp" and r.status == "accepted"
+    }
+    demoted = 0
+    for result in results:
+        candidate = result.candidate
+        if (
+            candidate.transport == "dns-udp"
+            and result.status == "accepted"
+            and (candidate.host, candidate.port) not in tcp_accepted
+        ):
+            result.status = "rejected"
+            result.accepted = False
+            if "tcp_required" not in result.reasons:
+                result.reasons.append("tcp_required")
+            demoted += 1
+    if demoted:
+        logger.info(
+            "require_tcp_for_dns: demoted %d dns-udp result(s) without an "
+            "accepted dns-tcp counterpart",
+            demoted,
+        )
+    return demoted
+
+
 def cmd_validate(args: argparse.Namespace) -> int:
     from resolver_inventory.export.json import (
         StreamingJsonArrayWriter,
@@ -265,6 +330,8 @@ def cmd_validate(args: argparse.Namespace) -> int:
     )
     from resolver_inventory.normalize.dns import normalize_dns_candidates
     from resolver_inventory.normalize.doh import normalize_doh_candidates
+    from resolver_inventory.normalize.doq import normalize_doq_candidates
+    from resolver_inventory.normalize.dot import normalize_dot_candidates
     from resolver_inventory.serialization import candidate_from_dict, load_json_list
     from resolver_inventory.settings import load_settings
     from resolver_inventory.sources import discover_candidates
@@ -274,6 +341,7 @@ def cmd_validate(args: argparse.Namespace) -> int:
     _apply_probe_corpus_override(args, settings)
     _apply_validation_parallelism_override(args, settings)
     _apply_dns_backend_overrides(args, settings)
+    history_connection, history_run_date = _resolve_history_context(args)
 
     _github_group("Discovery")
     if args.input:
@@ -282,8 +350,11 @@ def cmd_validate(args: argparse.Namespace) -> int:
         logger.info("Loaded %d candidates from %s", len(candidates), args.input)
     else:
         raw_candidates = discover_candidates(settings)
-        candidates = normalize_dns_candidates(raw_candidates) + normalize_doh_candidates(
-            raw_candidates
+        candidates = (
+            normalize_dns_candidates(raw_candidates)
+            + normalize_doh_candidates(raw_candidates)
+            + normalize_dot_candidates(raw_candidates)
+            + normalize_doq_candidates(raw_candidates)
         )
         candidates.sort(key=lambda candidate: _validation_candidate_sort_key(candidate, settings))
         logger.info("Discovered %d normalized candidates", len(candidates))
@@ -329,9 +400,13 @@ def cmd_validate(args: argparse.Namespace) -> int:
             _handle_result,
             settings,
             progress_callback=progress.callback,
+            history_connection=history_connection,
+            run_date=history_run_date,
         )
     finally:
         writer.close()
+        if history_connection is not None:
+            history_connection.close()
     progress.emit_done()
     logger.info(
         "Results: %d accepted, %d candidate, %d rejected",
@@ -369,18 +444,21 @@ def cmd_split_candidates(args: argparse.Namespace) -> int:
     candidates = [candidate_from_dict(record) for record in load_json_list(args.input)]
     candidates.sort(key=_candidate_sort_key)
 
+    if args.shards < 1:
+        raise ValueError("--shards must be at least 1")
+
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     shard_count = args.shards
     total = len(candidates)
-    base_size, remainder = divmod(total, shard_count)
     files: list[str] = []
-    start = 0
 
+    # Strided assignment: candidates are sorted by transport, so contiguous
+    # chunks would concentrate all DoH/DoT/DoQ endpoints in the last shards
+    # and skew wall-clock per shard. Dealing round-robin keeps shard sizes
+    # within one candidate and mixes transports evenly.
     for shard_index in range(shard_count):
-        shard_size = base_size + (1 if shard_index < remainder else 0)
-        shard_candidates = candidates[start : start + shard_size]
-        start += shard_size
+        shard_candidates = candidates[shard_index::shard_count]
         shard_path = output_dir / f"chunk-{shard_index:02d}.json"
         write_json(shard_path, [candidate_to_dict(candidate) for candidate in shard_candidates])
         files.append(shard_path.name)
@@ -430,6 +508,8 @@ def cmd_materialize_results(args: argparse.Namespace) -> int:
     for shard_path in shard_paths:
         results.extend(validation_result_from_dict(record) for record in load_json_list(shard_path))
 
+    _enforce_tcp_requirement(results, settings)
+
     accepted_status = sum(1 for result in results if result.status == "accepted")
     candidate_status = sum(1 for result in results if result.status == "candidate")
     rejected_status = sum(1 for result in results if result.status == "rejected")
@@ -471,17 +551,23 @@ def cmd_materialize_results(args: argparse.Namespace) -> int:
     if "text" in formats:
         resolvers_path = out_dir / "resolvers.txt"
         doh_path = out_dir / "resolvers-doh.txt"
+        dot_path = out_dir / "resolvers-dot.txt"
+        doq_path = out_dir / "resolvers-doq.txt"
         export_text(results, path=resolvers_path)
-        export_text(results, include_doh=True, path=doh_path)
-        exported_files.extend([str(resolvers_path), str(doh_path)])
+        export_text(results, transport="doh", path=doh_path)
+        export_text(results, transport="dot", path=dot_path)
+        export_text(results, transport="doq", path=doq_path)
+        exported_files.extend([str(resolvers_path), str(doh_path), str(dot_path), str(doq_path)])
     if "dnsdist" in formats:
         dnsdist_path = out_dir / "dnsdist.conf"
         export_dnsdist(results, path=dnsdist_path)
         exported_files.append(str(dnsdist_path))
     if "unbound" in formats:
         unbound_path = out_dir / "unbound-forward.conf"
+        unbound_dot_path = out_dir / "unbound-forward-dot.conf"
         export_unbound(results, path=unbound_path)
-        exported_files.append(str(unbound_path))
+        export_unbound(results, path=unbound_dot_path, use_tls=True)
+        exported_files.extend([str(unbound_path), str(unbound_dot_path)])
 
     _github_output("results_accepted", str(accepted_status))
     _github_output("results_candidate", str(candidate_status))
@@ -503,6 +589,8 @@ def cmd_refresh(args: argparse.Namespace) -> int:
     from resolver_inventory.export.unbound import export_unbound
     from resolver_inventory.normalize.dns import normalize_dns_candidates
     from resolver_inventory.normalize.doh import normalize_doh_candidates
+    from resolver_inventory.normalize.doq import normalize_doq_candidates
+    from resolver_inventory.normalize.dot import normalize_dot_candidates
     from resolver_inventory.settings import load_settings
     from resolver_inventory.sources import discover_candidates_with_filtered
     from resolver_inventory.validate import validate_candidates
@@ -518,12 +606,23 @@ def cmd_refresh(args: argparse.Namespace) -> int:
     _github_group("Discovery")
     discovery = discover_candidates_with_filtered(settings)
     filtered_candidates.extend(discovery.filtered)
-    candidates = normalize_dns_candidates(
-        discovery.candidates,
-        filtered=filtered_candidates,
-    ) + normalize_doh_candidates(
-        discovery.candidates,
-        filtered=filtered_candidates,
+    candidates = (
+        normalize_dns_candidates(
+            discovery.candidates,
+            filtered=filtered_candidates,
+        )
+        + normalize_doh_candidates(
+            discovery.candidates,
+            filtered=filtered_candidates,
+        )
+        + normalize_dot_candidates(
+            discovery.candidates,
+            filtered=filtered_candidates,
+        )
+        + normalize_doq_candidates(
+            discovery.candidates,
+            filtered=filtered_candidates,
+        )
     )
     logger.info("Discovered %d normalized candidates", len(candidates))
     _github_output("candidates_total", str(len(candidates)))
@@ -532,11 +631,19 @@ def cmd_refresh(args: argparse.Namespace) -> int:
 
     _github_group("Validation")
     logger.info("Validating %d candidates…", len(candidates))
-    results = validate_candidates(
-        candidates,
-        settings,
-        progress_callback=_make_validation_progress_logger("refresh"),
-    )
+    history_connection, history_run_date = _resolve_history_context(args)
+    try:
+        results = validate_candidates(
+            candidates,
+            settings,
+            progress_callback=_make_validation_progress_logger("refresh"),
+            history_connection=history_connection,
+            run_date=history_run_date,
+        )
+    finally:
+        if history_connection is not None:
+            history_connection.close()
+    _enforce_tcp_requirement(results, settings)
     accepted = [r for r in results if r.accepted]
     accepted_count = len(accepted)
     total_count = len(results)
@@ -593,17 +700,23 @@ def cmd_refresh(args: argparse.Namespace) -> int:
     if "text" in formats:
         p1 = out_dir / "resolvers.txt"
         p2 = out_dir / "resolvers-doh.txt"
+        p3 = out_dir / "resolvers-dot.txt"
+        p4 = out_dir / "resolvers-doq.txt"
         export_text(results, path=p1)
-        export_text(results, include_doh=True, path=p2)
-        exported_files.extend([str(p1), str(p2)])
+        export_text(results, transport="doh", path=p2)
+        export_text(results, transport="dot", path=p3)
+        export_text(results, transport="doq", path=p4)
+        exported_files.extend([str(p1), str(p2), str(p3), str(p4)])
     if "dnsdist" in formats:
         p = out_dir / "dnsdist.conf"
         export_dnsdist(results, path=p)
         exported_files.append(str(p))
     if "unbound" in formats:
         p = out_dir / "unbound-forward.conf"
+        p_dot = out_dir / "unbound-forward-dot.conf"
         export_unbound(results, path=p)
-        exported_files.append(str(p))
+        export_unbound(results, path=p_dot, use_tls=True)
+        exported_files.extend([str(p), str(p_dot)])
 
     _github_output("output_dir", str(out_dir.resolve()))
     _github_output("exported_files", ",".join(exported_files))
@@ -693,11 +806,11 @@ def cmd_export(args: argparse.Namespace) -> int:
             max_file_bytes=getattr(args, "split_json_max_bytes", None),
         )
     elif fmt == "text":
-        text = export_text(results, path=out)
+        text = export_text(results, path=out, transport=getattr(args, "transport", None))
     elif fmt == "dnsdist":
         text = export_dnsdist(results, path=out)
     elif fmt == "unbound":
-        text = export_unbound(results, path=out)
+        text = export_unbound(results, path=out, use_tls=getattr(args, "tls", False))
     else:
         logger.error("Unknown export format: %s", fmt)
         return 1
@@ -800,6 +913,16 @@ def _build_parser() -> argparse.ArgumentParser:
         metavar="INT",
         help="Split large JSON output files into .part-XXXX chunks of at most INT bytes",
     )
+    p_validate.add_argument(
+        "--history-db",
+        metavar="FILE",
+        help="Read resolver history from DuckDB FILE for history-aware scoring",
+    )
+    p_validate.add_argument(
+        "--run-date",
+        metavar="YYYY-MM-DD",
+        help="Override the run date used for history lookups (default: today, UTC)",
+    )
 
     # refresh
     p_refresh = sub.add_parser(
@@ -844,6 +967,16 @@ def _build_parser() -> argparse.ArgumentParser:
         type=int,
         metavar="INT",
         help="Split large JSON output files into .part-XXXX chunks of at most INT bytes",
+    )
+    p_refresh.add_argument(
+        "--history-db",
+        metavar="FILE",
+        help="Read resolver history from DuckDB FILE for history-aware scoring",
+    )
+    p_refresh.add_argument(
+        "--run-date",
+        metavar="YYYY-MM-DD",
+        help="Override the run date used for history lookups (default: today, UTC)",
     )
 
     p_split = sub.add_parser(
@@ -902,6 +1035,17 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     p_export.add_argument("--input", "-i", metavar="FILE", help="Validated results JSON")
     p_export.add_argument("--output", "-o", metavar="FILE", help="Write output here")
+    p_export.add_argument(
+        "--transport",
+        choices=["dns", "dot", "doq", "doh"],
+        metavar="T",
+        help="Endpoint family for 'text' exports (default: dns)",
+    )
+    p_export.add_argument(
+        "--tls",
+        action="store_true",
+        help="Render 'unbound' export for DoT forwarders (forward-tls-upstream)",
+    )
     p_export.add_argument(
         "--split-json-max-bytes",
         type=int,

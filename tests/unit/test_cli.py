@@ -159,6 +159,16 @@ class TestCliParser:
         args = parser.parse_args(["export", "unbound"])
         assert args.format == "unbound"
 
+    def test_export_transport_flag(self) -> None:
+        parser = _build_parser()
+        args = parser.parse_args(["export", "text", "--transport", "dot"])
+        assert args.transport == "dot"
+
+    def test_export_unbound_tls_flag(self) -> None:
+        parser = _build_parser()
+        args = parser.parse_args(["export", "unbound", "--tls"])
+        assert args.tls is True
+
     def test_no_subcommand_exits(self) -> None:
         with pytest.raises(SystemExit):
             main([])
@@ -521,6 +531,53 @@ class TestShardCommands:
         ]
         assert chunk_sizes == [2, 2, 1]
 
+    def test_split_candidates_interleaves_transports(self, tmp_path: Path) -> None:
+        """Sorted, transport-grouped input must spread transports across shards."""
+        record = {
+            "provider": None,
+            "source": "test",
+            "endpoint_url": None,
+            "port": 53,
+            "path": None,
+            "bootstrap_ipv4": [],
+            "bootstrap_ipv6": [],
+            "tls_server_name": None,
+            "metadata": {},
+        }
+        input_path = tmp_path / "candidates.json"
+        input_path.write_text(
+            json.dumps(
+                [
+                    {**record, "transport": transport, "host": f"192.0.2.{index}"}
+                    for index, transport in enumerate(["dns-udp"] * 6 + ["dot"] * 2)
+                ]
+            ),
+            encoding="utf-8",
+        )
+
+        rc = cmd_split_candidates(
+            argparse.Namespace(
+                config=None,
+                input=str(input_path),
+                output_dir=str(tmp_path / "chunks"),
+                shards=2,
+            )
+        )
+
+        assert rc == 0
+        transports_per_shard = [
+            sorted(
+                {
+                    entry["transport"]
+                    for entry in json.loads(
+                        (tmp_path / "chunks" / f"chunk-{index:02d}.json").read_text()
+                    )
+                }
+            )
+            for index in range(2)
+        ]
+        assert transports_per_shard == [["dns-udp", "dot"], ["dns-udp", "dot"]]
+
     def test_materialize_results_writes_outputs(self, tmp_path: Path) -> None:
         filtered_path = tmp_path / "filtered.json"
         filtered_path.write_text(
@@ -609,3 +666,93 @@ class TestShardCommands:
         assert (tmp_path / "out" / "resolvers.txt").exists()
         accepted = json.loads((tmp_path / "out" / "accepted.json").read_text(encoding="utf-8"))
         assert [item["candidate"]["host"] for item in accepted] == ["192.0.2.1", "192.0.2.2"]
+
+
+def _dns_result(host: str, transport: str, status: str, port: int = 53) -> ValidationResult:
+    return ValidationResult(
+        candidate=Candidate(
+            provider=None,
+            source="test",
+            transport=transport,  # type: ignore[arg-type]
+            endpoint_url=None,
+            host=host,
+            port=port,
+            path=None,
+        ),
+        accepted=status == "accepted",
+        score=90 if status == "accepted" else 10,
+        status=status,  # type: ignore[arg-type]
+        reasons=[],
+        probes=[],
+    )
+
+
+class TestEnforceTcpRequirement:
+    """require_tcp_for_dns demotes dns-udp results lacking an accepted TCP pair."""
+
+    def _settings(self, required: bool):
+        from resolver_inventory.settings import Settings
+
+        settings = Settings()
+        settings.validation.require_tcp_for_dns = required
+        return settings
+
+    def test_disabled_leaves_results_untouched(self) -> None:
+        from resolver_inventory.cli import _enforce_tcp_requirement
+
+        results = [_dns_result("1.1.1.1", "dns-udp", "accepted")]
+        demoted = _enforce_tcp_requirement(results, self._settings(False))
+        assert demoted == 0
+        assert results[0].status == "accepted"
+
+    def test_udp_without_tcp_is_demoted(self) -> None:
+        from resolver_inventory.cli import _enforce_tcp_requirement
+
+        results = [_dns_result("1.1.1.1", "dns-udp", "accepted")]
+        demoted = _enforce_tcp_requirement(results, self._settings(True))
+        assert demoted == 1
+        assert results[0].status == "rejected"
+        assert results[0].accepted is False
+        assert "tcp_required" in results[0].reasons
+
+    def test_udp_with_accepted_tcp_is_kept(self) -> None:
+        from resolver_inventory.cli import _enforce_tcp_requirement
+
+        results = [
+            _dns_result("1.1.1.1", "dns-udp", "accepted"),
+            _dns_result("1.1.1.1", "dns-tcp", "accepted"),
+        ]
+        demoted = _enforce_tcp_requirement(results, self._settings(True))
+        assert demoted == 0
+        assert results[0].status == "accepted"
+
+    def test_rejected_tcp_does_not_save_udp(self) -> None:
+        from resolver_inventory.cli import _enforce_tcp_requirement
+
+        results = [
+            _dns_result("1.1.1.1", "dns-udp", "accepted"),
+            _dns_result("1.1.1.1", "dns-tcp", "rejected"),
+        ]
+        demoted = _enforce_tcp_requirement(results, self._settings(True))
+        assert demoted == 1
+        assert results[0].status == "rejected"
+        # The TCP result itself is untouched
+        assert results[1].status == "rejected"
+
+    def test_port_must_match(self) -> None:
+        from resolver_inventory.cli import _enforce_tcp_requirement
+
+        results = [
+            _dns_result("1.1.1.1", "dns-udp", "accepted", port=5353),
+            _dns_result("1.1.1.1", "dns-tcp", "accepted", port=53),
+        ]
+        demoted = _enforce_tcp_requirement(results, self._settings(True))
+        assert demoted == 1
+
+    def test_udp_candidate_status_is_not_demoted(self) -> None:
+        from resolver_inventory.cli import _enforce_tcp_requirement
+
+        results = [_dns_result("1.1.1.1", "dns-udp", "candidate")]
+        demoted = _enforce_tcp_requirement(results, self._settings(True))
+        assert demoted == 0
+        assert results[0].status == "candidate"

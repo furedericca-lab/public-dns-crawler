@@ -32,6 +32,7 @@ def _settings() -> Settings:
     settings.validation.timeout_ms = 1000
     settings.validation.corpus.mode = "controlled"
     settings.validation.corpus.zone = "test.local"
+    settings.validation.capabilities.enabled = False
     return settings
 
 
@@ -42,11 +43,13 @@ def _make_fake_massdns(tmp_path: Path) -> Path:
             [
                 "#!/usr/bin/env python3",
                 "import json, sys",
+                # real massdns gets the query type from -t; input lines are "qname resolver"
+                "rdtype = sys.argv[sys.argv.index('-t') + 1] if '-t' in sys.argv else 'A'",
                 "for line in sys.stdin:",
                 "    parts = line.strip().split()",
-                "    if len(parts) < 3:",
+                "    if len(parts) < 2:",
                 "        continue",
-                "    qname, rdtype, resolver = parts[0], parts[1], parts[2]",
+                "    qname, resolver = parts[0], parts[1]",
                 "    if qname.startswith('nxtest-sentinel-xyzzy.'):",  # controlled NX probe
                 "        payload = {",
                 "            'name': qname, 'resolver': resolver, 'type': rdtype,",

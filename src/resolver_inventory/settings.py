@@ -20,6 +20,18 @@ class CorpusConfig:
 
 
 @dataclass
+class CapabilitiesConfig:
+    enabled: bool = True
+    dnssec_sentinels: list[str] = field(
+        default_factory=lambda: ["dnssec-failed.org.", "sigfail.verteiltesysteme.net."]
+    )
+    ecs_probe_qname: str = "www.google.com."
+    filter_domains: list[str] = field(
+        default_factory=lambda: ["doubleclick.net.", "ads.yahoo.com.", "pornhub.com."]
+    )
+
+
+@dataclass
 class ValidationConfig:
     rounds: int = 3
     timeout_ms: int = 2000
@@ -27,11 +39,18 @@ class ValidationConfig:
     doh_parallelism: int = 20
     doh_trust_env: bool = False
     doh_local_address: str | None = None
+    dot_parallelism: int = 15
+    doq_parallelism: int = 15
     require_tcp_for_dns: bool = False
     require_tls_valid_for_doh: bool = True
+    require_tls_valid_for_dot: bool = True
+    require_tls_valid_for_doq: bool = True
+    revalidation_stable_days: int = 0
+    revalidation_stable_rounds: int = 1
     baseline_resolvers: list[str] = field(default_factory=lambda: ["1.1.1.1", "9.9.9.9", "8.8.8.8"])
     corpus: CorpusConfig = field(default_factory=CorpusConfig)
     dns_backend: DnsBackendConfig = field(default_factory=lambda: DnsBackendConfig())
+    capabilities: CapabilitiesConfig = field(default_factory=CapabilitiesConfig)
 
 
 @dataclass
@@ -48,6 +67,7 @@ class DnsBackendConfig:
     batch_max_queries: int = 50000
     stderr_log_level: str = "debug"
     fallback_to_python_on_error: bool = True
+    max_restarts: int = 3
 
 
 @dataclass
@@ -144,6 +164,8 @@ class SourceEntry:
 class SourcesConfig:
     dns: list[SourceEntry] = field(default_factory=list)
     doh: list[SourceEntry] = field(default_factory=list)
+    dot: list[SourceEntry] = field(default_factory=list)
+    doq: list[SourceEntry] = field(default_factory=list)
 
 
 @dataclass
@@ -185,6 +207,8 @@ def load_settings(path: str | Path | None = None) -> Settings:
         src = raw["sources"]
         settings.sources.dns = _parse_source_list(list(src.get("dns", [])))
         settings.sources.doh = _parse_source_list(list(src.get("doh", [])))
+        settings.sources.dot = _parse_source_list(list(src.get("dot", [])))
+        settings.sources.doq = _parse_source_list(list(src.get("doq", [])))
 
     if "validation" in raw:
         v = raw["validation"]
@@ -196,12 +220,35 @@ def load_settings(path: str | Path | None = None) -> Settings:
         vc.doh_trust_env = bool(v.get("doh_trust_env", vc.doh_trust_env))
         local_address = v.get("doh_local_address", vc.doh_local_address)
         vc.doh_local_address = None if local_address in (None, "") else str(local_address)
+        vc.dot_parallelism = int(v.get("dot_parallelism", vc.dot_parallelism))
+        vc.doq_parallelism = int(v.get("doq_parallelism", vc.doq_parallelism))
         vc.require_tcp_for_dns = bool(v.get("require_tcp_for_dns", vc.require_tcp_for_dns))
         vc.require_tls_valid_for_doh = bool(
             v.get("require_tls_valid_for_doh", vc.require_tls_valid_for_doh)
         )
+        vc.require_tls_valid_for_dot = bool(
+            v.get("require_tls_valid_for_dot", vc.require_tls_valid_for_dot)
+        )
+        vc.require_tls_valid_for_doq = bool(
+            v.get("require_tls_valid_for_doq", vc.require_tls_valid_for_doq)
+        )
+        vc.revalidation_stable_days = int(
+            v.get("revalidation_stable_days", vc.revalidation_stable_days)
+        )
+        vc.revalidation_stable_rounds = int(
+            v.get("revalidation_stable_rounds", vc.revalidation_stable_rounds)
+        )
         if "baseline" in v:
             vc.baseline_resolvers = list(v["baseline"].get("resolvers", vc.baseline_resolvers))
+        if "capabilities" in v:
+            caps = v["capabilities"]
+            cc = vc.capabilities
+            cc.enabled = bool(caps.get("enabled", cc.enabled))
+            cc.dnssec_sentinels = [
+                str(d) for d in caps.get("dnssec_sentinels", cc.dnssec_sentinels)
+            ]
+            cc.ecs_probe_qname = str(caps.get("ecs_probe_qname", cc.ecs_probe_qname))
+            cc.filter_domains = [str(d) for d in caps.get("filter_domains", cc.filter_domains)]
         if "corpus" in v:
             c = v["corpus"]
             vc.corpus.mode = str(c.get("mode", vc.corpus.mode))
@@ -249,6 +296,9 @@ def load_settings(path: str | Path | None = None) -> Settings:
                     "fallback_to_python_on_error",
                     vc.dns_backend.fallback_to_python_on_error,
                 )
+            )
+            vc.dns_backend.max_restarts = int(
+                dns_backend.get("max_restarts", vc.dns_backend.max_restarts)
             )
 
     if "scoring" in raw:
